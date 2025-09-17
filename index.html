@@ -1,54 +1,260 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./mediaqueries.css">
-        <title>Portfolio</title>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <nav id="desktop-nav">
-            <div class="logo">Arham Naqvi</div>
-            <div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional portfolio for a Data Analyst specializing in Crime Analytics">
+    <title>Crime Analytics Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/components.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <!-- Profile Section -->
+            <div class="profile">
+                <div class="profile-image">
+                    <!-- Placeholder for profile image -->
+                    <img src="assets/images/placeholder-profile.jpg" alt="Profile Image" class="profile-pic">
+                </div>
+                <h3 class="profile-name">John Doe</h3>
+                <h5 class="profile-title">Data Analyst | Crime Analytics Specialist</h5>
+                <div class="social-links">
+                    <a href="https://github.com/" target="_blank" aria-label="GitHub Profile">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <a href="#" class="nav-btn resume-btn" id="resume-link" target="_blank">Resume</a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link active" data-view="projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-view="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link" data-view="contact">Contact</a>
+                    </li>
                 </ul>
+            </nav>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
             </div>
-        </nav>
-
-        <nav id="hamburger-nav">
-            <div class="logo">Arham Naqvi</div>
-            <div class="hamburger-menu">
-                <div class="hamburger-icon" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu-links">
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-                </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div id="content-container">
+                <!-- Projects View -->
+                <section id="projects" class="content-view active">
+                    <header>
+                        <h1>Crime Analytics Projects</h1>
+                        <p class="subtitle">Explore my data-driven insights into crime patterns and prevention strategies</p>
+                    </header>
+                    
+                    <div class="project-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="data-analysis">Data Analysis</button>
+                        <button class="filter-btn" data-filter="visualization">Visualization</button>
+                        <button class="filter-btn" data-filter="predictive-modeling">Predictive Modeling</button>
+                    </div>
+                    
+                    <div class="projects-grid">
+                        <!-- Project Card 1 -->
+                        <div class="project-card" data-tags="data-analysis visualization">
+                            <div class="project-image">
+                                <img src="assets/images/project-1.jpg" alt="Crime Hotspot Mapping">
+                            </div>
+                            <div class="project-info">
+                                <h3>Crime Hotspot Mapping</h3>
+                                <p>Geospatial analysis of crime incidents to identify high-risk areas and temporal patterns.</p>
+                                <div class="project-tags">
+                                    <span class="tag">GIS</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Visualization</span>
+                                </div>
+                                <a href="#" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Card 2 -->
+                        <div class="project-card" data-tags="predictive-modeling">
+                            <div class="project-image">
+                                <img src="assets/images/project-2.jpg" alt="Predictive Policing Model">
+                            </div>
+                            <div class="project-info">
+                                <h3>Predictive Policing Model</h3>
+                                <p>Machine learning algorithms to forecast crime likelihood in urban environments.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Machine Learning</span>
+                                    <span class="tag">R</span>
+                                    <span class="tag">Statistical Analysis</span>
+                                </div>
+                                <a href="#" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Card 3 -->
+                        <div class="project-card" data-tags="data-analysis">
+                            <div class="project-image">
+                                <img src="assets/images/project-3.jpg" alt="Criminal Network Analysis">
+                            </div>
+                            <div class="project-info">
+                                <h3>Criminal Network Analysis</h3>
+                                <p>Graph theory application to understand relationships between criminal entities.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Network Analysis</span>
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Graph Theory</span>
+                                </div>
+                                <a href="#" class="project-link">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- About View -->
+                <section id="about" class="content-view">
+                    <header>
+                        <h1>About Me</h1>
+                        <p class="subtitle">Professional background and expertise in crime data analytics</p>
+                    </header>
+                    
+                    <div class="about-content">
+                        <div class="bio-section">
+                            <h2>Professional Background</h2>
+                            <p>I am a dedicated data analyst specializing in crime analytics with over 8 years of experience working with law enforcement agencies and criminal justice organizations. My expertise lies in transforming complex crime data into actionable insights that help reduce crime rates and improve public safety.</p>
+                            <p>With a strong foundation in statistical analysis, geospatial mapping, and machine learning, I develop data-driven solutions for various criminal justice challenges. My work has directly contributed to more efficient resource allocation and targeted crime prevention strategies.</p>
+                        </div>
+                        
+                        <div class="education-section">
+                            <h2>Education</h2>
+                            <div class="education-item">
+                                <h3>Master of Science in Data Science</h3>
+                                <p class="institution">University of Criminal Justice</p>
+                                <p class="years">2015 - 2017</p>
+                            </div>
+                            <div class="education-item">
+                                <h3>Bachelor of Science in Criminal Justice</h3>
+                                <p class="institution">State University</p>
+                                <p class="years">2011 - 2015</p>
+                            </div>
+                        </div>
+                        
+                        <div class="skills-section">
+                            <h2>Skills & Expertise</h2>
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h3>Data Analysis</h3>
+                                    <ul class="skill-list">
+                                        <li>Statistical Analysis</li>
+                                        <li>Geospatial Mapping</li>
+                                        <li>Time Series Analysis</li>
+                                        <li>Network Analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>Technical Skills</h3>
+                                    <ul class="skill-list">
+                                        <li>Python (pandas, NumPy, scikit-learn)</li>
+                                        <li>R (tidyverse, ggplot2)</li>
+                                        <li>SQL Databases</li>
+                                        <li>GIS Tools (ArcGIS, QGIS)</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>Visualization</h3>
+                                    <ul class="skill-list">
+                                        <li>Tableau</li>
+                                        <li>Power BI</li>
+                                        <li>D3.js</li>
+                                        <li>Matplotlib & Seaborn</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Contact View -->
+                <section id="contact" class="content-view">
+                    <header>
+                        <h1>Contact Me</h1>
+                        <p class="subtitle">Reach out for collaborations, consultations, or inquiries</p>
+                    </header>
+                    
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <p>email@example.com</p>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <p>(123) 456-7890</p>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <p>New York, NY</p>
+                            </div>
+                        </div>
+                        
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <input type="text" id="organization" name="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </section>
             </div>
-
-        </nav>
-
-        <script src="" async defer></script>
-    </body>
+        </main>
+    </div>
+    
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+</body>
 </html>

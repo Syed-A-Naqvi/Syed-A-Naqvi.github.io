@@ -1,0 +1,185 @@
+/* 
+ * main.css - Main styling for the portfolio website
+ * Contains global styles, variables, and utility classes
+ */
+
+/* Custom CSS Variables */
+:root {
+    /* Color Palette */
+    --color-primary: #2C3E50;       /* Dark Grey - main text and headers */
+    --color-secondary: #1A365D;     /* Navy Blue - accent elements and links */
+    --color-tertiary: #722F37;      /* Burgundy - call-to-action buttons */
+    --color-quaternary: #4A5D23;    /* Olive Green - subtle accents */
+    --color-background: #FAFAFA;    /* Off-white - avoid pure white */
+    --color-surface: #F5F5F5;       /* Light Grey - card backgrounds */
+    --color-text: #333333;          /* Charcoal - avoid pure black */
+    
+    /* Typography */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-code: monospace;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-circle: 50%;
+    
+    /* Transitions */
+    --transition-speed: 200ms;
+    --transition-ease: ease-in-out;
+    
+    /* Container dimensions */
+    --sidebar-width: 300px;
+    --content-width: calc(100% - var(--sidebar-width));
+    
+    /* Z-index layers */
+    --z-index-base: 1;
+    --z-index-navigation: 100;
+    --z-index-modal: 1000;
+}
+
+/* Dark mode theme variables */
+.dark-theme {
+    --color-primary: #CFD8DC;       /* Light Grey for text in dark mode */
+    --color-secondary: #81D4FA;     /* Light Blue for accents in dark mode */
+    --color-tertiary: #E57373;      /* Soft Red for CTA in dark mode */
+    --color-quaternary: #AED581;    /* Soft Green for accents in dark mode */
+    --color-background: #263238;    /* Dark Blue-Grey for background */
+    --color-surface: #37474F;       /* Medium Blue-Grey for surfaces */
+    --color-text: #ECEFF1;          /* Off-white for text */
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.1rem;
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color var(--transition-speed) var(--transition-ease);
+}
+
+a:hover {
+    color: var(--color-tertiary);
+}
+
+/* Container Layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    width: var(--content-width);
+    margin-left: var(--sidebar-width);
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+}
+
+/* Content Views */
+.content-view {
+    display: none;
+    animation: fade-in 0.3s ease-in-out;
+}
+
+.content-view.active {
+    display: block;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Utility Classes */
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Media Queries for Responsive Design */
+/* Will be extended in subsequent implementation */
+@media screen and (max-width: 992px) {
+    :root {
+        --sidebar-width: 250px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    :root {
+        --sidebar-width: 100%;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

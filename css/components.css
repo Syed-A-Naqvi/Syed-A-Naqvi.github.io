@@ -1,0 +1,243 @@
+/* 
+ * components.css - Styling for reusable components
+ * Includes styles for cards, buttons, forms, etc.
+ */
+
+/* Project Cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.project-card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed) var(--transition-ease),
+                box-shadow var(--transition-speed) var(--transition-ease);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.project-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    padding: var(--spacing-lg);
+}
+
+.project-info h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.tag {
+    background-color: rgba(44, 62, 80, 0.1);
+    color: var(--color-primary);
+    padding: 3px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8rem;
+}
+
+.project-link {
+    display: inline-block;
+    color: var(--color-tertiary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Project Filters */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-speed) var(--transition-ease),
+                color var(--transition-speed) var(--transition-ease);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* About Page Styling */
+.about-content {
+    display: grid;
+    gap: var(--spacing-xl);
+}
+
+.bio-section p {
+    margin-bottom: var(--spacing-md);
+}
+
+.education-item {
+    margin-bottom: var(--spacing-lg);
+}
+
+.education-item h3 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-secondary);
+}
+
+.institution {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.years {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.skill-category h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-quaternary);
+}
+
+.skill-list {
+    list-style-position: inside;
+    padding-left: var(--spacing-sm);
+}
+
+.skill-list li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Contact Form */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.contact-item i {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+}
+
+.contact-form {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: var(--spacing-sm);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-body);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+}
+
+.submit-btn {
+    background-color: var(--color-tertiary);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+    transition: background-color var(--transition-speed) var(--transition-ease);
+}
+
+.submit-btn:hover {
+    background-color: #5a2129;
+}
+
+/* Media Queries for Responsive Components */
+@media screen and (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
