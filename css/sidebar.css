@@ -7,13 +7,11 @@
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
-    color: white;
-    padding: var(--spacing-xl);
     display: flex;
+    flex: 0 0 var(--sidebar-width);
+    padding: var(--spacing-xl);
+    padding-top: 2.5rem;
+    color: white;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto;

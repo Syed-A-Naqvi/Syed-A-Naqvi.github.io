@@ -6,8 +6,8 @@
 /* Custom CSS Variables */
 :root {
     /* Color Palette */
-    --color-primary: #2C3E50;       /* Dark Grey - main text and headers */
-    --color-secondary: #1A365D;     /* Navy Blue - accent elements and links */
+    --color-primary: #184877;       /* Dark Grey - main text and headers */
+    --color-secondary: #94b5e4;     /* Navy Blue - accent elements and links */
     --color-tertiary: #722F37;      /* Burgundy - call-to-action buttons */
     --color-quaternary: #4A5D23;    /* Olive Green - subtle accents */
     --color-background: #FAFAFA;    /* Off-white - avoid pure white */
@@ -34,8 +34,8 @@
     --border-radius-circle: 50%;
     
     /* Transitions */
-    --transition-speed: 200ms;
-    --transition-ease: ease-in-out;
+    --transition-speed: 50ms;
+    --transition-ease: ease-out;
     
     /* Container dimensions */
     --sidebar-width: 300px;
@@ -49,13 +49,13 @@
 
 /* Dark mode theme variables */
 .dark-theme {
-    --color-primary: #CFD8DC;       /* Light Grey for text in dark mode */
-    --color-secondary: #81D4FA;     /* Light Blue for accents in dark mode */
-    --color-tertiary: #E57373;      /* Soft Red for CTA in dark mode */
-    --color-quaternary: #AED581;    /* Soft Green for accents in dark mode */
-    --color-background: #263238;    /* Dark Blue-Grey for background */
-    --color-surface: #37474F;       /* Medium Blue-Grey for surfaces */
-    --color-text: #ECEFF1;          /* Off-white for text */
+    --color-primary: #E6AF2E;       /* Light Grey for text in dark mode */
+    --color-secondary: #7B0828;     /* Light Blue for accents in dark mode */
+    --color-tertiary: #141B41;      /* Soft Red for CTA in dark mode */
+    --color-quaternary: #7698B3;    /* Soft Green for accents in dark mode */
+    --color-background: #151414;    /* Dark Blue-Grey for background */
+    --color-surface: #393939;       /* Medium Blue-Grey for surfaces */
+    --color-text: #EAEBED;          /* Off-white for text */
 }
 
 /* Base Styles */
@@ -125,13 +125,18 @@ a:hover {
 /* Container Layout */
 .container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    background-color: var(--color-surface);
 }
 
 .main-content {
-    width: var(--content-width);
-    margin-left: var(--sidebar-width);
-    padding: var(--spacing-xl);
+    width: 100%;
+    padding:var(--spacing-md);
+    padding-left: var(--spacing-xl);
+    margin: var(--spacing-md);
+    margin-left: 0;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--color-background);
     overflow-y: auto;
 }
 
@@ -172,6 +177,8 @@ a:hover {
 @media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
+        height: auto;
+        overflow-y: auto;
     }
     
     :root {
@@ -179,7 +186,7 @@ a:hover {
     }
     
     .main-content {
-        margin-left: 0;
         width: 100%;
+        margin-bottom: 0;
     }
 }

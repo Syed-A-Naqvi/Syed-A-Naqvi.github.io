@@ -184,4 +184,6 @@ This portfolio follows WCAG guidelines for accessibility:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary and unlicensed. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, or sell any part of this repository or its contents, for private or public use, under any circumstances.
+
+For inquiries, contact the repository owner..
