@@ -1,26 +1,27 @@
-/* Sidebar Navigation Styles */
+/* *** SIDEBAR NAVIGATION STYLES *** */
 
-/* Sidebar Container */
+
+/* --- SIDEBAR CONTAINER --- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
     display: flex;
     flex: 0 0 var(--sidebar-width);
     flex-direction: column;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-xxl);
     overflow-y: auto;
     z-index: var(--z-index-navigation);
 }
 
-/* Profile Section */
+
+/* --- PROFILE SECTION --- */
 .profile {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: var(--spacing-lg);
     padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-primary);
-    margin-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-secondary);
+    margin-bottom: var(--spacing-xxl);
 }
 
 .profile-image {
@@ -28,9 +29,8 @@
     height: 120px;
     border-radius: var(--border-radius-circle);
     overflow: hidden;
-    border: 3px solid white;
+    border: 3px solid var(--color-secondary);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: var(--spacing-sm);
 }
 
 .profile-pic {
@@ -40,103 +40,59 @@
 }
 
 .profile-name {
-    margin-bottom: var(--spacing-sm);
-    font-size: var(--font-size-xl);
+    margin-bottom: 0;
 }
 
 .profile-title {
-    font-weight: 400;
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-lg);
+    line-height: 1.3;
+    margin-bottom: 0;
 }
 
-/* Social Links */
+
+/* --- SOCIAL LINKS --- */
 .social-links {
-    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: var(--spacing-md);
-    font-size: var(--font-size-lg);
+    justify-content: space-evenly;
     transition: transform var(--transition-speed) var(--transition-ease);
 }
-
-.social-links a:hover {
-    transform: translateY(-3px);
-    color: var(--color-primary);
+.social-links .spacer {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.social-links .sidebar-no-btn {
+    font-size: var(--font-size-lg);
+    padding-right: var(--spacing-lg);
 }
 
-/* Resume Button */
-.resume-btn {
-    display: block;
-    text-align: center;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius-md);
-    border: 2px solid var(--color-text);
-    font-weight: 800;
-    font-size: var(--font-size-base);
-    transition: background-color var(--transition-speed) var(--transition-ease);
-}
-
-.resume-btn:hover,
-#resume-link:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-background);
-    color: var(--color-background);
-}
-
-/* Navigation Links */
-.nav-links {
-    display: flex;
-}
-
-.nav-spacer {
-    width: 25%;
-}
-
+/* --- NAVIGATION LINKS --- */
+/* [OPTIONAL] .NAV-MENU PLACEHOLDER */
 .nav-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin-bottom: var(--spacing-xl);
+}
+
+.nav-links {
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 50%;
-    margin: 0;
-    padding: 0;
+    gap: var(--spacing-xxl);
 }
 
-.nav-link {
-    display: block;
-    color: var(--color-text);
-    margin: var(--spacing-lg) 0;
-    font-weight: 500;
-    font-size: var(--font-size-base);
-    line-height: 1;
-    padding-left: calc(var(--spacing-sm) + var(--spacing-xs));
-    transition: color var(--transition-speed) var(--transition-ease),
-                transform var(--transition-speed) var(--transition-ease);
-}
+/* [OPTIONAL] .NAV-ITEM PLACEHOLDER */
+/* .nav-item { } */
 
-.nav-link:hover,
-.nav-link.active {
-    font-weight: 1000;
-    transform: translateX(5px);
-    color: var(--color-primary);
-}
 
-.nav-link.active {
-    padding-left: var(--spacing-xs);
-    border-left: var(--spacing-sm) solid var(--color-tertiary);
-}
-
-/* Theme Toggle */
-.theme-toggle {
-    margin-top: auto;
-}
+/* --- THEME TOGGLE --- */
+/* .theme-toggle { } */
 
 #theme-toggle-btn {
     background: none;
-    border: 1px solid var(--color-text);
-    color: var(--color-text);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius-md);
     display: flex;
@@ -154,7 +110,8 @@
     margin-right: var(--spacing-sm);
 }
 
-/* Responsive Design */
+
+/* --- RESPONSIVE DESIGN --- */
 @media screen and (max-width: 768px) {
     .sidebar {
         position: relative;
