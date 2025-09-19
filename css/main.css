@@ -5,19 +5,27 @@
 
 /* Custom CSS Variables */
 :root {
-    /* Color Palette */
-    --color-primary: #184877;       /* Dark Grey - main text and headers */
-    --color-secondary: #94b5e4;     /* Navy Blue - accent elements and links */
-    --color-tertiary: #722F37;      /* Burgundy - call-to-action buttons */
-    --color-quaternary: #4A5D23;    /* Olive Green - subtle accents */
-    --color-background: #FAFAFA;    /* Off-white - avoid pure white */
-    --color-surface: #F5F5F5;       /* Light Grey - card backgrounds */
-    --color-text: #333333;          /* Charcoal - avoid pure black */
+    /* Color Palette: Light Mode (Corporate & Professional) */
+    --color-primary: #1B365D;       /* Deep Navy - Headings */
+    --color-secondary: #6B7280;     /* Charcoal Grey - Links, icons */
+    --color-tertiary: #8B1538;      /* Deep Burgundy - CTA buttons */
+    --color-quaternary: #E5E7EB;    /* Light Grey - Dividers, subtle backgrounds */
+    --color-background: #FAFBFC;    /* Pure Off-White - Main background */
+    --color-surface: #F3F4F6;       /* Soft Grey - Cards, panels */
+    --color-text: #1F2937;          /* Dark Charcoal - Body text */
+
     
     /* Typography */
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Source Sans Pro', sans-serif;
-    --font-code: monospace;
+    --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-code: ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -49,13 +57,14 @@
 
 /* Dark mode theme variables */
 .dark-theme {
-    --color-primary: #E6AF2E;       /* Light Grey for text in dark mode */
-    --color-secondary: #7B0828;     /* Light Blue for accents in dark mode */
-    --color-tertiary: #141B41;      /* Soft Red for CTA in dark mode */
-    --color-quaternary: #7698B3;    /* Soft Green for accents in dark mode */
-    --color-background: #151414;    /* Dark Blue-Grey for background */
-    --color-surface: #393939;       /* Medium Blue-Grey for surfaces */
-    --color-text: #EAEBED;          /* Off-white for text */
+    /* Color Palette: Dark Mode (Authoritative & Warm) */
+    --color-primary: #D4AF37;       /* Rich Gold - Headings */
+    --color-secondary: #94A3B8;     /* Steel Blue-Grey - Links, icons */
+    --color-tertiary: #6d1515;      /* Authority Red - CTA buttons */
+    --color-quaternary: #475569;    /* Medium Slate - Dividers, subtle backgrounds */
+    --color-background: #0F172A;    /* Deep Navy - Main background */
+    --color-surface: #1E293B;       /* Dark Slate Blue - Cards, panels */
+    --color-text: #F1F5F9;          /* Crisp Off-White - Body text */
 }
 
 /* Base Styles */
@@ -72,16 +81,13 @@ html {
 
 body {
     font-family: var(--font-body);
-    color: var(--color-text);
-    background-color: var(--color-background);
     line-height: 1.6;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
     font-weight: 600;
 }
 
@@ -109,17 +115,13 @@ h5 {
 }
 
 p {
-    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
 }
 
 a {
-    color: var(--color-secondary);
+    color: var(--color-text);
     text-decoration: none;
     transition: color var(--transition-speed) var(--transition-ease);
-}
-
-a:hover {
-    color: var(--color-tertiary);
 }
 
 /* Container Layout */
@@ -131,13 +133,13 @@ a:hover {
 
 .main-content {
     width: 100%;
-    padding:var(--spacing-md);
-    padding-left: var(--spacing-xl);
-    margin: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-xl);
+    margin: var(--spacing-xl);
     margin-left: 0;
     border-radius: var(--border-radius-lg);
     background-color: var(--color-background);
     overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.659);
 }
 
 /* Content Views */
@@ -159,7 +161,6 @@ a:hover {
 .subtitle {
     font-size: 1.2rem;
     color: var(--color-secondary);
-    margin-bottom: var(--spacing-xl);
 }
 
 .hidden {
@@ -190,3 +191,42 @@ a:hover {
         margin-bottom: 0;
     }
 }
+
+
+/* DARK MODE TOGGLE SWITCH */
+/* #theme-toggle-btn {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+#theme-toggle-btn::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+#theme-toggle-btn:hover {
+    background: rgba(255,255,255,0.25);
+}
+
+#theme-toggle-btn:hover::before {
+    transform: translateX(24px);
+} */

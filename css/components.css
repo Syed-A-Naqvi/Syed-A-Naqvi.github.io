@@ -8,7 +8,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--spacing-xl);
-    margin-top: var(--spacing-xl);
 }
 
 .project-card {
@@ -46,20 +45,17 @@
 }
 
 .project-info h3 {
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.3rem;
+    font-size: var(--font-size-lg);
 }
 
 .project-info p {
-    font-size: 0.95rem;
-    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-md);
 }
 
 .tag {
@@ -67,14 +63,14 @@
     color: var(--color-primary);
     padding: 3px 10px;
     border-radius: var(--border-radius-sm);
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
 }
 
 .project-link {
     display: inline-block;
     color: var(--color-tertiary);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
 }
 
 /* Project Filters */
@@ -82,7 +78,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
 }
 
 .filter-btn {
@@ -108,27 +103,21 @@
     gap: var(--spacing-xl);
 }
 
-.bio-section p {
-    margin-bottom: var(--spacing-md);
-}
 
-.education-item {
-    margin-bottom: var(--spacing-lg);
-}
+
+
 
 .education-item h3 {
-    margin-bottom: var(--spacing-xs);
     color: var(--color-secondary);
 }
 
 .institution {
     font-weight: 600;
-    margin-bottom: var(--spacing-xs);
 }
 
 .years {
     color: #666;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
 }
 
 .skills-grid {
@@ -138,7 +127,6 @@
 }
 
 .skill-category h3 {
-    margin-bottom: var(--spacing-md);
     color: var(--color-quaternary);
 }
 
@@ -147,9 +135,7 @@
     padding-left: var(--spacing-sm);
 }
 
-.skill-list li {
-    margin-bottom: var(--spacing-xs);
-}
+
 
 /* Contact Form */
 .contact-content {
@@ -171,7 +157,7 @@
 }
 
 .contact-item i {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     color: var(--color-secondary);
 }
 
@@ -188,7 +174,7 @@
 
 .form-group label {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
 }
 
 .form-group input,
@@ -213,7 +199,6 @@
     border-radius: var(--border-radius-sm);
     cursor: pointer;
     font-weight: 600;
-    margin-top: var(--spacing-sm);
     transition: background-color var(--transition-speed) var(--transition-ease);
 }
 
