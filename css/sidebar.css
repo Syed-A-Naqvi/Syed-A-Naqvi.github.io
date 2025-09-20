@@ -4,13 +4,14 @@
 /* --- SIDEBAR CONTAINER --- */
 .sidebar {
     width: var(--sidebar-width);
-    height: 100vh;
     display: flex;
     flex: 0 0 var(--sidebar-width);
     flex-direction: column;
     padding: var(--spacing-xl) var(--spacing-xxl);
+    margin-right: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    border: var(--main-content-border);
     overflow-y: auto;
-    z-index: var(--z-index-navigation);
 }
 
 
@@ -53,16 +54,21 @@
 .social-links {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     transition: transform var(--transition-speed) var(--transition-ease);
 }
 .social-links .spacer {
+    width: 100%;
     flex-grow: 1;
     flex-shrink: 1;
 }
 .social-links .sidebar-no-btn {
+    line-height: 1;
     font-size: var(--font-size-lg);
     padding-right: var(--spacing-lg);
+    padding-top: var(--spacing-xs);
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 /* --- NAVIGATION LINKS --- */
@@ -82,9 +88,10 @@
     gap: var(--spacing-xxl);
 }
 
-/* [OPTIONAL] .NAV-ITEM PLACEHOLDER */
-/* .nav-item { } */
-
+.nav-item {
+    width: 100%;
+    height: var(--spaceing-xxl);
+}
 
 /* --- THEME TOGGLE --- */
 /* .theme-toggle { } */
