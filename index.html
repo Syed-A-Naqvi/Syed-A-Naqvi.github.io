@@ -13,7 +13,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/contact.css">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -40,51 +42,55 @@
                 <h3 class="profile-name">Arham Naqvi</h3>
                 <h6 class="profile-title">Data Analyst | Public Safety & Law Enforcement</h6>
                 <div class="social-links">
-                    <a href="https://github.com/" class="sidebar-no-btn" target="_blank" aria-label="GitHub Profile">
+                    <a href="https://github.com/" class="social-icon" target="_blank" aria-label="GitHub Profile">
                         <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
-                    <a href="https://linkedin.com/" class="sidebar-no-btn" target="_blank" aria-label="LinkedIn Profile">
+                    <a href="https://linkedin.com/" class="social-icon" target="_blank" aria-label="LinkedIn Profile">
                         <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <div class="spacer"></div>
                     <a href="assets/documents/Resume_2025.pdf" class="floating-btn" id="resume-link" target="_blank">
                         <i class="fas fa-file-alt" aria-hidden="true"></i>
                         Resumé
                     </a>
+                    <div class="flex-fill"></div>
                 </div>
             </div>
             
             <!-- Navigation Links -->
             <nav class="nav-menu">
                 <ul class="nav-links">
-                    <li class="nav-link slider">
-                        <div class="slider-track-spacer"></div>
-                        <a href="#projects" class="nav-link slider-btn active" data-view="projects">
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link slider active" data-view="projects">
+                            <div class="slider-spacer"></div>
+                            <div class="slider-btn">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                                Projects
+                            </div>
                             <div class="slider-track"></div>
-                            <i class="fas fa-chart-line" aria-hidden="true"></i>
-                            Projects
                         </a>
-                        <div class="slider-track-spacer"></div>
                     </li>
-                    <li class="nav-item slider">
-                        <div class="slider-track-spacer"></div>
-                        <div class="slider-track"></div>
-                        <a href="#about" class="nav-link slider-btn" data-view="about">
-                            <i class="fas fa-id-card" aria-hidden="true"></i>
-                            About
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link slider" data-view="about">
+                            <div class="slider-spacer"></div>
+                            <div class="slider-btn">
+                                <i class="fas fa-id-card" aria-hidden="true"></i>
+                                About
+                            </div>
+                            <div class="slider-track"></div>
                         </a>
-                        <div class="slider-track-spacer"></div>
                     </li>
-                    <li class="nav-item slider">
-                        <div class="slider-track-spacer"></div>
-                        <div class="slider-track"></div>
-                        <a href="#contact" class="nav-link slider-btn" data-view="contact">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            Contact
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link slider" data-view="contact">
+                            <div class="slider-spacer"></div>
+                            <div class="slider-btn">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                Contact
+                            </div>
+                            <div class="slider-track"></div>
                         </a>
-                        <div class="slider-track-spacer"></div>
                     </li>
                 </ul>
+                <div class="flex-fill"></div>
             </nav>
 
             <!-- Dark Mode Toggle -->
