@@ -165,6 +165,9 @@
     --color-text-subtle-rgb: 184, 175, 162;
 
     --main-content-border: 1px solid var(--color-quaternary);
+    --border-thin: 1px solid var(--color-quaternary);
+    --border-medium: 2px solid var(--color-secondary);
+    --border-thick: 3px solid var(--color-secondary);
 
 }
 
@@ -292,7 +295,8 @@ input:focus, textarea:focus, select:focus {
     padding: var(--spacing-xl);
     width: 100vw;
     height: 100vh;
-    background-color: var(--color-surface);
+    background-color: var(--color-background);
+    overflow-y: hidden;
 }
 
 /* Main content area uses surface color and shadow for separation */
@@ -302,7 +306,7 @@ input:focus, textarea:focus, select:focus {
     padding: var(--spacing-xl) var(--spacing-xxl);
     border-radius: var(--border-radius-lg);
     border: var(--main-content-border);
-    background-color: var(--color-background);
+    background-color: var(--color-surface);
     overflow-y: auto;
     box-shadow: 0 12px 10px rgba(0, 0, 0, 0.508);
     /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [spread radius] [color] [inset]; */
@@ -396,26 +400,60 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Media Queries for Responsive Design */
-/* Will be extended in subsequent implementation */
-@media screen and (max-width: 992px) {
-    :root {
-        --sidebar-width: 250px;
-    }
-}
+/* Mobile and small screen optimization */
 
 @media screen and (max-width: 768px) {
+    /* Container adjustments */
     .container {
         flex-direction: column;
-        height: auto;
-        overflow-y: auto;
+        padding: var(--spacing-lg);
+        padding-top: calc(6.9 * var(--spacing-lg));
+        height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
     }
     
+    /* Main content adjustments */
+    .main-content {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xl);
+        border-radius: var(--border-radius-md);
+    }
+    
+    /* Typography adjustments */
+    h1 {
+        font-size: var(--font-size-xxl);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    h3 {
+        font-size: var(--font-size-lg);
+    }
+    
+    p, li, blockquote {
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-normal);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .subtitle {
+        font-size: var(--font-size-md);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Spacing adjustments */
+    .section-heading {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Width adjustments */
     :root {
         --sidebar-width: 100%;
-    }
-    
-    .main-content {
-        width: 100%;
-        margin-bottom: 0;
+        --content-width: 100%;
+        --section-spacing: var(--spacing-xl);
     }
 }

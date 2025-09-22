@@ -11,17 +11,17 @@
 }
 
 .project-card {
-    background-color: var(--color-surface);
+    background-color: var(--color-quaternary);
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
     transition: transform var(--transition-speed) var(--transition-ease),
                 box-shadow var(--transition-speed) var(--transition-ease);
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-xl);
 }
 
 .project-image {
