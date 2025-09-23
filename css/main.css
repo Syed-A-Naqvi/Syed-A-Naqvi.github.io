@@ -5,6 +5,15 @@
 
 /* Custom CSS Variables */
 :root {
+    /* Global Responsive Scale Factor
+     * This combines viewport width and height for better scaling
+     * across different device orientations and sizes
+     */
+    --scale-factor: calc((1vw + 1vh) / 2);
+    --scale-factor-small: calc(0.5 * var(--scale-factor));
+    --scale-factor-medium: var(--scale-factor);
+    --scale-factor-large: calc(1.5 * var(--scale-factor));
+
     /* Color Palette: Light Mode (Authoritative & Warm) */
 
     /* Deeper Earth Yellow - Headings */
@@ -54,15 +63,15 @@
     --font-body: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-code: ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
     
-    /* Font sizes */
-    --font-size-xs: 0.75rem;
-    --font-size-sm: 0.9rem;
-    --font-size-base: 1rem;
-    --font-size-md: 1.1rem;
-    --font-size-lg: 1.25rem;
-    --font-size-xl: 1.5rem;
-    --font-size-xxl: 2rem;
-    --font-size-xxxl: 2.5rem;
+    /* Font sizes - responsive using clamp(min, preferred, max) with the global scale factor */
+    --font-size-xs: clamp(0.7rem, 0.675rem + 0.25 * var(--scale-factor-small), 0.75rem);
+    --font-size-sm: clamp(0.8rem, 0.775rem + 0.25 * var(--scale-factor-small), 0.9rem);
+    --font-size-base: clamp(0.9rem, 0.85rem + 0.3 * var(--scale-factor-small), 1rem);
+    --font-size-md: clamp(1rem, 0.95rem + 0.3 * var(--scale-factor-medium), 1.1rem);
+    --font-size-lg: clamp(1.1rem, 1rem + 0.4 * var(--scale-factor-medium), 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.15rem + 0.5 * var(--scale-factor-medium), 1.5rem);
+    --font-size-xxl: clamp(1.5rem, 1.35rem + 0.6 * var(--scale-factor-large), 2rem);
+    --font-size-xxxl: clamp(2rem, 1.75rem + 0.75 * var(--scale-factor-large), 2.5rem);
     
     /* Font weights */
     --font-weight-regular: 400;
@@ -81,41 +90,41 @@
     --letter-spacing-normal: 0;
     --letter-spacing-wide: 0.05em;
     
-    /* Spacing */
-    --spacing-xxs: 0.125rem;
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-xxl: 3rem;
-    --spacing-xxxl: 4rem;
+    /* Spacing - responsive using clamp(min, preferred, max) with the global scale factor */
+    --spacing-xxs: clamp(0.1rem, 0.095rem + 0.05 * var(--scale-factor-small), 0.125rem);
+    --spacing-xs: clamp(0.2rem, 0.19rem + 0.1 * var(--scale-factor-small), 0.25rem);
+    --spacing-sm: clamp(0.4rem, 0.375rem + 0.15 * var(--scale-factor-small), 0.5rem);
+    --spacing-md: clamp(0.75rem, 0.7rem + 0.3 * var(--scale-factor-medium), 1rem);
+    --spacing-lg: clamp(1.1rem, 1rem + 0.5 * var(--scale-factor-medium), 1.5rem);
+    --spacing-xl: clamp(1.5rem, 1.35rem + 0.65 * var(--scale-factor-medium), 2rem);
+    --spacing-xxl: clamp(2rem, 1.75rem + 0.85 * var(--scale-factor-large), 3rem);
+    --spacing-xxxl: clamp(2.5rem, 2.125rem + 1.25 * var(--scale-factor-large), 4rem);
     
-    /* Border Radius */
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-    --border-radius-pill: 999px;
-    --border-radius-circle: 50%;
+    /* Border Radius - responsive using em and the global scale factor */
+    --border-radius-sm: clamp(0.25em, calc(0.25em + 0.15 * var(--scale-factor-small)), 0.35em);
+    --border-radius-md: clamp(0.5em, calc(0.5em + 0.2 * var(--scale-factor-small)), 0.65em);
+    --border-radius-lg: clamp(0.75em, calc(0.75em + 0.25 * var(--scale-factor-medium)), 1em);
+    --border-radius-pill: 999px; /* Intentionally fixed for pill shape */
+    --border-radius-circle: 50%; /* Percentage is already responsive */
     
-    /* Box Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 12px 20px rgba(0, 0, 0, 0.15);
+    /* Box Shadows - responsive using em units */
+    --shadow-sm: 0 0.125em 0.25em rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 0.25em 0.375em rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 0.625em 0.9375em rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 0.75em 1.25em rgba(0, 0, 0, 0.15);
     
     /* Transitions */
-    --transition-speed-fast: 100ms;
+    --transition-speed-fast: 100ms; /* Keeping ms for transitions as they're time-based, not size-based */
     --transition-speed: 200ms;
     --transition-speed-slow: 300ms;
     --transition-ease: ease-out;
-    --translate-x: 4px;
-    --translate-y: 6px;
+    --translate-x: clamp(0.25em, 0.2 * var(--scale-factor-medium), 0.5em); /* Responsive translation values using scale factor */
+    --translate-y: clamp(0.375em, 0.25 * var(--scale-factor-medium), 0.75em);
     
-    /* Container dimensions */
-    --sidebar-width: 300px;
+    /* Container dimensions - responsive using global scale factor */
+    --sidebar-width: 200px;
     --content-width: calc(100% - var(--sidebar-width));
-    --section-spacing: var(--spacing-xxl);
+    --section-spacing: var(--spacing-xxl); /* Already responsive through --spacing-xxl */
     
     /* Z-index layers */
     --z-index-base: 1;
@@ -179,13 +188,19 @@
 }
 
 html {
-    font-size: 16px;
     scroll-behavior: smooth;
+    overflow: hidden;
+    /* Improve text rendering */
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
     font-family: var(--font-body);
-    line-height: 1.6;
+    /* Improve performance with content-visibility */
+    content-visibility: auto;
+    contain: content;
 }
 
 /* Typography */
@@ -293,8 +308,8 @@ input:focus, textarea:focus, select:focus {
 .container {
     display: flex;
     padding: var(--spacing-xl);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100dvh; /* Use small viewport height for stability */
     background-color: var(--color-background);
     overflow-y: hidden;
 }
@@ -308,7 +323,7 @@ input:focus, textarea:focus, select:focus {
     border: var(--main-content-border);
     background-color: var(--color-surface);
     overflow-y: auto;
-    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.508);
+    box-shadow: 0 0.75rem 0.625rem rgba(0, 0, 0, 0.569);
     /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [spread radius] [color] [inset]; */
 }
 
@@ -316,6 +331,7 @@ input:focus, textarea:focus, select:focus {
 .content-view {
     display: none;
     animation: fade-in 0.3s ease-in-out;
+    padding: clamp(var(--spacing-md), var(--spacing-md) + 0.25 * var(--scale-factor-medium), var(--spacing-lg));
 }
 
 .content-view.active {
@@ -399,61 +415,20 @@ input:focus, textarea:focus, select:focus {
     display: none;
 }
 
-/* Media Queries for Responsive Design */
+/* Media Queries for Responsive Design - For Global Layout Only */
 /* Mobile and small screen optimization */
 
 @media screen and (max-width: 768px) {
     /* Container adjustments */
     .container {
         flex-direction: column;
-        padding: var(--spacing-lg);
-        padding-top: calc(6.9 * var(--spacing-lg));
-        height: 100vh;
-        width: 100vw;
+        width: 100%;
         overflow-x: hidden;
     }
     
     /* Main content adjustments */
-    .main-content {
-        font-size: var(--font-size-sm);
-        padding: var(--spacing-xl);
-        border-radius: var(--border-radius-md);
-    }
+    /* .main-content {
+
+    } */
     
-    /* Typography adjustments */
-    h1 {
-        font-size: var(--font-size-xxl);
-        margin-bottom: var(--spacing-sm);
-    }
-    
-    h2 {
-        font-size: var(--font-size-xl);
-    }
-    
-    h3 {
-        font-size: var(--font-size-lg);
-    }
-    
-    p, li, blockquote {
-        font-size: var(--font-size-sm);
-        line-height: var(--line-height-normal);
-        margin-bottom: var(--spacing-sm);
-    }
-    
-    .subtitle {
-        font-size: var(--font-size-md);
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    /* Spacing adjustments */
-    .section-heading {
-        margin-bottom: var(--spacing-lg);
-    }
-    
-    /* Width adjustments */
-    :root {
-        --sidebar-width: 100%;
-        --content-width: 100%;
-        --section-spacing: var(--spacing-xl);
-    }
 }

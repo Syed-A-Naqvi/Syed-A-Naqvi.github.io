@@ -2,27 +2,31 @@
 
 /* --- SIDEBAR CONTAINER --- */
 .sidebar {
+    box-sizing: content-box;
     width: var(--sidebar-width);
     display: flex;
     flex-direction: column;
     flex: 0 0 var(--sidebar-width);
-    padding: var(--spacing-xl) var(--spacing-xxl);
-    margin-right: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-xl);
     border-radius: var(--border-radius-lg);
+    margin-right: var(--spacing-lg);
     overflow-y: auto;
+    container-type: size; /* Enable container queries for both width and height */
 }
 
 /* --- PROFILE SECTION --- */
 .profile {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: clamp(var(--spacing-sm), var(--spacing-sm) + 0.3 * var(--scale-factor-medium), var(--spacing-md));
     padding-bottom: var(--spacing-lg);
 }
 
 .profile-image {
-    width: 120px;
-    height: 120px;
+    /* width: clamp(100px, 80px + 4 * var(--scale-factor-medium), 130px);
+    height: clamp(100px, 80px + 4 * var(--scale-factor-medium), 130px); */
+    width: calc(2 * var(--spacing-xxxl));
+    height: calc(2 * var(--spacing-xxxl));
     border-radius: var(--border-radius-circle);
     overflow: hidden;
     border: 3px solid var(--color-secondary);
@@ -51,16 +55,19 @@
     align-items: center;
     transition: transform var(--transition-speed) var(--transition-ease);
     padding-bottom: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     border-bottom: 1px solid var(--color-secondary);
 }
 
 .social-icon {
     line-height: 1;
     font-size: var(--font-size-lg);
-    margin-right: var(--spacing-lg);
-    margin-top: var(--spacing-xs);
-    flex-shrink: 0;
+    margin-right: 1.2rem;
+    flex: 0 0 auto;
+}
+
+.social-links .flex-fill {
+    flex: 1 1 auto;
 }
 
 /* --- BUTTONS --- */
@@ -95,7 +102,7 @@
 /* --- NAVIGATION LINKS --- */
 .nav-menu {
     flex-grow: 1;
-    margin-bottom: var(--spacing-xxl);
+    margin-bottom: var(--spacing-lg);
 }
 
 .nav-links {
@@ -112,9 +119,9 @@
 }
 
 .nav-indicator {
-    width: 9px;
-    height: 9px;
-    margin-left: var(--spacing-lg);
+    width: calc(1.1*var(--spacing-sm));
+    height: calc(1.1*var(--spacing-sm));
+    margin-left: 2rem;
     border-radius: var(--border-radius-circle);
     border: var(--border-medium);
     border-color: var(--color-surface);
@@ -147,7 +154,7 @@
 
 .slider-track {
     flex: 1 0 auto;
-    height: 5px;
+    height: var(--spacing-sm);
     background: var(--color-secondary);
     border-radius: 0 var(--border-radius-pill) var(--border-radius-pill) 0;
     transition: flex var(--transition-speed) var(--transition-ease);
@@ -212,6 +219,62 @@
     margin-right: var(--spacing-sm);
 }
 
+@container (height < 700px) {
+/* Sidebar styles for shorter screens */
+    
+    .profile {
+        gap: var(--spacing-md); /* Your test value */
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .profile-image {
+        width: clamp(80px, 70px + 3 * var(--scale-factor-medium), 100px);
+        height: clamp(80px, 70px + 3 * var(--scale-factor-medium), 100px);
+        border-width: 2px;
+    }
+    
+    .profile-name {
+        font-size: var(--font-size-sm);
+    }
+    
+    .profile-title {
+        font-size: var(--font-size-xs);
+    }
+    
+    .social-links {
+        padding-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .floating-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+    
+    .nav-menu {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .nav-item {
+        padding: var(--spacing-md) var(--spacing-xs);
+    }
+    
+    .nav-indicator {
+        width: calc(var(--spacing-sm));
+        height: calc(var(--spacing-sm));
+        margin-left: 1.5rem;
+    }
+    
+    .slider-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+    
+    #theme-toggle-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+}
 
 /* --- RESPONSIVE DESIGN --- */
 @media screen and (max-width: 768px) {
