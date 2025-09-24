@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the theme toggle
     initThemeToggle();
+
+    // Initialize main content
+    initMainContent();
     
     // Initialize project filters
     initProjectFilters();
@@ -84,5 +87,14 @@ function initContactForm() {
             // Reset the form
             contactForm.reset();
         });
+    }
+}
+
+// Main Content Initialization
+function initMainContent() {
+    const main = document.querySelector('.main-content');
+
+    if (main) {
+        main.scrollTop = 0;
     }
 }

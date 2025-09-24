@@ -4,6 +4,7 @@
 .sidebar {
     box-sizing: content-box;
     width: var(--sidebar-width);
+    align-items: center;
     display: flex;
     flex-direction: column;
     flex: 0 0 var(--sidebar-width);
@@ -100,15 +101,12 @@
 }
 
 /* --- NAVIGATION LINKS --- */
-.nav-menu {
-    flex-grow: 1;
-    margin-bottom: var(--spacing-lg);
-}
-
 .nav-links {
     list-style: none;
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
+    width: 100%;
 }
 
 .nav-item {
@@ -170,7 +168,6 @@
     border: var(--border-medium);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--color-background);
     transition: all var(--transition-speed) var(--transition-ease);
 }
 
@@ -198,21 +195,36 @@
 }
 
 /* --- THEME TOGGLE --- */
-#theme-toggle-btn {
+.theme-toggle-btn {
+    --height: calc(1.2*var(--spacing-xl));
+    --radius: calc(0.5 * var(--height));
+    height: var(--height);
+    width: calc(1.2*var(--spacing-xxxl));
     background: none;
-    border: 1px solid var(--color-secondary);
-    color: var(--color-secondary);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    position: relative;
+    border: var(--border-medium);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 0.12rem;
+}
+
+.theme-toggle-indicator {
+    --d: calc(1.1*var(--spacing-lg));
+    width: var(--d);
+    height: var(--d);
+    border-radius: var(--d);
+    background-color: var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     transition: all var(--transition-speed) var(--transition-ease);
 }
 
-#theme-toggle-btn:hover {
-    box-shadow: inset 0 0 8px 0 var(--color-text);
+.theme-toggle-btn:hover .theme-toggle-indicator {
+    background-color: var(--color-tertiary);
+    
 }
 
 #theme-toggle-btn i {
@@ -221,9 +233,13 @@
 
 @container (height < 700px) {
 /* Sidebar styles for shorter screens */
-    
+
+    .sidebar {
+        width: calc(6 * var(--sidebar-width));
+    }
+
     .profile {
-        gap: var(--spacing-md); /* Your test value */
+        gap: calc(1.2 * var(--spacing-sm));
         padding-bottom: var(--spacing-md);
     }
     
@@ -234,11 +250,11 @@
     }
     
     .profile-name {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-lg);
     }
     
     .profile-title {
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-sm);
     }
     
     .social-links {
@@ -247,12 +263,12 @@
     }
     
     .floating-btn {
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
         font-size: var(--font-size-sm);
     }
-    
-    .nav-menu {
-        margin-bottom: var(--spacing-md);
+
+    .nav-links {
+        margin-bottom: var(--spacing-sm);
     }
     
     .nav-item {
@@ -260,13 +276,11 @@
     }
     
     .nav-indicator {
-        width: calc(var(--spacing-sm));
-        height: calc(var(--spacing-sm));
-        margin-left: 1.5rem;
+        margin-left: 2.5rem;
     }
     
     .slider-btn {
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
         font-size: var(--font-size-sm);
     }
     
@@ -280,10 +294,12 @@
 @media screen and (max-width: 768px) {
     /* Transform sidebar to topbar */
     .sidebar {
+        box-sizing: border-box;
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;
+        width: 100%;
+        height: var(--topbar-height);
         flex-direction: row;
         padding: var(--spacing-lg);
         margin-right: 0;
@@ -291,6 +307,8 @@
         z-index: var(--z-index-navigation);
         background-color: var(--color-surface);
         border-bottom: var(--border-thin);
+        border-bottom-left-radius: var(--border-radius-lg);
+        border-bottom-right-radius: var(--border-radius-lg);
     }
     
     /* Adjust profile section - leftmost element */
@@ -303,17 +321,19 @@
         border-bottom: none;
         margin-right: var(--spacing-xl);
         flex: 0 0 auto;
+        height: fit-content;
     }
     
     .profile-image {
-        height: var(--spacing-xxxl);
-        width: var(--spacing-xxxl);
+        height: calc(1.2*var(--spacing-xxxl));
+        width: calc(1.2*var(--spacing-xxxl));
         border-width: 2px;
         margin-bottom: 0;
     }
     
     .profile-name {
         font-size: var(--font-size-sm);
+        line-height: var(--line-height-relaxed);
         margin-right: 0;
     }
     
@@ -323,10 +343,10 @@
     
     /* Adjust social links */
     .social-links {
-        display: flex;
+        height: 100%;
         flex-direction: column;
+        justify-content: space-evenly;
         flex: 0 0 auto;
-        gap: var(--spacing-sm);
         margin: 0;
         padding: 0;
         padding-right: var(--spacing-md);
@@ -334,9 +354,15 @@
         border: 0;
         border-right: 1px solid var(--color-secondary);
     }
+
+    .social-links .flex-fill {
+        flex: 0 0 auto;
+        height: 0;
+    }
     
     .social-icon {
         margin: 0;
+        padding-bottom: var(--spacing-sm);
     }
     
     .floating-btn {
@@ -355,20 +381,16 @@
     }
     
     /* Adjust navigation menu */
-    .nav-menu {
-        margin-bottom: 0;
-    }
-    
     .nav-links {
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: baseline;
         height: 100%;
     }
     
     .nav-item {
         flex-direction: column;
         align-items: center;
-        padding: var(--spacing-xs) var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-md);
         width: auto;
     }
     
@@ -392,7 +414,7 @@
     }
         
     .slider-track {
-        width: 3px;
+        width: 4px;
         border-radius: 0 0 var(--border-radius-pill) var(--border-radius-pill);
     }
     
@@ -409,10 +431,12 @@
     
     /* Set theme toggle as rightmost element */
     .theme-toggle {
-        margin-left: var(--spacing-md);
-        flex: 0 0 auto;
+        position: fixed;
+        z-index: calc(1+var(--z-index-navigation));
+        right: var(--spacing-lg);
+        top: calc(var(--topbar-height) - 2*var(--spacing-lg));
     }
-    
+
     #theme-toggle-btn {
         width: auto;
         padding: var(--spacing-xs);
