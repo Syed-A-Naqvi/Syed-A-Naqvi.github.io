@@ -5,9 +5,11 @@
 
 // Initialize theme toggle
 function initThemeToggle() {
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const rootStyles = getComputedStyle(document.documentElement);
+    const transitionSpeed = rootStyles.getPropertyValue('--transition-speed').trim();
+    const themeToggleBtn = document.querySelector('.theme-toggle-btn');
+    const themeToggleIndicator = themeToggleBtn.querySelector('.theme-toggle-indicator');
     const themeIcon = themeToggleBtn.querySelector('i');
-    const themeText = themeToggleBtn.querySelector('span');
     
     // Check if user has a saved theme preference
     const savedTheme = localStorage.getItem('theme');
@@ -19,22 +21,44 @@ function initThemeToggle() {
     } else {
         enableLightMode();
     }
-    
+
     // Add click event listener to theme toggle button
     themeToggleBtn.addEventListener('click', () => {
+
         // Toggle theme based on current theme
         if (document.body.classList.contains('dark-theme')) {
             enableLightMode();
         } else {
             enableDarkMode();
         }
+
+        // remove animation class manually before re-adding it
+        themeIcon.classList.remove('animate');
+        // force reflow
+        void themeToggleIndicator.offsetWidth;
+
+        function parseDuration(duration) {
+            if(duration.endsWith('ms')) {
+                return parseFloat(duration);
+            } else if(duration.endsWith('s')) {
+                return parseFloat(duration) * 1000;
+            }
+            return 0; // default fallback
+        }
+
+        const timeout = parseDuration(transitionSpeed);
+
+        setTimeout( () => {
+            // trigger animation after theme application
+            themeIcon.classList.add('animate');
+        }, timeout);
+
     });
     
     // Function to enable dark mode
     function enableDarkMode() {
         document.body.classList.add('dark-theme');
         themeIcon.className = 'fas fa-sun';
-        themeText.textContent = 'Light Mode';
         localStorage.setItem('theme', 'dark');
     }
     
@@ -42,7 +66,6 @@ function initThemeToggle() {
     function enableLightMode() {
         document.body.classList.remove('dark-theme');
         themeIcon.className = 'fas fa-moon';
-        themeText.textContent = 'Dark Mode';
         localStorage.setItem('theme', 'light');
     }
 }

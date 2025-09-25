@@ -111,7 +111,7 @@
     --shadow-sm: 0 0.125em 0.25em rgba(0, 0, 0, 0.05);
     --shadow-md: 0 0.25em 0.375em rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 0.625em 0.9375em rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 0.75em 1.25em rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 0.75em 1.25em rgba(0, 0, 0, 0.212);
     
     /* Transitions */
     --transition-speed-fast: 100ms; /* Keeping ms for transitions as they're time-based, not size-based */
@@ -123,7 +123,7 @@
     
     /* Container dimensions - responsive using global scale factor */
     --sidebar-width: 200px;
-    --topbar-height: 128px;
+    --topbar-height: 140px;
     --content-width: calc(100% - var(--sidebar-width));
     --section-spacing: var(--spacing-xxl); /* Already responsive through --spacing-xxl */
     
