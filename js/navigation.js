@@ -74,10 +74,13 @@ function initNavigation() {
             targetView.classList.add('active');
             
             // Scroll to top of the view
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            const main = document.querySelector('.main-content');
+            if (main) {
+                main.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
     }
 }

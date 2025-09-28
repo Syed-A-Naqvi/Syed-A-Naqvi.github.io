@@ -11,7 +11,7 @@
     flex: 0 0 var(--sidebar-width);
     padding: var(--spacing-xl) var(--spacing-xl);
     border-radius: var(--border-radius-lg);
-    margin-right: var(--spacing-lg);
+    margin-right: var(--spacing-xl);
     overflow-y: auto;
     container-type: size; /* Enable container queries for both width and height */
 }
@@ -71,35 +71,6 @@
     flex: 1 1 auto;
 }
 
-/* --- BUTTONS --- */
-/* Floating Button */
-.floating-btn {
-    display: flex;
-    align-items: center;
-    column-gap: var(--spacing-sm);
-    line-height: 1;
-    border: var(--border-medium);
-    border-radius: var(--border-radius-pill);
-    padding: var(--spacing-sm) var(--spacing-md);
-    box-shadow: var(--translate-x) var(--translate-y) 6px rgba(0, 0, 0, 0.461);
-    transition: all var(--transition-speed-fast) var(--transition-ease);
-}
-
-.floating-btn.active, 
-.floating-btn:hover {
-    font-weight: var(--font-weight-bold);
-    color: var(--color-background);
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 rgba(0,0,0,0);
-    transform: translate(var(--translate-x), var(--translate-y));
-}
-
-.floating-btn.active i, 
-.floating-btn:hover i {
-    color: var(--color-tertiary);
-}
-
 /* --- NAVIGATION LINKS --- */
 .nav-links {
     list-style: none;
@@ -122,14 +93,19 @@
     margin-left: 2rem;
     border-radius: var(--border-radius-circle);
     border: var(--border-medium);
-    border-color: var(--color-surface);
+    border-color: var(--color-background);
     background-color: var(--color-secondary);
-    transition: background-color var(--transition-speed) var(--transition-ease), border-color var(--transition-speed) var(--transition-ease);
+    transition: all var(--transition-speed) var(--transition-ease);
 }
 
 .nav-link.active + .nav-indicator {
     background-color: var(--color-tertiary);
     border-color: var(--color-tertiary);
+    /* Realistic glow effect: multiple layers, soft and colored */
+    box-shadow:
+        0 0 8px 2px var(--color-tertiary),
+        0 0 16px 4px rgba(139,38,53,0.5),
+        0 0 32px 8px rgba(139,38,53,0.25);
 }
 
 .nav-separator {
@@ -248,8 +224,6 @@
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
-
-
 
 
 @container (height < 700px) {
@@ -388,7 +362,6 @@
         margin: 0;
         padding: 0;
         padding-right: var(--spacing-md);
-        margin-right: var(--spacing-sm);
         border: 0;
         border-right: 1px solid var(--color-secondary);
     }
@@ -424,18 +397,25 @@
     }
 
     .nav-item {
-        width: 200px;
-        padding: 0 var(--spacing-xl) 0 var(--spacing-xl);
+        width: 170px;
+        padding: 0 var(--spacing-md) 0 var(--spacing-lg);
     }
     
     .nav-separator {
-        height: var(--spacing-md);
+        height: calc(0.8*var(--spacing-md));
         background-color: var(--color-surface);
     }
     
     .nav-indicator {
         margin-left: var(--spacing-xl);
         border-width: 2px;
+    }
+
+    .nav-link.active + .nav-indicator {
+        /* More compact glow for mobile */
+        box-shadow:
+            0 0 4px 1px var(--color-tertiary),
+            0 0 8px 2px rgba(139,38,53,0.4);
     }
 
     /* Keep sliders horizontal but more compact */        

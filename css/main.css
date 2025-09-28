@@ -123,8 +123,8 @@
     
     /* Container dimensions - responsive using global scale factor */
     --sidebar-width: 200px;
-    --topbar-height: 140px;
-    --content-width: calc(100% - var(--sidebar-width));
+    --topbar-height: 130px;
+    --content-width: calc(100dvw - var(--sidebar-width) - 5*var(--spacing-xl)); /* Adjusted for padding/margin */
     --section-spacing: var(--spacing-xxl); /* Already responsive through --spacing-xxl */
     
     /* Z-index layers */
@@ -180,6 +180,58 @@
     --border-thick: 3px solid var(--color-secondary);
 
 }
+
+
+/* MailtoUI styles
+/* Modal surface and typography */
+/* .mailtoui-modal-content {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-xl);
+} */
+
+/* Title */
+/* .mailtoui-modal-title {
+  color: var(--color-text-heading);
+  background-color: var(--color-background);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+} */
+
+/* Email address copy row */
+/* .mailtoui-email-address {
+  background: var(--color-surface);
+  color: var(--mailtoui-text-color);
+  border-radius: var(--border-radius-lg);
+} */
+
+/* Primary action cards */
+/* .mailtoui-button-content {
+  background: var(--mailtoui-btn-bg);
+  color: var(--mailtoui-btn-text-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: background var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease);
+} */
+
+/* Hover/focus states; recolors SVG via currentColor */
+/* .mailtoui-button-content:hover,
+.mailtoui-button:focus .mailtoui-button-content {
+  background: var(--mailtoui-btn-bg-hover);
+  color: var(--color-background);
+} */
+
+/* Copy button */
+/* .mailtoui-button-copy {
+  background: var(--color-surface);
+  color: var(--mailtoui-text-color);
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+} */
+
 
 /* Base Styles */
 * {
@@ -309,21 +361,19 @@ input:focus, textarea:focus, select:focus {
 .container {
     display: flex;
     padding: var(--spacing-xl);
-    width: 100%;
+    width: 100dvw;
     height: 100dvh; /* Use small viewport height for stability */
     background-color: var(--color-background);
-    overflow-y: hidden;
 }
 
 /* Main content area uses surface color and shadow for separation */
 .main-content {
-    flex: 1 1 100%;
-    height: 100%;
-    padding: var(--spacing-xl) var(--spacing-xxl);
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
     border-radius: var(--border-radius-lg);
     border: var(--main-content-border);
     background-color: var(--color-surface);
-    overflow-y: auto;
     box-shadow: 0 0.75rem 0.625rem rgba(0, 0, 0, 0.569);
     /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [spread radius] [color] [inset]; */
 }
@@ -332,11 +382,16 @@ input:focus, textarea:focus, select:focus {
 .content-view {
     display: none;
     animation: fade-in 0.3s ease-in-out;
-    padding: clamp(var(--spacing-md), var(--spacing-md) + 0.25 * var(--scale-factor-medium), var(--spacing-lg));
 }
 
 .content-view.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: var(--spacing-xl) var(--spacing-xxl);
+    min-width: 0;
+    min-height: 0;
 }
 
 @keyframes fade-in {
@@ -423,14 +478,14 @@ input:focus, textarea:focus, select:focus {
     /* Container adjustments */
     .container {
         flex-direction: column;
-        width: 100%;
-        overflow-x: hidden;
     }
     
     /* Main content adjustments */
     .main-content {
         margin-top: var(--topbar-height);
+        height: calc(100dvh - var(--topbar-height) - 2*var(--spacing-xl));
         z-index: var(--z-index-base);
+        width: calc(100dvw - 2*var(--spacing-xl));
     }
     
 }
