@@ -243,53 +243,64 @@
             
             <!-- Contact View -->
             <section id="contact" class="content-view">
+
+                <img src="./assets/images/plane2.png" alt="paper_plane">
+                
                 <header>
-                    <h1>Contact</h1>
-                    <div class="contact-item">
+                    <h1>
+                        Get In Touch
+                    </h1>
+                    <div class="info-item">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        <span>Oshawa, ON</span>  
+                        <span>Toronto, ON</span>  
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span>arznaq@gmail.com</span>  
                     </div>
                 </header>
                 
-                <div class="contact-email">
-                    <p class="subtitle">Reach out for collaborations, consultations, or inquiries via email:</p>
-                    <div class="contact-item">
-                        <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
-                          <i class="fas fa-pen-to-square" aria-hidden="true"></i>
-                          <span>Compose</span>
-                        </a>
-                    </div>
-                    <p class="subtitle">Or send a direct message:</p>
-                </div>
-                
-                <form class="contact-form">
+                <div class="contact-section">
                     
-                    <div class="input-container">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                    <div class="contact-email">
+                        <h3>Reach out via email:</h3>
+                        <div class="contact-item">
+                            <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
+                              <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                              <span>Compose</span>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <form class="contact-form">
+
+                        <h3>Send a direct message:</h3>
+
+                        <div class="input-container">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="organization" name="organization" placeholder="Organization">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="organization">Organization</label>
-                            <input type="text" id="organization" name="organization">
+                        
+                        <div class="message-container">
+                            <div class="form-group">
+                                <textarea id="message" name="message" required placeholder="Your message..."></textarea>
+                            </div>
                         </div>
+
                         <div class="submit-container">
                             <button type="submit" class="submit-btn">Send Message</button>
-                        </div>                            
-                    </div>
-
-                    <div class="message-container">
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
                         </div>
-                    </div>
+                    
+                    </form>
                 
-                </form>
+                </div>
                 
             </section>
 

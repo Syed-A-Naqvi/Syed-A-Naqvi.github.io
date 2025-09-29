@@ -303,7 +303,7 @@
 }
 
 /* --- RESPONSIVE DESIGN --- */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     /* Transform sidebar to topbar */
     .sidebar {
         box-sizing: border-box;
