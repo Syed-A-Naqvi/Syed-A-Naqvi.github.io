@@ -181,58 +181,6 @@
 
 }
 
-
-/* MailtoUI styles
-/* Modal surface and typography */
-/* .mailtoui-modal-content {
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-xl);
-} */
-
-/* Title */
-/* .mailtoui-modal-title {
-  color: var(--color-text-heading);
-  background-color: var(--color-background);
-  font-family: var(--font-heading);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-tight);
-} */
-
-/* Email address copy row */
-/* .mailtoui-email-address {
-  background: var(--color-surface);
-  color: var(--mailtoui-text-color);
-  border-radius: var(--border-radius-lg);
-} */
-
-/* Primary action cards */
-/* .mailtoui-button-content {
-  background: var(--mailtoui-btn-bg);
-  color: var(--mailtoui-btn-text-color);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md);
-  transition: background var(--transition-speed) var(--transition-ease),
-              color var(--transition-speed) var(--transition-ease);
-} */
-
-/* Hover/focus states; recolors SVG via currentColor */
-/* .mailtoui-button-content:hover,
-.mailtoui-button:focus .mailtoui-button-content {
-  background: var(--mailtoui-btn-bg-hover);
-  color: var(--color-background);
-} */
-
-/* Copy button */
-/* .mailtoui-button-copy {
-  background: var(--color-surface);
-  color: var(--mailtoui-text-color);
-  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
-} */
-
-
 /* Base Styles */
 * {
     margin: 0;
@@ -394,8 +342,6 @@ input:focus, textarea:focus, select:focus {
     height: 100%;
     width: 100%;
     padding: var(--spacing-xl) var(--spacing-xxl);
-    min-width: 0;
-    min-height: 0;
 }
 
 @keyframes fade-in {

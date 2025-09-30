@@ -6,12 +6,25 @@
 /* Contact Form Layout */
 #contact {
     align-items: center;
-    padding: var(--spacing-xxxl)
+    padding: var(--spacing-xxxl);
+    position: relative;
+    overflow: auto;
 }
 
 #contact img {
-    width: calc(2*var(--spacing-xxxl));
-    height: calc(2*var(--spacing-xxxl));
+    width: 50%;
+    height: auto;
+    position: absolute;
+    opacity: 0.1;
+    pointer-events: none;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.dark-theme #contact img {
+    opacity: 0.03;
 }
 
 #contact header {
@@ -21,6 +34,7 @@
     align-items: center;
     gap: var(--spacing-md);
     padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--color-quaternary);    
 }
 
 #contact header h1 {
@@ -38,69 +52,86 @@
 
 .contact-section {
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: 80%;
     flex: 1 1 0;
-    padding: var(--spacing-xl);
-    padding-top: var(--spacing-xxl);
-    border: 2px solid var(--color-quaternary);
+}
+
+.content-section .desktop {
+    display: flex;
+}
+
+.contact-section .mobile {
+    display: none;
+}
+
+.contact-section p {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
 }
 
 .contact-email {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
-    flex: 1 1 0;
-    padding-right: var(--spacing-xl);
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 0 0 var(--spacing-md) 0;
+    flex: 1 0 0;
 }
 
-.contact-email p {
-    margin: 0;
+.contact-email a {
+    font-size: var(--font-size-md)
 }
 
 /* Form Elements */
 .contact-form {
     display: flex;
-    flex-direction: column;
-    flex: 3 1 0;
+    justify-content: center;
     gap: var(--spacing-md);
-    border-radius: var(--border-radius-md);
-    margin-left: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    padding-top: var(--spacing-xxxl);
+    border: 2px solid var(--color-quaternary);
+    position: relative;
+    flex: 3 0 0;
 }
 
-.upper-form-section {
-    display: flex;
-    gap: var(--spacing-lg);
-    flex: 1 0 0;
+.contact-form p {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
-    flex: 5 1 0;
+    gap: var(--spacing-md);
+    flex: 2 0 0;
+    min-width: 0;
+    min-height: 0;
 }
 
 .submit-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     flex: 1 0 0;
 }
 
-.submit-container .flex-fill {
-    flex: 1.8 0 0;
+.submit-container .flex-fill{
+    flex: 5 1 0;
 }
 
 .submit-btn {
-    flex: 9 1 0;
+    flex: 2 0 0;
     width: 100%;
-    /* width: content; */
     background-color: var(--color-tertiary);
     color: white;
     border: none;
     padding: var(--spacing-md) var(--spacing-md);
-    border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-lg);
     cursor: pointer;
     font-weight: 600;
     transition: background-color var(--transition-speed) var(--transition-ease);
@@ -113,18 +144,11 @@
 .message-container{
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
-    flex: 3 1 0;
+    flex: 5 1 0;
 }
 
 .contact-form .message-container .form-group{
     height: 100%;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
 }
 
 .form-group label {
@@ -134,16 +158,17 @@
 }
 
 .form-group input,
-.form-group input,
 .form-group textarea {
-    padding: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
     border: none;
-    border-bottom: 3px solid var(--color-tertiary);
-    border-radius: 0;
+    border-bottom: 5px solid var(--color-tertiary);
+    border-radius: var(--border-radius-lg);
     font-family: var(--font-body);
-    background: none;
+    background: rgba(var(--color-background-rgb), 0.4);
     color: var(--color-text);
     font-size: var(--font-size-base);
+    height: 100%;
+    width: 100%;
 }
 
 .form-group input:focus,
@@ -154,19 +179,317 @@
 
 .form-group textarea {
     resize: none;
-    height: 100%;
-    width: 100%;
+}
+
+/* Form notification styles */
+.form-notification {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    animation: fade-in 0.3s ease-out;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-notification.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.5);
+    color: #2ecc71;
+}
+
+.form-notification.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #e74c3c;
+}
+
+.form-notification.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+/* MailtoUI styles */
+:root {
+    /* Define MailtoUI specific variables based on our color scheme */
+    --mailtoui-text-color: var(--color-text);
+    --mailtoui-btn-bg: var(--color-tertiary);
+    --mailtoui-btn-bg-hover: var(--color-secondary);
+    --mailtoui-btn-text-color: var(--color-background);
+}
+
+.dark-theme {
+    --mailtoui-btn-bg: var(--color-tertiary);
+    --mailtoui-btn-bg-hover: var(--color-secondary);
+}
+
+/* Modal backdrop - the overlay behind the modal */
+.mailtoui-modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+/* Modal surface and typography */
+.mailtoui-modal-content {
+    width: 400px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-xl);
+    border: var(--border-thin);
+}
+
+/* Modal header/title bar - this is the container for the title and close button */
+.mailtoui-modal-head {
+    background: var(--color-surface);
+    border-bottom: var(--border-thin);
+    padding: var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Title */
+.mailtoui-modal-title {
+    color: var(--color-text-heading);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    font-size: var(--font-size-xl);
+}
+
+/* Close button */
+.mailtoui-modal-close {
+    color: var(--color-text-subtle);
+    transition: color var(--transition-speed) var(--transition-ease);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+}
+
+.mailtoui-modal-close:hover {
+    color: var(--color-tertiary);
+}
+
+/* Modal body - container for the content */
+.mailtoui-modal-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    padding-top: var(--spacing-xxl);
+    background: var(--color-background);
+}
+
+/* Email address copy row */
+.mailtoui-email-address {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--color-background);
+    color: var(--color-text);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm);
+    font-family: var(--font-code);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
+    border: var(--border-thin);
+}
+
+/* Button container */
+.mailtoui-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+}
+
+/* Primary action cards */
+.mailtoui-button-content {
+    background: var(--color-surface);
+    color: var(--mailtoui-btn-text-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    transition: background var(--transition-speed) var(--transition-ease),
+                color var(--transition-speed) var(--transition-ease),
+                transform var(--transition-speed) var(--transition-ease);
+    padding: var(--spacing-md);
+}
+
+/* Hover/focus states; recolors SVG via currentColor */
+.mailtoui-button-content:hover,
+.mailtoui-button:focus .mailtoui-button-content {
+    background: var(--mailtoui-btn-bg-hover);
+    color: var(--color-background);
+    transform: translateY(-2px);
+}
+
+/* Icons in buttons */
+.mailtoui-button-content svg {
+    margin-right: var(--spacing-sm);
+    height: calc(var(--font-size-md) * 1.2);
+    width: calc(var(--font-size-md) * 1.2);
+}
+
+/* Button labels */
+.mailtoui-button-content span {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
+}
+
+/* Copy button */
+.mailtoui-button-copy {
+    background: var(--color-quaternary);
+    color: var(--color-text);
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+    font-weight: var(--font-weight-medium);
+    transition: background var(--transition-speed) var(--transition-ease);
+}
+
+.mailtoui-button-copy:hover,
+.mailtoui-button-copy:focus {
+    background: var(--color-secondary);
+    color: var(--color-background);
 }
 
 /* Responsive design for contact section */
 @media screen and (max-width: 800px) {
+    /* Contact section responsive styles */
+    #contact {
+        padding: var(--spacing-lg);
+        overflow: auto;
+    }
+    
+    #contact img {
+        width: 80%;
+        top: 30%;
+    }
+    
+    #contact header {
+        gap: var(--spacing-sm);
+    }
+    
+    #contact header h1 {
+        font-size: var(--font-size-xxl);
+    }
+    
+    #contact p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+    }
 
-    .contact-form .input-wrapper {
+    .contact-section .desktop {
+        display: none;
+    }
+    
+    .contact-section .mobile {
+        display: flex;
+    }
+
+    .contact-email {
+        padding-top: 0;
+        gap: var(--spacing-sm);
+        flex: 1 0 0;
+    }
+
+    .contact-email a {
+        font-size: var(--font-size-xs)
+    }
+
+    .contact-form {
         flex-direction: column;
+        gap: var(--spacing-md);
+        flex: 4 0 0;
     }
 
-    .floating-btn span{
-        display: block;
+    .input-container {
+        flex: 0 0 auto;
     }
 
+    .message-container {
+        flex: 3 1 auto;
+    }
+
+    .form-group input, .form-group textarea {
+        font-size: var(--font-size-xs);
+    }
+
+    .submit-container {
+        align-items: center;
+    }
+
+    .submit-btn {
+        font-size: var(--font-size-xs);
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .info-item {
+        font-size: var(--font-size-xs);
+    }
+    
+    /* Mobile form notification styles */
+    .form-notification {
+        width: 100%;
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-sm);
+    }
+    
+    /* Mobile MailtoUI styles */
+    .mailtoui-modal-content {
+        width: 92vw;
+        max-width: 300px;
+    }
+    
+    .mailtoui-modal-head {
+        padding: var(--spacing-md);
+    }
+    
+    .mailtoui-modal-title {
+        font-size: var(--font-size-md);
+    }
+    
+    .mailtoui-modal-close {
+        font-size: var(--font-size-md);
+    }
+    
+    .mailtoui-modal-body {
+        padding: var(--spacing-md);
+        padding-top: var(--spacing-lg);
+        row-gap: var(--spacing-md);
+    }
+    
+    .mailtoui-email-address {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xs);
+    }
+    
+    .mailtoui-buttons {
+        gap: var(--spacing-sm);
+        padding: var(--spacing-xs);
+    }
+    
+    .mailtoui-button-content {
+        padding: var(--spacing-sm);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .mailtoui-button-content svg {
+        height: calc(var(--font-size-sm) * 1.2);
+        width: calc(var(--font-size-sm) * 1.2);
+        margin-right: var(--spacing-xs);
+    }
+    
+    .mailtoui-button-content span {
+        font-size: var(--font-size-sm);
+    }
+    
+    .mailtoui-button-copy {
+        padding: var(--spacing-xs);
+        font-size: var(--font-size-sm);
+    }
 }

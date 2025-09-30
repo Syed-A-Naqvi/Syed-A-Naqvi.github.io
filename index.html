@@ -42,7 +42,7 @@
                     <!-- Profile image -->
                     <img src="assets/images/linkedin_profile.jpg" alt="Profile Image" class="profile-pic">
                 </div>
-                <h3 class="profile-name">Arham Naqvi</h3>
+                <h3 class="profile-name">Syed Naqvi</h3>
                 <h6 class="profile-title">Data Analyst | Public Safety & Law Enforcement</h6>
             </div>
             <div class="social-links">
@@ -244,7 +244,7 @@
             <!-- Contact View -->
             <section id="contact" class="content-view">
 
-                <img src="./assets/images/plane2.png" alt="paper_plane">
+                <img src="./assets/images/plane1.png" alt="">
                 
                 <header>
                     <h1>
@@ -261,21 +261,47 @@
                 </header>
                 
                 <div class="contact-section">
-                    
+
                     <div class="contact-email">
-                        <h3>Reach out via email:</h3>
-                        <div class="contact-item">
-                            <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
-                              <i class="fas fa-pen-to-square" aria-hidden="true"></i>
-                              <span>Compose</span>
-                            </a>
-                        </div>
+                        <p class="subtitle">Email</p>
+                        <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
+                          <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                          <span>Compose</span>
+                        </a>
                     </div>
+
+                    <form class="contact-form desktop">
+    
+                        <p class="subtitle">Direct Message</p>
+    
+                        <div class="input-container">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="organization" name="organization" placeholder="Organization">
+                            </div>
+                            <div class="submit-container">
+                                <div class="flex-fill"></div>
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </div>
+                        </div>
+                        
+                        <div class="message-container">
+                            <div class="form-group">
+                                <textarea id="message" name="message" required placeholder="Your message..."></textarea>
+                            </div>
+                        </div>
                     
-                    <form class="contact-form">
-
-                        <h3>Send a direct message:</h3>
-
+                    </form>
+                    
+                    <form class="contact-form mobile">
+    
+                        <p class="subtitle">Direct Message</p>
+    
                         <div class="input-container">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" required placeholder="Name">
@@ -297,7 +323,7 @@
                         <div class="submit-container">
                             <button type="submit" class="submit-btn">Send Message</button>
                         </div>
-                    
+                        
                     </form>
                 
                 </div>
@@ -314,5 +340,8 @@
     <script src="js/form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.3/dist/mailtoui-min.js"></script>
     <script src="js/mailtoui.js"></script>
+    <!-- EmailJS for form submission -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="js/email-service.js"></script>
 </body>
 </html>

@@ -3,6 +3,10 @@
  * Includes about page content, skills, education sections
  */
 
+#about {
+    overflow: auto;
+}
+
 /* About Page Styling */
 .about-content {
     display: grid;
