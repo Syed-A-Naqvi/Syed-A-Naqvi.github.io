@@ -6,7 +6,7 @@
 /* Contact Form Layout */
 #contact {
     align-items: center;
-    padding: var(--spacing-xxxl);
+    padding: var(--spacing-xl);
     position: relative;
     overflow: auto;
 }
@@ -32,22 +32,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-md);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 2px solid var(--color-quaternary);    
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-quaternary);
+    margin-bottom: var(--spacing-md);
 }
 
 #contact header h1 {
     font-size: calc(1.3*var(--font-size-xxxl));
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
 }
-
 
 .info-item {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm)
 }
 
 .contact-section {
@@ -75,13 +75,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
-    padding: 0 0 var(--spacing-md) 0;
+    margin-bottom: var(--spacing-md);
     flex: 1 0 0;
 }
 
-.contact-email a {
-    font-size: var(--font-size-md)
+.contact-email .floating-btn {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
 /* Form Elements */
@@ -94,12 +94,12 @@
     padding-top: var(--spacing-xxxl);
     border: 2px solid var(--color-quaternary);
     position: relative;
-    flex: 3 0 0;
+    flex: 3 1 0;
 }
 
 .contact-form p {
     position: absolute;
-    top: 2%;
+    top: 1.5%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -121,16 +121,16 @@
 }
 
 .submit-container .flex-fill{
-    flex: 5 1 0;
+    flex: 6 1 0;
 }
 
 .submit-btn {
-    flex: 2 0 0;
+    flex: 1 0 0;
     width: 100%;
     background-color: var(--color-tertiary);
     color: white;
     border: none;
-    padding: var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-sm);
     border-radius: var(--border-radius-lg);
     cursor: pointer;
     font-weight: 600;
@@ -368,17 +368,22 @@
         width: 80%;
         top: 30%;
     }
-    
+
     #contact header {
-        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
     }
     
     #contact header h1 {
         font-size: var(--font-size-xxl);
+        margin-bottom: var(--spacing-sm);
     }
     
+    .info-item {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-xs);
+    }
+
     #contact p {
-        margin: 0;
         font-size: var(--font-size-sm);
     }
 
@@ -391,13 +396,17 @@
     }
 
     .contact-email {
-        padding-top: 0;
-        gap: var(--spacing-sm);
         flex: 1 0 0;
+        margin-bottom: var(--spacing-md);
     }
 
-    .contact-email a {
-        font-size: var(--font-size-xs)
+    .contact-email p {
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .contact-email .floating-btn {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-xs)
     }
 
     .contact-form {
@@ -428,9 +437,6 @@
         width: fit-content;
     }
 
-    .info-item {
-        font-size: var(--font-size-xs);
-    }
     
     /* Mobile form notification styles */
     .form-notification {

@@ -2,7 +2,7 @@
 (function() {
     // Initialize EmailJS with your public key
     // You'll need to sign up at https://www.emailjs.com/ to get your keys
-    emailjs.init("YOUR_PUBLIC_KEY");
+    // emailjs.init("YOUR_PUBLIC_KEY");
     
     // Throttle function to prevent multiple rapid submissions (anti-DDOS)
     function throttle(func, delay) {
@@ -38,12 +38,13 @@
         
         // Prepare template parameters (these match the template variables in EmailJS)
         const templateParams = {
-            from_name: name,
-            from_email: email,
-            organization: organization,
-            message: message
+            form_name: name,
+            form_email: email,
+            form_organization: organization,
+            form_message: message,
+            form_time: new Date().toLocaleString()
         };
-        
+
         // Send the email using EmailJS
         emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
             .then(function(response) {
@@ -104,7 +105,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         const desktopForm = document.querySelector('.contact-form.desktop');
         const mobileForm = document.querySelector('.contact-form.mobile');
-        
+
+        desktopForm.reset();
+        mobileForm.reset();
+
         if (desktopForm) {
             desktopForm.addEventListener('submit', throttledHandler);
         }

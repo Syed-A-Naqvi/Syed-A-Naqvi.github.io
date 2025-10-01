@@ -409,6 +409,7 @@
     .nav-indicator {
         margin-left: var(--spacing-xl);
         border-width: 2px;
+        border-color: var(--color-surface);
     }
 
     .nav-link.active + .nav-indicator {

@@ -320,7 +320,7 @@ input:focus, textarea:focus, select:focus {
     min-width: 0;
     min-height: 0;
     border-radius: var(--border-radius-lg);
-    border: 2px solid rgba(120, 113, 108, 0.12); /* subtle border for realism */
+    border: 1px solid rgba(120, 113, 108, 0.12); /* subtle border for realism */
     background-color: var(--color-surface);
     /* Realistic floating effect: multi-layered shadow, slight transform */
     box-shadow:
