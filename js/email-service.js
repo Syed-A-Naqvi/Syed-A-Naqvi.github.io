@@ -2,7 +2,7 @@ const EmailService = ( function() {
 
     // Initialize EmailJS using public key obtained at https://www.emailjs.com
     emailjs.init({
-        publicKey: "j7kRXnEO4MT7_iPZt",
+        publicKey: "stUVVv-xHXQzteGtb",
         // Do not allow headless browsers
         blockHeadless: true,
         // blockList: {
@@ -15,7 +15,7 @@ const EmailService = ( function() {
           // Set the limit rate for the application
           id: 'portfolio',
           // Allow 1 request per 10s
-          throttle: 20000,
+          throttle: 30000,
         }
     });
 
@@ -36,9 +36,11 @@ const EmailService = ( function() {
         notification.textContent = message;
         
         // Insert notification after the form
-        const form = document.querySelector('.contact-form.desktop').style.display !== 'none' 
-            ? document.querySelector('.contact-form.desktop')
-            : document.querySelector('.contact-form.mobile');
+        const desktopForm = document.querySelector('.contact-form.desktop');
+        const mobileForm = document.querySelector('.contact-form.mobile');
+        const form = window.getComputedStyle(desktopForm).display === 'none' 
+            ? mobileForm
+            : desktopForm;
         
         form.parentNode.insertBefore(notification, form.nextSibling);
         
@@ -48,8 +50,8 @@ const EmailService = ( function() {
             setTimeout(() => {
                 notification.remove();
             }, 500);
-        }, 3000);
-    }
+        }, 4000);
+    };
 
     return {
 
@@ -65,32 +67,22 @@ const EmailService = ( function() {
             // setting current form
             currentForm = event.target;
 
-            // Adding overlay to the screen
-            const body = document.body;
-            body.style.pointerEvents = 'none';
-            const overlay = document.createElement('div');
-            overlay.classList.add('captcha-overlay');
-            body.insertBefore(overlay,body.firstChild);
-
-            // adding captcha modal to the overlay
-            const captchaModal = document.createElement('div');
-            captchaModal.classList.add('captcha-modal');
-            captchaModal.classList.add('g-recaptcha');
-            captchaModal.setAttribute('data-sitekey', '6LdMdNorAAAAABVhIAkfJ52V0E5RoXUwoh5twHaR');
-            captchaModal.setAttribute('data-callback', 'onCaptchaSuccess');
-            captchaModal.setAttribute('data-error-callback', 'onCaptchaError');
-            overlay.appendChild(captchaModal);
+            // display captcha and disable main content interaction
+            document.querySelector('.container').style.pointerEvents = 'none';
+            document.querySelector('.captcha-overlay').style.display = 'block';
+            document.querySelector('.captcha-modal').style.display = 'block';
 
         },
 
         // processing form submission after captcha success
         processFormSubmission: function(token) {
 
-            // getting the current form contents
+            // getting current form contents and resetting currentForm element
+            if (!currentForm) {
+                showNotification('Captcha triggered without a form submission.', 'error');
+                return;
+            }
             const form = currentForm;
-            if (!form) return;
-
-            // resetting form contents to prevent potential duplicate submission errors
             currentForm = null;
 
             // changing submit button text to indicate pending submission
@@ -101,14 +93,14 @@ const EmailService = ( function() {
             
             // preparing email template parameters using form data
             const templateParams = {
-                form_name: form.querySelector('#name'),
-                form_email: form.querySelector('#email'),
-                form_organization: form.querySelector('#organization'),
-                form_message: form.querySelector('#message'),
+                form_name: form.querySelector('#name').value,
+                form_email: form.querySelector('#email').value,
+                form_organization: form.querySelector('#organization').value,
+                form_message: form.querySelector('#message').value,
                 'g-recaptcha-response': token
             }
 
-            // sending email using EmailJS
+            // // sending email using EmailJS
             emailjs.send('service_ye7wo3e', 'template_ucv1r5w', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
@@ -126,12 +118,16 @@ const EmailService = ( function() {
         },
 
         removeCaptcha: function() {
-            // Remove overlay and enable body interaction again
-            const captchaOverlay = document.querySelector('.captcha-overlay');
-            if (captchaOverlay) {
-                captchaOverlay.remove();
-            }
-            document.body.style.pointerEvents = 'auto';
+            
+            setTimeout(() => {
+                // Hide/reset captcha and enable body interaction again
+                document.querySelector('.captcha-overlay').style.display = 'none';
+                document.querySelector('.captcha-modal').style.display = 'none';
+                document.querySelector('.container').style.pointerEvents = 'auto';
+                grecaptcha.reset(); 
+            }, 1500);
+
+
         }
     }
 
@@ -144,7 +140,7 @@ window.onCaptchaSuccess = function(token) {
     EmailService.removeCaptcha();
 
     // processing submissiong request using captcha token
-    // EmailService.processFormSubmission(token);
+    EmailService.processFormSubmission(token);
 
 };
 
@@ -154,7 +150,7 @@ window.onCaptchaError = function() {
     EmailService.removeCaptcha();
 
     // Showing captcha error notification
-    EmailService.showNotification('Captcha verification failed. Please try again.', 'error');
+    EmailService.showNotification('Captcha encountered errors. Please try again later.', 'error');
 
 };
 

@@ -29,7 +29,15 @@
 
 </head>
 
-<body class="dark-theme">
+<body>
+    
+    <!-- captcha display -->
+    <div class="captcha-overlay">
+        <div class="captcha-modal g-recaptcha" data-sitekey="6LdMdNorAAAAABVhIAkfJ52V0E5RoXUwoh5twHaR"
+        data-callback="onCaptchaSuccess"
+        data-error-callback="onCaptchaError"></div>
+    </div>
+
     <!-- Main Container -->
     <div class="container">
 
@@ -332,15 +340,22 @@
 
         </main>
     </div>
+
+    <!-- Mailto UI for custom email composition -->
+    <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.3/dist/mailtoui-min.js"></script>
+    
+    <!-- Google recaptcha import -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <!-- JavaScript Files -->
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/theme.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.3/dist/mailtoui-min.js"></script>
+    
+    
     <!-- EmailJS for form submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="js/email-service.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </body>
 </html>
