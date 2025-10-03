@@ -395,32 +395,6 @@
     color: var(--color-background);
 }
 
-
-/* Disabling annoying mobile autofill blueish background */
-.form-group input:-webkit-autofill,
-.form-group input:-webkit-autofill:hover,
-.form-group input:-webkit-autofill:focus,
-.form-group input:-webkit-autofill:active,
-.form-group textarea:-webkit-autofill,
-.form-group textarea:-webkit-autofill:hover,
-.form-group textarea:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px rgba(var(--color-background-rgb), 0.4) inset;
-    -webkit-text-fill-color: var(--color-text);
-    transition: background-color 5000s ease-in-out 0s;
-    border-bottom: 5px solid var(--color-tertiary);
-}
-
-.dark-theme .form-group input:-webkit-autofill,
-.dark-theme .form-group input:-webkit-autofill:hover, 
-.dark-theme .form-group input:-webkit-autofill:focus,
-.dark-theme .form-group input:-webkit-autofill:active,
-.dark-theme .form-group textarea:-webkit-autofill,
-.dark-theme .form-group textarea:-webkit-autofill:hover,
-.dark-theme .form-group textarea:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px rgba(var(--color-background-rgb), 0.4) inset;
-    -webkit-text-fill-color: var(--color-text);
-}
-
 /* Responsive design for contact section */
 @media screen and (max-width: 800px) {
     /* Contact section responsive styles */
