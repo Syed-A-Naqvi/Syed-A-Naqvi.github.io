@@ -1,23 +1,25 @@
+// Initialize EmailJS using public key obtained at https://www.emailjs.com
+emailjs.init({
+    publicKey: "stUVVv-xHXQzteGtb",
+    // Do not allow headless browsers
+    blockHeadless: true,
+    // blockList: {
+    //   // Block the suspended emails
+    //   list: ['foo@emailjs.com', 'bar@emailjs.com'],
+    //   // The variable contains the email address
+    //   watchVariable: 'userEmail',
+    // },
+    limitRate: {
+      // Set the limit rate for the application
+      id: 'portfolio',
+      // Allow 1 request per 30s
+      throttle: 30000,
+    }
+});
+
+
 const EmailService = ( function() {
 
-    // Initialize EmailJS using public key obtained at https://www.emailjs.com
-    emailjs.init({
-        publicKey: "stUVVv-xHXQzteGtb",
-        // Do not allow headless browsers
-        blockHeadless: true,
-        // blockList: {
-        //   // Block the suspended emails
-        //   list: ['foo@emailjs.com', 'bar@emailjs.com'],
-        //   // The variable contains the email address
-        //   watchVariable: 'userEmail',
-        // },
-        limitRate: {
-          // Set the limit rate for the application
-          id: 'portfolio',
-          // Allow 1 request per 10s
-          throttle: 30000,
-        }
-    });
 
     // Current Form Submission
     let currentForm = null;
@@ -97,11 +99,12 @@ const EmailService = ( function() {
                 form_email: form.querySelector('#email').value,
                 form_organization: form.querySelector('#organization').value,
                 form_message: form.querySelector('#message').value,
-                'g-recaptcha-response': token
+                form_time: new Date().toLocaleString(),
+                'g-recaptcha-response': token   
             }
 
             // // sending email using EmailJS
-            emailjs.send('service_ye7wo3e', 'template_ucv1r5w', templateParams)
+            emailjs.send('service_ye7wo3e', 'template_ucv1r5w', templateParams, "stUVVv-xHXQzteGtb")
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     showNotification('Your message has been sent successfully!', 'success');
