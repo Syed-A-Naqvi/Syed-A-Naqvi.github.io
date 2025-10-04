@@ -44,8 +44,6 @@
 }
 
 /* Responsive design for about section */
-@media screen and (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
+@media screen and (max-width: 800px) {
+    
 }
