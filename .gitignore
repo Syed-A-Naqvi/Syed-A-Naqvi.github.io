@@ -37,3 +37,9 @@ next-env.d.ts
 
 # temporary - assets/documents
 /assets/documents
+
+# md files
+PANDOC_USAGE.md
+README.md
+REFACTORING_SUMMARY.md
+TEMPLATE_ARCHITECTURE.md
