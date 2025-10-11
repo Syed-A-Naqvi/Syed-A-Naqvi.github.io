@@ -6,7 +6,7 @@
 /* Contact Form Layout */
 #contact {
     align-items: center;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-xxl);
     position: relative;
     overflow: auto;
 }

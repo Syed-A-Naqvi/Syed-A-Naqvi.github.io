@@ -341,6 +341,9 @@ input:focus, textarea:focus, select:focus {
     flex-direction: column;
     height: 100%;
     width: 100%;
+}
+
+#projects {
     padding: var(--spacing-xl) var(--spacing-xxl);
 }
 
