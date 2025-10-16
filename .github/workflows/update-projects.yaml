@@ -5,7 +5,7 @@ permissions:
 
 on:
   repository_dispatch:
-    types: [project_updated]
+    types: [project-updated]
 
 jobs:
 
