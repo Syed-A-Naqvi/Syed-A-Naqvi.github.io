@@ -16,4 +16,6 @@ jobs:
     steps:
       - name: Receive payload
         id: payload
-        run: echo "Payload: ${{ toJson(github.event) }}"
+        run: |
+          # testing payload reception
+          echo "Payload: ${{ toJson(github.event) }}"
