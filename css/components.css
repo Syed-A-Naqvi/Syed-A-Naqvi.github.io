@@ -10,7 +10,7 @@
     align-items: center;
     column-gap: var(--spacing-sm);
     line-height: 1;
-    border: var(--border-medium);
+    border: var(--border-secondary-medium);
     border-radius: var(--border-radius-pill);
     padding: var(--spacing-sm) var(--spacing-md);
     box-shadow: var(--translate-x) var(--translate-y) 6px rgba(0, 0, 0, 0.461);

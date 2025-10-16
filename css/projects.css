@@ -11,6 +11,7 @@
 }
 
 .project-card {
+    padding: var(--spacing-xl);
     background-color: var(--color-quaternary);
     border-radius: var(--border-radius-md);
     overflow: hidden;
@@ -22,6 +23,11 @@
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
+}
+
+.dark-theme .project-card {
+    border: var(--border-secondary-thin);
+    border-color: #181410;
 }
 
 .project-image {
@@ -41,7 +47,7 @@
 }
 
 .project-info {
-    padding: var(--spacing-lg);
+    padding-top: var(--spacing-xl);
 }
 
 .project-info h3 {
