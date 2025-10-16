@@ -1,0 +1,19 @@
+name: Update Project Gallery
+
+permissions:
+  contents: write
+
+on:
+  repository_dispatch:
+    types: [project_updated]
+
+jobs:
+
+  update-cards:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Receive payload
+        id: payload
+        run: echo "Payload: ${{ toJson(github.event) }}"
