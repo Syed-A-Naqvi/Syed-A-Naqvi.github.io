@@ -18,4 +18,4 @@ jobs:
         id: payload
         run: |
           # testing payload reception
-          echo "Payload: ${{ toJson(github.event) }}"
+          echo "Payload: ${{ toJson(github.event.client_payload) }}"
