@@ -11,7 +11,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/project-gallery.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/about.css">
@@ -70,10 +70,10 @@
             <!-- Navigation Links -->
             <ul class="nav-links">
                 <li class="nav-item">
-                    <a href="#projects" class="nav-link slider active" data-view="projects">
+                    <a href="#project-gallery" class="nav-link slider active" data-view="project-gallery">
                         <div class="slider-spacer"></div>
                         <div class="slider-btn">
-                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                            <i class="fas fa-chart-bar" aria-hidden="true"></i>
                             Projects
                         </div>
                         <div class="slider-track"></div>
@@ -97,7 +97,7 @@
                     <a href="#contact" class="nav-link slider" data-view="contact">
                         <div class="slider-spacer"></div>
                         <div class="slider-btn">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             Contact
                         </div>
                         <div class="slider-track"></div>
@@ -115,234 +115,377 @@
             </div>
         </nav>
         
+
         <!-- Main Content Area -->
         <main class="main-content">
-
-            <!-- Selected Project View -->
-            <section id="selected-project" class="content-view">
+            
+            <!-- Project View -->
+            <!-- <section id="project-view" class="content-view">
                 <iframe src="https://syed-a-naqvi.github.io/sample_jupyter_book" frameborder="0"></iframe>
-            </section>
-            
-            <!-- Projects View -->
-            <section id="projects" class="content-view active">
-                <header>
-                    <h2>Crime Analytics Projects</h2>
-                    <p class="subtitle">Explore my data-driven insights into crime patterns and prevention strategies</p>
-                </header>
+            </section> -->
                 
-                <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="data-analysis">Data Analysis</button>
-                    <button class="filter-btn" data-filter="visualization">Visualization</button>
-                    <button class="filter-btn" data-filter="predictive-modeling">Predictive Modeling</button>
-                </div>
-                
-                <div class="projects-grid">
-                    <!-- Project Card 1 -->
-                    <div class="project-card" data-tags="data-analysis visualization">
-                        <div class="project-image">
-                            <img src="assets/images/project-1.jpg" alt="Crime Hotspot Mapping">
-                        </div>
-                        <div class="project-info">
-                            <h3>Crime Hotspot Mapping</h3>
-                            <p>Geospatial analysis of crime incidents to identify high-risk areas and temporal patterns.</p>
-                            <div class="project-tags">
-                                <span class="tag">GIS</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Visualization</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 2 -->
-                    <div class="project-card" data-tags="predictive-modeling">
-                        <div class="project-image">
-                            <img src="assets/images/project-2.jpg" alt="Predictive Policing Model">
-                        </div>
-                        <div class="project-info">
-                            <h3>Predictive Policing Model</h3>
-                            <p>Machine learning algorithms to forecast crime likelihood in urban environments.</p>
-                            <div class="project-tags">
-                                <span class="tag">Machine Learning</span>
-                                <span class="tag">R</span>
-                                <span class="tag">Statistical Analysis</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project Card 3 -->
-                    <div class="project-card" data-tags="data-analysis">
-                        <div class="project-image">
-                            <img src="assets/images/project-3.jpg" alt="Criminal Network Analysis">
-                        </div>
-                        <div class="project-info">
-                            <h3>Criminal Network Analysis</h3>
-                            <p>Graph theory application to understand relationships between criminal entities.</p>
-                            <div class="project-tags">
-                                <span class="tag">Network Analysis</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Graph Theory</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- Project Gallery View-->
+            <section id="project-gallery" class="content-view active">
 
-            
+                    <div class="main-content-filler"></div>
+
+                    <header>
+                        <h1>Crime Analytics Projects</h1>
+                        <p class="subtitle">Explore my data-driven insights into crime patterns and prevention strategies</p>
+                    </header>
+                    
+                    <div class="project-filtering">
+                        <search class="filter-search">
+                            <input type="text" id="search-filters" placeholder="Tag search..." aria-label="Tag Search">
+                            <i class="fas fa-search-plus" aria-hidden="true"></i>
+                        </search>
+                        <button class="filter-btn all" data-filter="all">All</button>
+                        <div class="filter-container-wrapper">
+                            <div class="filter-container">
+                                <div class="filter-group">
+                                    <button class="filter-btn" id="tag-1">Tag 1</button>
+                                    <button class="filter-btn" id="tag-2">Tag 2</button>
+                                    <button class="filter-btn" id="tag-3">Tag 3</button>
+                                    <button class="filter-btn" id="tag-4">Tag 4</button>
+                                    <button class="filter-btn" id="tag-5">Tag 5</button>
+                                    <button class="filter-btn" id="tag-6">Tag 6</button>
+                                    <button class="filter-btn" id="tag-7">Tag 7</button>
+                                    <button class="filter-btn" id="tag-8">Tag 8</button>
+                                    <button class="filter-btn" id="tag-9">Tag 9</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-top-fade"></div>
+
+                    <div class="projects-grid">
+                            
+                        <!-- Project Card 1 -->
+                        <a id="A"class="project-card" data-tags="tag-1 tag-2 tag-4">
+                            <div class="project-image">
+                                <img src="assets/images/project-2.jpg" alt="Predictive Policing Model">
+                            </div>
+                            <div class="project-info">
+                                <h3>A</h3>
+                                <p>Some Description for project A.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 1</span>
+                                    <span class="tag">Tag 4</span>
+                                    <span class="tag">Tag 2</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 2 -->
+                        <a id="B" class="project-card" data-tags="tag-2 tag-3">
+                            <div class="project-image">
+                                <img src="assets/images/project-3.jpg" alt="Data Analysis Visualization">
+                            </div>
+                            <div class="project-info">
+                                <h3>B</h3>
+                                <p>Some Description for project B.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 3</span>
+                                    <span class="tag">Tag 2</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 3 -->
+                        <a id="C" class="project-card" data-tags="tag-5 tag-1 tag-6">
+                            <div class="project-image">
+                                <img src="assets/images/project-4.jpg" alt="GIS Machine Learning">
+                            </div>
+                            <div class="project-info">
+                                <h3>C</h3>
+                                <p>Some Description for project C.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 5</span>
+                                    <span class="tag">Tag 1</span>
+                                    <span class="tag">Tag 6</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 4 -->
+                        <a id="D" class="project-card" data-tags="tag-2 tag-7">
+                            <div class="project-image">
+                                <img src="assets/images/project-5.jpg" alt="Network Analysis Time Series">
+                            </div>
+                            <div class="project-info">
+                                <h3>D</h3>
+                                <p>Some Description for project D.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 2</span>
+                                    <span class="tag">Tag 7</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 5 -->
+                        <a id="E" class="project-card" data-tags="tag-4 tag-8 tag-1">
+                            <div class="project-image">
+                                <img src="assets/images/project-6.jpg" alt="Dashboarding R">
+                            </div>
+                            <div class="project-info">
+                                <h3>E</h3>
+                                <p>Some Description for project E.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 4</span>
+                                    <span class="tag">Tag 8</span>
+                                    <span class="tag">Tag 1</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 6 -->
+                        <a id="F" class="project-card" data-tags="tag-9 tag-2">
+                            <div class="project-image">
+                                <img src="assets/images/project-7.jpg" alt="Python Deep Learning">
+                            </div>
+                            <div class="project-info">
+                                <h3>F</h3>
+                                <p>Some Description for project F.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 9</span>
+                                    <span class="tag">Tag 2</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 7 -->
+                        <a id="G" class="project-card" data-tags="tag-3 tag-5">
+                            <div class="project-image">
+                                <img src="assets/images/project-8.jpg" alt="Anomaly Detection Data Cleaning">
+                            </div>
+                            <div class="project-info">
+                                <h3>G</h3>
+                                <p>Some Description for project G.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 3</span>
+                                    <span class="tag">Tag 5</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 8 -->
+                        <a id="H" class="project-card" data-tags="tag-6 tag-1 tag-8">
+                            <div class="project-image">
+                                <img src="assets/images/project-9.jpg" alt="Visualization GIS">
+                            </div>
+                            <div class="project-info">
+                                <h3>H</h3>
+                                <p>Some Description for project H.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 6</span>
+                                    <span class="tag">Tag 1</span>
+                                    <span class="tag">Tag 8</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 9 -->
+                        <a id="I" class="project-card" data-tags="tag-7 tag-2">
+                            <div class="project-image">
+                                <img src="assets/images/project-10.jpg" alt="Machine Learning Predictive Modeling">
+                            </div>
+                            <div class="project-info">
+                                <h3>I</h3>
+                                <p>Some Description for project I.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 7</span>
+                                    <span class="tag">Tag 2</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Project Card 10 -->
+                        <a id="J" class="project-card" data-tags="tag-4 tag-9 tag-3">
+                            <div class="project-image">
+                                <img src="assets/images/project-11.jpg" alt="Data Analysis Dashboarding">
+                            </div>
+                            <div class="project-info">
+                                <h3>J</h3>
+                                <p>Some Description for project J.</p>
+                                <div class="project-tags">
+                                    <span class="tag">Tag 4</span>
+                                    <span class="tag">Tag 9</span>
+                                    <span class="tag">Tag 3</span>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>                        
+                
+                <div class="card-bot-fade"></div>
+
+            </section>
+                
             <!-- About View -->
             <section id="about" class="content-view">
-                
-                <header>
-                    <h1>About Me</h1>
-                    <p class="subtitle">Professional background and expertise in crime data analytics</p>
-                </header>
-                
-                <div class="about-content">
-                    <div class="bio-section">
-                        <h2>Professional Background</h2>
-                        <p>I am a dedicated data analyst specializing in crime analytics with over 8 years of experience working with law enforcement agencies and criminal justice organizations. My expertise lies in transforming complex crime data into actionable insights that help reduce crime rates and improve public safety.</p>
-                        <p>With a strong foundation in statistical analysis, geospatial mapping, and machine learning, I develop data-driven solutions for various criminal justice challenges. My work has directly contributed to more efficient resource allocation and targeted crime prevention strategies.</p>
-                    </div>
                     
-                    <div class="education-section">
-                        <h2>Education</h2>
-                        <div class="education-item">
-                            <h3>Master of Science in Data Science</h3>
-                            <p class="institution">University of Criminal Justice</p>
-                            <p class="years">2015 - 2017</p>
-                        </div>
-                        <div class="education-item">
-                            <h3>Bachelor of Science in Criminal Justice</h3>
-                            <p class="institution">State University</p>
-                            <p class="years">2011 - 2015</p>
-                        </div>
-                    </div>
+                    <header>
+                        <h1>About Me</h1>
+                        <p class="subtitle">Professional background and expertise in crime data analytics</p>
+                    </header>
                     
-                    <div class="skills-section">
-                        <h2>Skills & Expertise</h2>
-                        <div class="skills-grid">
-                            <div class="skill-category">
-                                <h3>Data Analysis</h3>
-                                <ul class="skill-list">
-                                    <li>Statistical Analysis</li>
-                                    <li>Geospatial Mapping</li>
-                                    <li>Time Series Analysis</li>
-                                    <li>Network Analysis</li>
-                                </ul>
+                    <div class="about-content">
+                        <div class="bio-section">
+                            <h2>Professional Background</h2>
+                            <p>I am a dedicated data analyst specializing in crime analytics with over 8 years of experience working with law enforcement agencies and criminal justice organizations. My expertise lies in transforming complex crime data into actionable insights that help reduce crime rates and improve public safety.</p>
+                            <p>With a strong foundation in statistical analysis, geospatial mapping, and machine learning, I develop data-driven solutions for various criminal justice challenges. My work has directly contributed to more efficient resource allocation and targeted crime prevention strategies.</p>
+                        </div>
+                        
+                        <div class="education-section">
+                            <h2>Education</h2>
+                            <div class="education-item">
+                                <h3>Master of Science in Data Science</h3>
+                                <p class="institution">University of Criminal Justice</p>
+                                <p class="years">2015 - 2017</p>
                             </div>
-                            <div class="skill-category">
-                                <h3>Technical Skills</h3>
-                                <ul class="skill-list">
-                                    <li>Python (pandas, NumPy, scikit-learn)</li>
-                                    <li>R (tidyverse, ggplot2)</li>
-                                    <li>SQL Databases</li>
-                                    <li>GIS Tools (ArcGIS, QGIS)</li>
-                                </ul>
+                            <div class="education-item">
+                                <h3>Bachelor of Science in Criminal Justice</h3>
+                                <p class="institution">State University</p>
+                                <p class="years">2011 - 2015</p>
                             </div>
-                            <div class="skill-category">
-                                <h3>Visualization</h3>
-                                <ul class="skill-list">
-                                    <li>Tableau</li>
-                                    <li>Power BI</li>
-                                    <li>D3.js</li>
-                                    <li>Matplotlib & Seaborn</li>
-                                </ul>
+                        </div>
+                        
+                        <div class="skills-section">
+                            <h2>Skills & Expertise</h2>
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <h3>Data Analysis</h3>
+                                    <ul class="skill-list">
+                                        <li>Statistical Analysis</li>
+                                        <li>Geospatial Mapping</li>
+                                        <li>Time Series Analysis</li>
+                                        <li>Network Analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>Technical Skills</h3>
+                                    <ul class="skill-list">
+                                        <li>Python (pandas, NumPy, scikit-learn)</li>
+                                        <li>R (tidyverse, ggplot2)</li>
+                                        <li>SQL Databases</li>
+                                        <li>GIS Tools (ArcGIS, QGIS)</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-category">
+                                    <h3>Visualization</h3>
+                                    <ul class="skill-list">
+                                        <li>Tableau</li>
+                                        <li>Power BI</li>
+                                        <li>D3.js</li>
+                                        <li>Matplotlib & Seaborn</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="main-content-filler"></div>
+
             </section>
-            
+                
             <!-- Contact View -->
             <section id="contact" class="content-view">
 
-                <img src="./assets/images/plane1.png" alt="">
-                
-                <header>
-                    <h1>
-                        Get In Touch
-                    </h1>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        <span>Toronto, ON</span>  
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>arznaq@gmail.com</span>  
-                    </div>
-                </header>
-                
-                <div class="contact-section">
+                    <img src="./assets/images/plane1.png" alt="">
+                    
+                    <header>
+                        <h1>
+                            Get In Touch
+                        </h1>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>Toronto, ON</span>  
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <span>arznaq@gmail.com</span>  
+                        </div>
+                    </header>
+                    
+                    <div class="contact-section">
 
-                    <div class="contact-email">
-                        <p class="subtitle">Email</p>
-                        <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
-                          <i class="fas fa-pen-to-square" aria-hidden="true"></i>
-                          <span>Compose</span>
-                        </a>
-                    </div>
+                        <div class="contact-email">
+                            <h4 class="text-subtle">Email</h4>
+                            <a href="mailto:arznaq@gmail.com?subject=Portfolio Contact" class="floating-btn mailtoui" title="Email">
+                              <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                              <span>Compose</span>
+                            </a>
+                        </div>
 
-                    <form class="contact-form desktop">
-    
-                        <p class="subtitle">Direct Message</p>
-    
-                        <div class="input-container">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
+                        <form class="contact-form desktop">
+
+                            <h4 class="text-subtle">Direct Message</h4>
+
+                            <div class="input-container">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
+                                </div>
+                                <div class="submit-container">
+                                    <div class="flex-fill"></div>
+                                    <button type="submit" class="floating-btn">
+                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                        <span>Send Message</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
+                            
+                            <div class="message-container">
+                                <div class="form-group">
+                                    <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
+                        
+                        </form>
+                        
+                        <form class="contact-form mobile">
+
+                            <h4 class="subtitle">Direct Message</h4>
+
+                            <div class="input-container">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
+                                </div>
                             </div>
+                            
+                            <div class="message-container">
+                                <div class="form-group">
+                                    <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
+                                </div>
+                            </div>
+
                             <div class="submit-container">
-                                <div class="flex-fill"></div>
-                                <button type="submit" class="submit-btn">Send Message</button>
+                                <button type="submit" class="floating-btn">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                </button>
                             </div>
-                        </div>
-                        
-                        <div class="message-container">
-                            <div class="form-group">
-                                <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
-                            </div>
-                        </div>
+                            
+                        </form>
                     
-                    </form>
-                    
-                    <form class="contact-form mobile">
-    
-                        <p class="subtitle">Direct Message</p>
-    
-                        <div class="input-container">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
-                            </div>
-                        </div>
-                        
-                        <div class="message-container">
-                            <div class="form-group">
-                                <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="submit-container">
-                            <button type="submit" class="submit-btn">Send Message</button>
-                        </div>
-                        
-                    </form>
-                
-                </div>
-                
+                    <div class="main-content-filler"></div>            
             </section>
 
         </main>
+
     </div>
 
     <!-- Mailto UI for custom email composition -->
@@ -352,10 +495,10 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <!-- JavaScript Files -->
-    <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/template.js"></script>
+    <script src="js/project-gallery.js"></script>
+    <script src="js/main.js"></script>
     
     
     <!-- EmailJS for form submission -->

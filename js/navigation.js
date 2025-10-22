@@ -9,11 +9,11 @@ function initNavigation() {
     const contentViews = document.querySelectorAll('.content-view');
     
     // Set initial view (first one is active by default)
-    let currentView = 'projects';
+    let currentView = 'project-gallery';
     
     // Update URL with hash if it doesn't exist
     if (!window.location.hash) {
-        window.location.hash = '#projects';
+        window.location.hash = '#project-gallery';
     } else {
         // Get view from hash (remove the # symbol)
         const hashView = window.location.hash.substring(1);

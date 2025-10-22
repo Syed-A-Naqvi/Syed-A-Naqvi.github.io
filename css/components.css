@@ -8,10 +8,12 @@
 .floating-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     column-gap: var(--spacing-sm);
+    color: var(--color-secondary);
     line-height: 1;
     border: var(--border-secondary-medium);
-    border-radius: var(--border-radius-pill);
+    border-radius: var(--border-radius-lg);
     padding: var(--spacing-sm) var(--spacing-md);
     box-shadow: var(--translate-x) var(--translate-y) 6px rgba(0, 0, 0, 0.461);
     transition: all var(--transition-speed-fast) var(--transition-ease);
@@ -19,13 +21,23 @@
 
 .floating-btn:hover {
     font-weight: var(--font-weight-bold);
-    color: var(--color-background);
+    color: var(--color-text);
     background: var(--color-primary);
     border-color: var(--color-primary);
     box-shadow: 0 0 0 rgba(0,0,0,0);
     transform: translate(var(--translate-x), var(--translate-y));
 }
 
+.dark-theme .floating-btn:hover {
+    color: var(--color-background);
+}
+
 .floating-btn:hover i {
     color: var(--color-tertiary);
+}
+
+@media (max-width: 800px) {
+    .floating-btn span {
+        display: none;
+    }
 }

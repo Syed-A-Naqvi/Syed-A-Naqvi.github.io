@@ -1,0 +1,30 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Running build scripts",
+  "main": "scripts/portfolio-update.js",
+  "type": "module",
+  "packageManager": "npm@11.6.2",
+  "scripts": {
+    "test": "node scripts/portfolio-update.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syed-A-Naqvi/Syed-A-Naqvi.github.io.git"
+  },
+  "keywords": [
+    "build",
+    "project",
+    "update",
+    "sync"
+  ],
+  "author": "Arham Naqvi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Syed-A-Naqvi/Syed-A-Naqvi.github.io/issues"
+  },
+  "homepage": "https://github.com/Syed-A-Naqvi/Syed-A-Naqvi.github.io#readme",
+  "dependencies": {
+    "jsdom": "^27.0.1"
+  }
+}

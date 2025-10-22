@@ -1,0 +1,409 @@
+/* 
+ * project-gallery.css - Styling for the projects section
+ * Includes project cards, filters and related components
+ */
+
+/* ------------------------------ PROJECT GALLERY ------------------------------ */
+#project-gallery {
+    box-sizing: border-box;
+
+    padding: 0;
+    
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 95%,
+        transparent 100%
+    );
+    
+    mask-image: linear-gradient(
+        to bottom,
+        black 95%,
+        transparent 100%
+    );
+
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+#project-gallery header {
+    padding: 0 var(--spacing-xxxl);
+    margin-bottom: 0;
+}
+
+#project-gallery header p{
+    margin-bottom: 0;
+}
+
+/* ------------------------------ Project Card Filtering ------------------------------ */
+
+/* main filtering container */
+.project-filtering {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-surface);
+    padding: var(--spacing-xxl) var(--spacing-xxxl) 0 var(--spacing-xxxl);
+    gap: var(--spacing-md);
+    flex: 0 0 fit-content;
+    z-index: var(--z-index-navigation);
+}
+
+/* filter search box */
+.filter-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex: 0 0 auto;
+    height: var(--spacing-xxl);
+    background-color: var(--color-quaternary);
+    padding: 0 var(--spacing-md);
+    transition: var(--transition-speed-fast) var(--transition-ease);
+    border-radius: var(--border-radius-sm);
+    border-bottom: 2px solid var(--color-quaternary);
+}
+
+.filter-search input {
+    flex: 1 1 auto;
+    padding: 0;
+    background-color: var(--color-quaternary);
+    border: none;
+    color: var(--color-text);
+    height: 100%;
+}
+
+.filter-search i {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+}
+
+.filter-search:hover i,
+.filter-search:focus-within i {
+    color: var(--color-tertiary);
+}
+
+.filter-search:hover,
+.filter-search:focus-within {
+    border-bottom: 2px solid var(--color-tertiary);
+    box-shadow: var(--shadow-inner);
+}
+
+/* "All" filter button */
+.project-filtering .filter-btn.all {
+    flex: 0 0 auto;
+    height: var(--spacing-xxl);
+    padding: var(--spacing-xs) var(--spacing-md);
+    margin: 0;
+    align-self: center;
+}
+
+/* Filter button Container */
+.filter-container-wrapper {
+    flex: 0 1 fit-content;
+    height: calc(1.1*var(--spacing-xxxl));
+    min-width: 0;
+    border: var(--border-quaternary-thick);
+    border-radius: var(--border-radius-sm);
+}
+
+.filter-container {
+    min-width: 0;
+    height: 100%;
+    width: 100%;
+    
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 3%,
+        black 97%,
+        transparent 100%
+    );
+    
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 3%,
+        black 97%,
+        transparent 100%
+    );
+    
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    
+}
+
+.filter-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.filter-container::-webkit-scrollbar-thumb {
+    background: var(--color-quaternary);
+    border-radius: var(--border-radius-sm);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: max-content;
+    padding: 0 0 0 var(--spacing-md);
+}
+
+/* Filter Buttons */
+
+.filter-btn {
+    flex-shrink: 0;
+    height: calc(1.1*var(--spacing-xl));
+    padding: var(--spacing-xs) var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    margin-right: var(--spacing-md);
+    cursor: pointer;
+    border: none;
+    color: var(--color-secondary);
+    background-color: var(--color-surface);
+    border: var(--border-secondary-medium);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-speed-fast) var(--transition-ease);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+
+.dark-theme .filter-btn.active,
+.dark-theme .filter-btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+}
+
+/* ------------------------------ Project Cards ------------------------------ */
+.card-top-fade {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    top: calc(2.4 * var(--spacing-xxl));
+    flex: 0 0 var(--spacing-xxl);
+    background-color: var(--color-surface);
+    width: 100%;
+
+    -webkit-mask-image: linear-gradient(
+        to top,
+        transparent 0%,
+        black 50%,
+        black 100%
+    );
+    
+    mask-image: linear-gradient(
+        to top,
+        transparent 0%,
+        black 50%,
+        black 100%
+    );
+
+    pointer-events: none;
+    z-index: var(--z-index-above);
+}
+
+.card-top-line {
+    width: 100%;
+    border: var(--border-quaternary-medium);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    padding: 0 var(--spacing-xxxl);
+}
+
+.project-card {
+    border: var(--border-quaternary-medium);
+    padding: var(--spacing-lg);
+    background-color: var(--color-quaternary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-speed) var(--transition-ease),
+                box-shadow var(--transition-speed) var(--transition-ease);
+    z-index: var(--z-index-base);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    z-index: calc(var(--z-index-base) + 1);
+}
+
+.project-image {
+    height: 200px;
+    overflow: hidden;
+    border-radius: var(--border-radius-sm);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    padding-top: var(--spacing-md);
+}
+
+.project-info h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xs);
+}
+
+.project-info p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.tag {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+.card-bot-fade {
+    position: sticky;
+    bottom: 0;
+    flex: 0 0 var(--spacing-xxl);
+    background-color: var(--color-surface);
+    width: 100%;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 50%,
+        black 100%
+    );
+    
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 50%,
+        black 100%
+    );
+
+    pointer-events: none;
+    z-index: var(--z-index-above);
+}
+
+/* Responsive design for projects section */
+@media screen and (max-width: 1000px) {
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .project-card {
+        padding: var(--spacing-md);
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    .project-info {
+        padding-top: var(--spacing-sm);
+    }
+
+/* Project Filtering Section */
+    .project-filtering {
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+
+    .project-filtering .filter-search {
+        height: var(--spacing-xxl);
+    }
+
+    .project-filtering .filter-btn.all {
+        height: var(--spacing-xxl);
+    }
+
+    .project-filtering .filter-container-wrapper {
+        min-width: 100%;
+        height: calc(1.5*var(--spacing-xxl));
+    }
+
+    .project-filtering .filter-btn {
+        height: calc(1.1*var(--spacing-xl));
+    }
+
+    .card-top-fade {
+        top: calc(var(--spacing-xxl) + var(--spacing-md) + calc(1.5*var(--spacing-xxl)) + var(--spacing-xxl));
+    }
+}
+
+/* Responsive design for projects section */
+@media screen and (max-width: 800px) {
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .project-card {
+        padding: var(--spacing-md);
+    }
+
+    .project-image {
+        height: 180px;
+    }
+
+    .project-info {
+        padding-top: var(--spacing-sm);
+    }
+
+/* Project Filtering Section */
+    .project-filtering {
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+    }
+
+    .project-filtering .filter-search {
+        height: var(--spacing-xxxl);
+    }
+
+    .project-filtering .filter-btn.all {
+        height: var(--spacing-xxxl);
+    }
+
+    .project-filtering .filter-container-wrapper {
+        min-width: 100%;
+        height: calc(1.6*var(--spacing-xxxl));
+    }
+
+    .project-filtering .filter-btn {
+        height: calc(0.95*var(--spacing-xxl));
+    }
+
+    .card-top-fade {
+        top: calc(var(--spacing-xxxl) + var(--spacing-md) + calc(1.6*var(--spacing-xxxl)) + var(--spacing-xxl));
+    }
+
+}

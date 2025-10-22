@@ -3,6 +3,10 @@
  * Implements dark/light mode toggle
  */
 
+// ************************************************************************************************
+// IMPORTANT: need to extend by sending theme change post message to custom jupyter book iframe api
+// ************************************************************************************************
+
 // Initialize theme toggle
 function initThemeToggle() {
     const rootStyles = getComputedStyle(document.documentElement);

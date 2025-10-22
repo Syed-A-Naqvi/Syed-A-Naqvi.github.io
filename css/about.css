@@ -1,12 +1,8 @@
 #about {
-    overflow: auto;
-    position: relative;
     width: 100%;
 }
 
-#about iframe {
-    border: none;
-    border-radius: var(--border-radius-lg);
+.about-filler {
+    flex: 0 0 var(--spacing-xxl);
     width: 100%;
-    height: 100%;
 }

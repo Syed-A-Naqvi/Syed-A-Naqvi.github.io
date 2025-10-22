@@ -14,8 +14,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Receive payload
-        id: payload
+      
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '25'
+        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run portfolio update script
         run: |
           # testing payload reception
-          echo "Payload: ${{ toJson(github.event.client_payload) }}"
+          node scripts/portfolio-update.js '${{ toJson(github.event.client_payload) }}'
