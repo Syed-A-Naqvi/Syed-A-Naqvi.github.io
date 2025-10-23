@@ -192,6 +192,7 @@ projectCards.sort((a, b) => {
 });
 
 // incrementing filter button tally and adding new buttons if necessary
+console.log(`Current Filter Button Tallies: ${JSON.stringify(filterButtonTally)}`);
 projectCards.forEach(card => {
     const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
     tags.forEach(tag => {
@@ -205,6 +206,7 @@ projectCards.forEach(card => {
         }
     })
 });
+console.log(`Updated Filter Button Tallies: ${JSON.stringify(filterButtonTally)}`);
 
 // removing filter buttons with zero tally
 for (const [tag, tally] of Object.entries(filterButtonTally)) {
@@ -212,6 +214,7 @@ for (const [tag, tally] of Object.entries(filterButtonTally)) {
         const buttonToRemove = document.getElementById(tag);
         if (buttonToRemove) {
             filterGroup.removeChild(buttonToRemove);
+            console.log(`Removed filter button for tag: ${tag}`);
         }
     }
 }
