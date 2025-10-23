@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  update-cards:
+  update-gallery:
 
     runs-on: ubuntu-latest
 
@@ -30,3 +30,11 @@ jobs:
         run: |
           # testing payload reception
           node scripts/portfolio-update.js '${{ toJson(github.event.client_payload) }}'
+        
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update: Project gallery rebuild. [skip ci]"
+          git push

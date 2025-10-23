@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the theme toggle
     initThemeToggle();
+
+    // Initialize project view navigation
+    initProjectView();
     
     // Initialize project filters
     // initProjectFilters();

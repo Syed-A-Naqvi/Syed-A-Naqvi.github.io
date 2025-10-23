@@ -84,3 +84,31 @@ function initNavigation() {
         }
     }
 }
+
+// initializing project iframe view
+function initProjectView() {
+    
+    // project gallery reference
+    const projectGallery = document.getElementById('project-gallery');
+
+    // extracting all project cards
+    const projectGrid = projectGallery.querySelector('.projects-grid');
+    const projectCards = Array.from(projectGrid.children);
+
+    // extracting project view pane
+    const projectView = document.getElementById('project-view');
+
+    // adding click event listeners to each project card
+    projectCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectURL = card.id;
+            const projectIframe = projectView.querySelector('iframe');
+            projectIframe.src = projectURL;
+            // switching views
+            projectGallery.classList.remove('active');
+            projectView.classList.add('active');
+        });
+    });
+
+}
