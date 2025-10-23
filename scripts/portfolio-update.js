@@ -113,7 +113,7 @@ function buildProjectCard(projectMetadata) {
     card.id = hashUrl(projectMetadata.url);
     card.className = "project-card";
     card.dataset.url = projectMetadata.url;
-    card.dataset.tags = projectMetadata.tags.map(tag => tag.replace(/\S+/g,"-").toLowerCase()).join(" ");
+    card.dataset.tags = projectMetadata.tags.map(tag => tag.replace(/ +/g,"-").toLowerCase()).join(" ");
     card.dataset.updated = new Date(projectMetadata.updated).toISOString();
 
     // CREATING LOGO CONTAINER
@@ -168,10 +168,9 @@ function buildFilterButton(tag) {
     const filterButton = document.createElement("button");
     filterButton.id = tag;
     filterButton.className = 'filter-btn';
-    const readableTag = tag.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-    filterButton.textContent = readableTag;
+    filterButton.textContent = tag.replace(/-+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
     console.log(`Created filter button for tag: ${tag}`);
-    console.log(`Filter button text: ${readableTag}`);
+    console.log(`Filter button text: ${filterButton.textContent}`);
     return filterButton;
 }
 
@@ -198,10 +197,9 @@ projectCards.sort((a, b) => {
 console.log(`Current Filter Button Tallies: ${JSON.stringify(filterButtonTally)}`);
 projectCards.forEach(card => {
     const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
+    console.log(`Tags for project card ${card.id}: ${tags}`);
     tags.forEach(tag => {
         if (filterButtonTally.hasOwnProperty(tag)) {
-            console.log(`Found filter button with id: ${tag}`);
-            console.log(`Incrementing tally.`);
             filterButtonTally[tag] += 1;
         } else {
             console.log(`No filter button with id: ${tag}`);
