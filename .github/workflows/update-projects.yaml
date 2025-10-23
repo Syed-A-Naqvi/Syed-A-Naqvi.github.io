@@ -28,7 +28,7 @@ jobs:
 
       - name: Run portfolio update script
         run: |
-          # testing payload reception
+          # running update script
           node scripts/portfolio-update.js '${{ toJson(github.event.client_payload) }}'
         
       - name: Commit and push changes

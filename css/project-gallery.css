@@ -214,7 +214,7 @@
     border: var(--border-quaternary-medium);
 }
 
-.projects-grid {
+.project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--spacing-xl);
@@ -314,7 +314,7 @@
 /* Responsive design for projects section */
 @media screen and (max-width: 1000px) {
 
-    .projects-grid {
+    .project-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
     }
@@ -362,7 +362,7 @@
 /* Responsive design for projects section */
 @media screen and (max-width: 800px) {
 
-    .projects-grid {
+    .project-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
     }

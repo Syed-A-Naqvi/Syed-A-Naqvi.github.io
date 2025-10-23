@@ -1,5 +1,7 @@
 import {JSDOM} from 'jsdom';
 import { readFile, writeFile } from 'node:fs/promises';
+import crypto from 'node:crypto';
+
 
 // Ensure correct number of arguments
 if (process.argv.length !== 3) {
@@ -48,6 +50,15 @@ filterButtons.forEach(btn => {
 });
 
 /**
+ * Builds a project card element based on the provided metadata.
+ * @param {string} url - The project URL.
+ * @returns {string} The URL hash to be used as a unique identifier.
+*/
+function hashUrl(url) {
+    return crypto.createHash('md5').update(url).digest('hex');
+}
+
+/**
  * @typedef {object} ProjectMetadata
  * @property {string}   title - The title of the project
  * @property {string}   description - A brief description of the project
@@ -78,8 +89,9 @@ function buildProjectCard(projectMetadata) {
 
     // CREATING PROJECT CARD ELEMENT
     const card = document.createElement("article");
-    card.id = projectMetadata.url;
+    card.id = hashUrl(projectMetadata.url);
     card.className = "project-card";
+    card.dataset.url = projectMetadata.url;
     card.dataset.tags = Array.from(datasetTags).join(" ");
     card.dataset.updated = new Date(projectMetadata.updated).toISOString();
 
@@ -143,7 +155,7 @@ function buildFilterButton(tagId) {
 const newProjectCard = buildProjectCard(projectMetadata);
 
 // appending or replacing project card in the grid
-const existingCard = projectGrid.querySelector(`#${newProjectCard.id}`);
+const existingCard = projectGrid.getElementById(`${newProjectCard.id}`);
 if (existingCard) {
     projectGrid.replaceChild(newProjectCard, existingCard);
 } else {
@@ -176,7 +188,7 @@ projectCards.forEach(card => {
 // removing filter buttons with zero tally
 for (const [tag, tally] of Object.entries(filterButtonTally)) {
     if (tally === 0) {
-        const buttonToRemove = filterGroup.querySelector(`#${tag}`);
+        const buttonToRemove = filterGroup.getElementById(`${tag}`);
         if (buttonToRemove) {
             filterGroup.removeChild(buttonToRemove);
         }

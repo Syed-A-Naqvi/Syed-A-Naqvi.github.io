@@ -102,12 +102,17 @@ function initProjectView() {
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
             e.preventDefault();
-            const projectURL = card.id;
-            const projectIframe = projectView.querySelector('iframe');
-            projectIframe.src = projectURL;
-            // switching views
-            projectGallery.classList.remove('active');
-            projectView.classList.add('active');
+            if (card.dataset.url) {
+                const projectURL = card.dataset.url;
+                const projectIframe = projectView.querySelector('iframe');
+                projectIframe.src = projectURL;
+                // switching views
+                projectGallery.classList.remove('active');
+                projectView.classList.add('active');
+            }
+            else {
+                console.warn('Project card does not have a valid URL.');
+            }
         });
     });
 
