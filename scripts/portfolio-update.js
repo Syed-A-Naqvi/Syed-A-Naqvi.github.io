@@ -146,7 +146,7 @@ function buildProjectCard(projectMetadata) {
     // CREATING TAGS CONTAINER
     const tagsContainer = document.createElement("div");
     tagsContainer.className = "project-tags";
-    tags.forEach(tag => {
+    projectMetadata.tags.forEach(tag => {
         const tagSpan = document.createElement("span");
         tagSpan.className = "tag";
         tagSpan.textContent = tag;
