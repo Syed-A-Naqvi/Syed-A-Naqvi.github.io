@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,8 +24,8 @@
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -30,7 +33,9 @@
     
     <!-- captcha display -->
     <div class="captcha-overlay">
-        <div class="captcha-modal g-recaptcha" data-sitekey="6LdMdNorAAAAABVhIAkfJ52V0E5RoXUwoh5twHaR" data-callback="onCaptchaSuccess" data-error-callback="onCaptchaError"></div>
+        <div class="captcha-modal g-recaptcha" data-sitekey="6LdMdNorAAAAABVhIAkfJ52V0E5RoXUwoh5twHaR"
+        data-callback="onCaptchaSuccess"
+        data-error-callback="onCaptchaError"></div>
     </div>
 
     <!-- Main Container -->
@@ -46,7 +51,7 @@
                     <img src="assets/images/linkedin_profile.jpg" alt="Profile Image" class="profile-pic">
                 </div>
                 <h3 class="profile-name">Syed Naqvi</h3>
-                <h6 class="profile-title">Data Analyst | Public Safety &amp; Law Enforcement</h6>
+                <h6 class="profile-title">Data Analyst | Public Safety & Law Enforcement</h6>
             </div>
             <div class="social-links">
                 <a href="https://github.com/" class="social-icon" target="_blank" aria-label="GitHub Profile">
@@ -137,14 +142,27 @@
                         <button class="filter-btn all" data-filter="all">Clear</button>
                         <div class="filter-container-wrapper">
                             <div class="filter-container">
-                                <div class="filter-group"><button id="-" class="filter-btn"> </button><button class="filter-btn" id="tag-1">Tag 1</button><button class="filter-btn" id="tag-2">Tag 2</button><button class="filter-btn" id="tag-3">Tag 3</button><button class="filter-btn" id="tag-4">Tag 4</button><button class="filter-btn" id="tag-5">Tag 5</button><button class="filter-btn" id="tag-6">Tag 6</button><button class="filter-btn" id="tag-7">Tag 7</button><button class="filter-btn" id="tag-8">Tag 8</button><button class="filter-btn" id="tag-9">Tag 9</button></div>
+                                <div class="filter-group">
+                                    <button class="filter-btn" id="tag-1">Tag 1</button>
+                                    <button class="filter-btn" id="tag-2">Tag 2</button>
+                                    <button class="filter-btn" id="tag-3">Tag 3</button>
+                                    <button class="filter-btn" id="tag-4">Tag 4</button>
+                                    <button class="filter-btn" id="tag-5">Tag 5</button>
+                                    <button class="filter-btn" id="tag-6">Tag 6</button>
+                                    <button class="filter-btn" id="tag-7">Tag 7</button>
+                                    <button class="filter-btn" id="tag-8">Tag 8</button>
+                                    <button class="filter-btn" id="tag-9">Tag 9</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-top-fade"></div>
 
-                    <div class="project-grid"><article id="d396e02f1bf5d80d2c28bcc4cd25ac05" class="project-card" data-url="https://syed-a-naqvi.github.io/sample_jupyter_book/" data-tags="- - - -" data-updated="2025-10-23T00:00:00.000Z"><div class="project-image"><img src="https://syed-a-naqvi.github.io/sample_jupyter_book/_static/logo.png" alt="Crime Hotspot Mapping Analysis"></div><div class="project-info"><h3>Crime Hotspot Mapping Analysis</h3><p>Geospatial analysis of crime incidents for identifying high-risk areas and temporal patterns.</p><div class="project-tags"><span class="tag">Tag 3</span><span class="tag">Tag 4</span></div></div></article><article id="A" class="project-card" data-tags="tag-1 tag-2 tag-4" data-updated="2024-06-15">
+                    <div class="project-grid">
+                            
+                        <!-- Project Card 1 -->
+                        <article id="A" class="project-card" data-tags="tag-1 tag-2 tag-4" data-updated="2024-06-15">
                             <div class="project-image">
                                 <img src="" alt="Predictive Policing Model">
                             </div>
@@ -157,7 +175,10 @@
                                     <span class="tag">Tag 2</span>
                                 </div>
                             </div>
-                        </article><article id="B" class="project-card" data-tags="tag-2 tag-3" data-updated="2024-05-28">
+                        </article>
+
+                        <!-- Project Card 2 -->
+                        <article id="B" class="project-card" data-tags="tag-2 tag-3" data-updated="2024-05-28">
                             <div class="project-image">
                                 <img src="assets/images/project-3.jpg" alt="Data Analysis Visualization">
                             </div>
@@ -169,7 +190,10 @@
                                     <span class="tag">Tag 2</span>
                                 </div>
                             </div>
-                        </article><article id="C" class="project-card" data-tags="tag-5 tag-1 tag-6" data-updated="2024-04-12">
+                        </article>
+
+                        <!-- Project Card 3 -->
+                        <article id="C" class="project-card" data-tags="tag-5 tag-1 tag-6" data-updated="2024-04-12">
                             <div class="project-image">
                                 <img src="assets/images/project-4.jpg" alt="GIS Machine Learning">
                             </div>
@@ -182,7 +206,10 @@
                                     <span class="tag">Tag 6</span>
                                 </div>
                             </div>
-                        </article><article id="D" class="project-card" data-tags="tag-2 tag-7" data-updated="2024-03-30">
+                        </article>
+
+                        <!-- Project Card 4 -->
+                        <article id="D" class="project-card" data-tags="tag-2 tag-7" data-updated="2024-03-30">
                             <div class="project-image">
                                 <img src="assets/images/project-5.jpg" alt="Network Analysis Time Series">
                             </div>
@@ -193,7 +220,10 @@
                                     <span class="tag">Tag 7</span>
                                 </div>
                             </div>
-                        </article><article id="E" class="project-card" data-tags="tag-4 tag-8 tag-1" data-updated="2024-02-18">
+                        </article>
+
+                        <!-- Project Card 5 -->
+                        <article id="E" class="project-card" data-tags="tag-4 tag-8 tag-1" data-updated="2024-02-18">
                             <div class="project-image">
                                 <img src="assets/images/project-6.jpg" alt="Dashboarding R">
                             </div>
@@ -206,7 +236,10 @@
                                     <span class="tag">Tag 1</span>
                                 </div>
                             </div>
-                        </article><article id="F" class="project-card" data-tags="tag-9 tag-2" data-updated="2024-01-05">
+                        </article>
+
+                        <!-- Project Card 6 -->
+                        <article id="F" class="project-card" data-tags="tag-9 tag-2" data-updated="2024-01-05">
                             <div class="project-image">
                                 <img src="assets/images/project-7.jpg" alt="Python Deep Learning">
                             </div>
@@ -218,7 +251,10 @@
                                     <span class="tag">Tag 2</span>
                                 </div>
                             </div>
-                        </article><article id="G" class="project-card" data-tags="tag-3 tag-5" data-updated="2023-12-22">
+                        </article>
+
+                        <!-- Project Card 7 -->
+                        <article id="G" class="project-card" data-tags="tag-3 tag-5" data-updated="2023-12-22">
                             <div class="project-image">
                                 <img src="assets/images/project-8.jpg" alt="Anomaly Detection Data Cleaning">
                             </div>
@@ -230,7 +266,10 @@
                                     <span class="tag">Tag 5</span>
                                 </div>
                             </div>
-                        </article><article id="H" class="project-card" data-tags="tag-6 tag-1 tag-8" data-updated="2023-11-10">
+                        </article>
+
+                        <!-- Project Card 8 -->
+                        <article id="H" class="project-card" data-tags="tag-6 tag-1 tag-8" data-updated="2023-11-10">
                             <div class="project-image">
                                 <img src="assets/images/project-9.jpg" alt="Visualization GIS">
                             </div>
@@ -243,7 +282,10 @@
                                     <span class="tag">Tag 8</span>
                                 </div>
                             </div>
-                        </article><article id="I" class="project-card" data-tags="tag-7 tag-2" data-updated="2023-10-01">
+                        </article>
+
+                        <!-- Project Card 9 -->
+                        <article id="I" class="project-card" data-tags="tag-7 tag-2" data-updated="2023-10-01">
                             <div class="project-image">
                                 <img src="assets/images/project-10.jpg" alt="Machine Learning Predictive Modeling">
                             </div>
@@ -255,7 +297,10 @@
                                     <span class="tag">Tag 2</span>
                                 </div>
                             </div>
-                        </article><article id="J" class="project-card" data-tags="tag-4 tag-9 tag-3" data-updated="2023-09-15">
+                        </article>
+
+                        <!-- Project Card 10 -->
+                        <article id="J" class="project-card" data-tags="tag-4 tag-9 tag-3" data-updated="2023-09-15">
                             <div class="project-image">
                                 <img src="assets/images/project-11.jpg" alt="Data Analysis Dashboarding">
                             </div>
@@ -268,7 +313,9 @@
                                     <span class="tag">Tag 3</span>
                                 </div>
                             </div>
-                        </article></div>                        
+                        </article>
+
+                    </div>                        
                 
                 <div class="card-bot-fade"></div>
 
@@ -304,7 +351,7 @@
                         </div>
                         
                         <div class="skills-section">
-                            <h2>Skills &amp; Expertise</h2>
+                            <h2>Skills & Expertise</h2>
                             <div class="skills-grid">
                                 <div class="skill-category">
                                     <h3>Data Analysis</h3>
@@ -330,7 +377,7 @@
                                         <li>Tableau</li>
                                         <li>Power BI</li>
                                         <li>D3.js</li>
-                                        <li>Matplotlib &amp; Seaborn</li>
+                                        <li>Matplotlib & Seaborn</li>
                                     </ul>
                                 </div>
                             </div>
@@ -376,13 +423,13 @@
 
                             <div class="input-container">
                                 <div class="form-group">
-                                    <input type="text" id="name" name="name" required="" placeholder="Name" autocomplete="off">
+                                    <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" id="email" name="email" required="" placeholder="Email" autocomplete="off">
+                                    <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="organization" name="organization" required="" placeholder="Organization" autocomplete="off">
+                                    <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
                                 </div>
                                 <div class="submit-container">
                                     <div class="flex-fill"></div>
@@ -395,7 +442,7 @@
                             
                             <div class="message-container">
                                 <div class="form-group">
-                                    <textarea id="message" name="message" required="" placeholder="Your message..." autocomplete="off"></textarea>
+                                    <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
                                 </div>
                             </div>
                         
@@ -407,19 +454,19 @@
 
                             <div class="input-container">
                                 <div class="form-group">
-                                    <input type="text" id="name" name="name" required="" placeholder="Name" autocomplete="off">
+                                    <input type="text" id="name" name="name" required placeholder="Name" autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" id="email" name="email" required="" placeholder="Email" autocomplete="off">
+                                    <input type="email" id="email" name="email" required placeholder="Email" autocomplete="off">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" id="organization" name="organization" required="" placeholder="Organization" autocomplete="off">
+                                    <input type="text" id="organization" name="organization" required placeholder="Organization" autocomplete="off">
                                 </div>
                             </div>
                             
                             <div class="message-container">
                                 <div class="form-group">
-                                    <textarea id="message" name="message" required="" placeholder="Your message..." autocomplete="off"></textarea>
+                                    <textarea id="message" name="message" required placeholder="Your message..." autocomplete="off"></textarea>
                                 </div>
                             </div>
 
@@ -444,7 +491,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.3/dist/mailtoui-min.js"></script>
     
     <!-- Google recaptcha import -->
-    <script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <!-- JavaScript Files -->
     <script src="js/navigation.js"></script>
@@ -457,5 +504,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="js/email-service.js"></script>
 
-
-</body></html>
+</body>
+</html>
