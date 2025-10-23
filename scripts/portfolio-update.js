@@ -13,6 +13,7 @@ if (process.argv.length !== 3) {
 // extracting project metadata from command line argument
 const rawProjectMetadata = process.argv[2];
 
+
 // Input validation ------------------------------------------------
 // parsing JSON payload
 let projectMetadata;
@@ -30,9 +31,21 @@ for (const field of requiredFields) {
         console.error(`Missing required field: ${field}`);
         process.exit(1);
     }
-    else if (field === 'tags' && !Array.isArray(projectMetadata[field])) {
-        console.error(`Field 'tags' must be an array.`);
-        process.exit(1);
+    else if (field === 'tags') {
+
+        if (!Array.isArray(projectMetadata[field])) {
+            console.error(`Field 'tags' must be an array.`);
+            process.exit(1);
+        }
+        else {
+            // removing duplicate tags
+            // sorting tags alphabetically
+            // ensuring space-separated words with first letter capitalized
+            projectMetadata.tags = Array.from(new Set(projectMetadata.tags)).sort().map(tag => {
+                return tag.trim().replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+            });
+        }
+        
     }
     else if (field === 'updated' && isNaN(Date.parse(projectMetadata[field]))) {
         console.error(`Field 'updated' must be a valid date string.`);
@@ -40,7 +53,8 @@ for (const field of requiredFields) {
     }
 }
 
-// extracting main index.html file content
+
+// Extracting main index.html file content ---------------------------------
 let htmlContent;
 try {
     htmlContent = await readFile('index.html', 'utf8');
@@ -59,7 +73,6 @@ let filterButtons = Array.from(filterGroup.children);
 
 // project grid
 const projectGrid = document.querySelector(".project-grid");
-let projectCards = Array.from(projectGrid.children);
 
 // initializing filter button tally
 const filterButtonTally = {};
@@ -95,16 +108,12 @@ function hashUrl(url) {
 */
 function buildProjectCard(projectMetadata) {
     
-    // EXTRACTING AND FORMATTING TAGS
-    const tags = Array.from(new Set(projectMetadata.tags)) || [];
-    const datasetTags = tags.sort().map(tag => tag.trim().toLowerCase().replace(/\s+/g,"-"));
-
     // CREATING PROJECT CARD ELEMENT
     const card = document.createElement("article");
     card.id = hashUrl(projectMetadata.url);
     card.className = "project-card";
     card.dataset.url = projectMetadata.url;
-    card.dataset.tags = datasetTags.join(" ");
+    card.dataset.tags = projectMetadata.tags.map(tag => tag.replace(/\S+/g,"-").toLowerCase()).join(" ");
     card.dataset.updated = new Date(projectMetadata.updated).toISOString();
 
     // CREATING LOGO CONTAINER
@@ -174,8 +183,8 @@ if (existingCard) {
     projectGrid.appendChild(newProjectCard);
 }
 
-// refreshing cards list and sorting cards by update time
-projectCards = Array.from(projectGrid.children);
+// extracting cards list and sorting cards by update time
+let projectCards = Array.from(projectGrid.children);
 projectCards.sort((a, b) => {
     const dateA = new Date(a.dataset.updated);
     const dateB = new Date(b.dataset.updated);
@@ -207,7 +216,7 @@ for (const [tag, tally] of Object.entries(filterButtonTally)) {
     }
 }
 
-// sorting filter buttons alphabetically
+// refreshing filter button list and sorting filter buttons alphabetically
 filterButtons = Array.from(filterGroup.children);
 filterButtons.sort((a, b) => a.id.localeCompare(b.id));
 
