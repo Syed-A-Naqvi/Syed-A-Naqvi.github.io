@@ -3,16 +3,17 @@ import { readFile, writeFile } from 'node:fs/promises';
 import crypto from 'node:crypto';
 
 
+// Command line argument processing --------------------------------
 // Ensure correct number of arguments
 if (process.argv.length !== 3) {
     console.log("Error: Invalid number of arguments.");
     console.log("Usage: node portfolio-update.js '<project-metadata-json>'");
     process.exit(1);
 }
-
 // extracting project metadata from command line argument
 const rawProjectMetadata = process.argv[2];
 
+// Input validation ------------------------------------------------
 // parsing JSON payload
 let projectMetadata;
 try {
@@ -20,6 +21,23 @@ try {
 } catch (error) {
     console.error("Invalid JSON payload:", error);
     process.exit(1);
+}
+// Ensuring all fields present and valid
+const requiredFields = ['title', 'description','author', 'tags', 'url', 'logo_path', 'updated'];
+for (const field of requiredFields) {
+    
+    if (!projectMetadata[field]) {
+        console.error(`Missing required field: ${field}`);
+        process.exit(1);
+    }
+    else if (field === 'tags' && !Array.isArray(projectMetadata[field])) {
+        console.error(`Field 'tags' must be an array.`);
+        process.exit(1);
+    }
+    else if (field === 'updated' && isNaN(Date.parse(projectMetadata[field]))) {
+        console.error(`Field 'updated' must be a valid date string.`);
+        process.exit(1);
+    }
 }
 
 // extracting main index.html file content
@@ -78,21 +96,15 @@ function hashUrl(url) {
 function buildProjectCard(projectMetadata) {
     
     // EXTRACTING AND FORMATTING TAGS
-    const tags = projectMetadata.tags || [];
-    const datasetTags = new Set();
-    tags.sort();
-    tags.forEach(tag => {
-        // formatting tags
-        tag = tag.trim().toLowerCase().replace(/\s+/g, "-");
-        datasetTags.add(tag);
-    });
+    const tags = Array.from(new Set(projectMetadata.tags)) || [];
+    const datasetTags = tags.sort().map(tag => tag.trim().toLowerCase().replace(/\s+/g,"-"));
 
     // CREATING PROJECT CARD ELEMENT
     const card = document.createElement("article");
     card.id = hashUrl(projectMetadata.url);
     card.className = "project-card";
     card.dataset.url = projectMetadata.url;
-    card.dataset.tags = Array.from(datasetTags).join(" ");
+    card.dataset.tags = datasetTags.join(" ");
     card.dataset.updated = new Date(projectMetadata.updated).toISOString();
 
     // CREATING LOGO CONTAINER
@@ -131,7 +143,7 @@ function buildProjectCard(projectMetadata) {
         tagSpan.textContent = tag;
         tagsContainer.appendChild(tagSpan);
     });
-    card.appendChild(tagsContainer);
+    infoSection.appendChild(tagsContainer);
 
     // APPENDING INFO SECTION TO CARD
     card.appendChild(infoSection);
@@ -143,11 +155,11 @@ function buildProjectCard(projectMetadata) {
  * @param {string} tagId - The ID of the new tag button
  * @returns {HTMLElement} The constructed filter button element.
 */
-function buildFilterButton(tagId) {
+function buildFilterButton(tag) {
     const filterButton = document.createElement("button");
-    filterButton.id = tagId;
+    filterButton.id = tag;
     filterButton.className = 'filter-btn';
-    filterButton.textContent = tagId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    filterButton.textContent = tag.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
     return filterButton;
 }
 
@@ -155,7 +167,7 @@ function buildFilterButton(tagId) {
 const newProjectCard = buildProjectCard(projectMetadata);
 
 // appending or replacing project card in the grid
-const existingCard = projectGrid.getElementById(`${newProjectCard.id}`);
+const existingCard = document.getElementById(newProjectCard.id);
 if (existingCard) {
     projectGrid.replaceChild(newProjectCard, existingCard);
 } else {
@@ -188,7 +200,7 @@ projectCards.forEach(card => {
 // removing filter buttons with zero tally
 for (const [tag, tally] of Object.entries(filterButtonTally)) {
     if (tally === 0) {
-        const buttonToRemove = filterGroup.getElementById(`${tag}`);
+        const buttonToRemove = document.getElementById(tag);
         if (buttonToRemove) {
             filterGroup.removeChild(buttonToRemove);
         }
