@@ -168,7 +168,10 @@ function buildFilterButton(tag) {
     const filterButton = document.createElement("button");
     filterButton.id = tag;
     filterButton.className = 'filter-btn';
-    filterButton.textContent = tag.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    const readableTag = tag.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    filterButton.textContent = readableTag;
+    console.log(`Created filter button for tag: ${tag}`);
+    console.log(`Filter button text: ${readableTag}`);
     return filterButton;
 }
 
@@ -197,8 +200,12 @@ projectCards.forEach(card => {
     const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
     tags.forEach(tag => {
         if (filterButtonTally.hasOwnProperty(tag)) {
+            console.log(`Found filter button with id: ${tag}`);
+            console.log(`Incrementing tally.`);
             filterButtonTally[tag] += 1;
         } else {
+            console.log(`No filter button with id: ${tag}`);
+            console.log(`Creating button and setting count to 1.`);
             filterButtonTally[tag] = 1;
             // creating and appending new filter button
             const newFilterButton = buildFilterButton(tag);
