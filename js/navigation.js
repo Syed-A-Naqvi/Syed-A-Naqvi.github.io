@@ -92,7 +92,7 @@ function initProjectView() {
     const projectGallery = document.getElementById('project-gallery');
 
     // extracting all project cards
-    const projectGrid = projectGallery.querySelector('.projects-grid');
+    const projectGrid = projectGallery.querySelector('.project-grid');
     const projectCards = Array.from(projectGrid.children);
 
     // extracting project view pane
