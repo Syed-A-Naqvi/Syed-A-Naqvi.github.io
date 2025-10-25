@@ -197,7 +197,7 @@ projectCards.sort((a, b) => {
 console.log(`Current Filter Button Tallies: ${JSON.stringify(filterButtonTally)}`);
 projectCards.forEach(card => {
     const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
-    console.log(`Tags for project card ${card.id}: ${tags}`);
+    console.log(`Tags for project card ${card.id}: ${tags.join(", ")}`);
     tags.forEach(tag => {
         if (filterButtonTally.hasOwnProperty(tag)) {
             filterButtonTally[tag] += 1;

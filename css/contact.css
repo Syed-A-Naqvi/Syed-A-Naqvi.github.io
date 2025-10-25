@@ -409,7 +409,7 @@
         gap: var(--spacing-md);
         flex: 4 0 0;
         padding-top: calc(1.5 * var(--spacing-xxxl));
-        padding-bottom: 0;
+        padding-bottom: var(--spacing-md);
     }
     
     .input-container {

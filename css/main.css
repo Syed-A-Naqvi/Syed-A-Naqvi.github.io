@@ -429,6 +429,23 @@ input::placeholder, textarea::placeholder {
 
 /* Utility Classes */
 /* Subtitles and secondary text */
+.button-flash {
+    animation: button-flash var(--transition-speed) var(--transition-ease);
+}
+@keyframes button-flash {
+    /* Example animation */
+    0%   { background-color: inherit; }
+    30%  { 
+        background-color: var(--color-text);
+        border-color: var(--color-text);
+    }
+    70%  { 
+        background-color: var(--color-text);
+        border-color: var(--color-text);
+    }
+    100% { background-color: inherit; }
+}
+
 .subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-secondary);

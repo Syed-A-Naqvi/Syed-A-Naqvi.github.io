@@ -96,11 +96,17 @@
     padding: var(--spacing-xs) var(--spacing-md);
     margin: 0;
     align-self: center;
+    font-weight: bolder;
+}
+
+.project-filtering .filter-btn.all:hover {
+    background-color: var(--color-tertiary);
+    border-color: var(--color-tertiary);
 }
 
 /* Filter button Container */
 .filter-container-wrapper {
-    flex: 0 1 fit-content;
+    flex: 0 1 100%;
     height: calc(1.1*var(--spacing-xxxl));
     min-width: 0;
     border: var(--border-quaternary-thick);
@@ -234,7 +240,7 @@
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
     z-index: calc(var(--z-index-base) + 1);
 }
 

@@ -1,82 +1,242 @@
-// Horizontal scroll for project gallery filters
-function horizontalFilterContainerScroll() {
+const cardFiltrationSystem = ( function () {
+    
+    // --------------------------------VARIABLES/CONSTANTS--------------------------------
+    
+    // main filtration container
+    const projectFiltering = document.querySelector('.project-filtering');
+    // tag search box
+    const tagSearchBox = document.getElementById('filter-search-box');
 
-    const filterContainer = document.querySelector('.filter-container');
-
-    filterContainer.addEventListener('wheel', (e) => {
-
-        // Prevent default vertical scroll signals
-        e.preventDefault();
-
-        filterContainer.scrollLeft += 1.2 * e.deltaY;
-
+    // clear all filters button
+    const allFilterButton = projectFiltering.querySelector('.filter-btn.all');
+    // filter group container
+    const filterContainer = projectFiltering.querySelector('.filter-container');
+    // main filter buttons container
+    const filterGroup = filterContainer.querySelector('.filter-group');
+    // individual filter buttons
+    const filterButtons = filterGroup.querySelectorAll('.filter-btn');
+    // unapplied filter set
+    const unappliedFilters = new Set(filterButtons);
+    // applied filters set
+    const appliedFilters = new Set();
+    // building inactive <-> active filter button mapping
+    const filterFilterMap = new Map();
+    filterButtons.forEach(btn => {
+        // creating active button clone
+        const activeBtn = btn.cloneNode(true);
+        activeBtn.removeAttribute('id');
+        activeBtn.classList.add('active');
+        filterFilterMap.set(btn, activeBtn);
+        filterFilterMap.set(activeBtn, btn);
     });
 
-};
+    // project card container
+    const projectGrid = document.querySelector('.project-grid');
+    // individual project cards
+    const allProjectCards = projectGrid.querySelectorAll('.project-card');
+    // displayed and hidden project card sets
+    const displayedProjectCards = new Set(allProjectCards);
+    const hiddenProjectCards = new Set();
+    // building [filter button] -> [card] mapping
+    const filterCardMap = new Map();
+    allProjectCards.forEach(card => {
+        const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
+        tags.forEach(tag => {
+            const filterBtn = document.getElementById(tag);
+            if (!filterCardMap.has(filterBtn)) {
+                filterCardMap.set(filterBtn, new Set());
+            }
+            filterCardMap.get(filterBtn).add(card);
+        });
+    });
 
-// Initialize filter button functionality
-// function initFilterButtons() {
+    // --------------------------------UTILITY SET OPERATIONS--------------------------------
 
-//     // main filtration container
-//     const projectFiltering = document.querySelector('.project-filtering');
+    // Union of two sets (A u B)
+    function union(A, B) {
+        return new Set([...A, ...B]);
+    }
+    // Intersection of two sets (A n B)
+    function intersection(A, B) {
+        return new Set([...A].filter(x => B.has(x)));
+        
+    }
+    // Difference of two sets (A - B)
+    function difference(A, B) {
+        return new Set([...A].filter(x => !B.has(x)));
+    }
 
-//     // toggles every filter button on or off
-//     const allFilterButton = projectFiltering.querySelector('.filter-btn.all');
+    // apply card filter
+    function applyFilter(filter) {
+        // the set of displayed cards constitutes the intersection of all applied filters
+        // when applying an additional filter, we must determine which cards if any need to be hidden
+        // thus we return all cards in the displayed set not also in the new filter's card set (i.e. not in the new intersection)
+        // this describes the difference between the displayed set and the new filter's card set
+        const cardsToHide = difference(displayedProjectCards, filterCardMap.get(filter));
+        // updating displayed and hidden sets
+        cardsToHide.forEach(card => {
+            displayedProjectCards.delete(card);
+            hiddenProjectCards.add(card);
+            card.style.display = 'none';
+        });
+        // adding filter to applied filters set and removing from unapplied set
+        appliedFilters.add(filter);
+        unappliedFilters.delete(filter);
+        
+        // now we hide the inactive version of this filter button and show the active version at the start of the filter group
+        const activeBtn = filterFilterMap.get(filter);
+        filterGroup.insertBefore(activeBtn, filterGroup.firstChild);
+        filter.style.display = 'none';
+    }
 
-//     // container for individual filter buttons
-//     const filterGroup = document.querySelector('.filter-group');
-//     // individual filter buttons
-//     const filterButtons = filterGroup.querySelectorAll('.filter-btn');
+    // remove card filter
+    function removeFilter(filter) {
 
-//     // container for project cards
-//     const projectCardContainer = document.querySelector('.projects-grid');
-//     // individual project cards
-//     const projectCards = document.querySelectorAll('.project-card');
-    
-    
-//     // 'all' filter button functionality
-//     if (allFilterButton) {
-//         allFilterButton.addEventListener('click', () => {
+        // we begin by removing the filter from the applied filters list
+        appliedFilters.delete(filter);
+        // and adding it back to the unapplied filters list
+        unappliedFilters.add(filter);
 
-//             if (!allFilterButton.classList.contains('active')) {
-//                 // Remove active class from all buttons
-//                 filterButtons.forEach(btn => btn.classList.remove('active'));
-
-    
-//     filterButtons.forEach(button => {
-//         button.addEventListener('click', () => {
-//             // Remove active class from all buttons
-//             filterButtons.forEach(btn => btn.classList.remove('active'));
+        if (appliedFilters.size === 0) {
             
-//             // Add active class to clicked button
-//             button.classList.add('active');
-            
-//             // Get filter value
-//             const filter = button.getAttribute('data-filter');
-            
-//             // Filter projects
-//             projectCards.forEach(card => {
-//                 if (filter === 'all') {
-//                     card.style.display = 'block';
-//                 } else {
-//                     const tags = card.getAttribute('data-tags');
-//                     if (tags && tags.includes(filter)) {
-//                         card.style.display = 'block';
-//                     } else {
-//                         card.style.display = 'none';
-//                     }
-//                 }
-//             });
-//         });
-//     });
-// }
+            // if no filters remain, we simply display all cards
+            hiddenProjectCards.forEach(card => {
+                displayedProjectCards.add(card);
+                card.style.display = "";
+            });
+            hiddenProjectCards.clear();
 
-// Initialize project filtration system
-// function initProjectFiltration() {
+        } else {
+
+            // we must now find and display all cards part of the intersection of the remaining filters' card sets
+            // some of these cards may have been hidden due to the application of the filter currently being removed
+            // to find these cards, we get the difference between the intersection of all remaining filters' card sets and the currently removed filter's card set
+            let cardsToDisplay = new Set(allProjectCards); // start with all cards
+            appliedFilters.forEach(f => {
+                cardsToDisplay = intersection(cardsToDisplay, filterCardMap.get(f));
+            });
+            cardsToDisplay = difference(cardsToDisplay, filterCardMap.get(filter));
+            // updating displayed and hidden sets
+            cardsToDisplay.forEach(card => {
+                displayedProjectCards.add(card);
+                hiddenProjectCards.delete(card);
+                card.style.display = "";
+            });
+
+        }
+        
+        // we now remove the active version of this filter button and display the inactive version
+        const activeBtn = filterFilterMap.get(filter);
+        filterGroup.removeChild(activeBtn);
+        filter.style.display = "";
+    }
+
+    return {
+
+        // Horizontal scroll for project gallery filters
+        horizontalFilterContainerScroll: function () {            
+            filterContainer.addEventListener('wheel', (e) => {
+
+                // Prevent default vertical scroll signals
+                e.preventDefault();
+
+                filterContainer.scrollLeft += 1.2 * e.deltaY;
+            });
+        },
+
+        // Initialize filter button functionality
+        initFilterButtons: function () {
+
+            // Adding button event listeners
+            filterButtons.forEach(filter => {
+
+                filter.addEventListener('click', () => {
+
+                    // applying filter
+                    applyFilter(filter);
+
+                    // move scroll position to start to show newly added active filter
+                    filterContainer.scrollLeft = 0;
+                    
+                });
+                
+                const activeBtn = filterFilterMap.get(filter);
+                activeBtn.addEventListener('click', () => {
+
+                    // filter removal logic
+                    removeFilter(filter);
+                });
+
+
+            });
     
-//     // Set horizontal scroll behavior for filter container
-//     horizontalFilterContainerScroll();
+            // 'all' filter button functionality
+            allFilterButton.addEventListener('click', () => {
 
-    
+                // button click feedback animation
+                allFilterButton.classList.add('button-flash');
+                setTimeout(() => {
+                    allFilterButton.classList.remove('button-flash');
+                }, 100);
+            
+                // Remove all applied filters and display all project cards
+                while(appliedFilters.size > 0) {
+                    removeFilter(appliedFilters.values().next().value);
+                }
 
-// }
+                // Ensures all displayed project cards and unapplied filters are visible
+                displayedProjectCards.forEach(card => {
+                    card.style.display = "";
+                });
+                unappliedFilters.forEach(filter => {
+                    filter.style.display = "";
+                });
+
+                // Remove search box text
+                tagSearchBox.value = "";
+
+                // Reset scroll position to start
+                filterContainer.scrollLeft = 0;
+
+            });
+        },
+
+        initSearchBox: function () {
+            tagSearchBox.addEventListener('input', function(event) {
+                
+                // Retrieving current search box string
+                const currentValue = event.target.value.toLowerCase();
+
+                if (currentValue === "") {
+                    // if search box is empty, show all filters
+                    unappliedFilters.forEach(filter => {
+                        filter.style.display = "";
+                    });
+                    // show all displayed project cards
+                    displayedProjectCards.forEach(card => {
+                        card.style.display = "";
+                    });
+                } else {
+                    // filtering unapplied filters based on search box string
+                    unappliedFilters.forEach(filter => {
+                        if (filter.textContent.toLowerCase().includes(currentValue)) {
+                            filter.style.display = "";
+                        } else {
+                            filter.style.display = "none";
+                        }
+                    });
+                    // filtering displayed project cards based on search box string
+                    displayedProjectCards.forEach(card => {
+                        if (card.dataset.tags.toLowerCase().replace(/-/g," ").includes(currentValue)) {
+                            card.style.display = "";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                } 
+
+            });
+        }
+    }
+
+})();

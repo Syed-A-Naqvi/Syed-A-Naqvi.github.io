@@ -15,11 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize project view navigation
     initProjectView();
-    
-    // Initialize project filters
-    // initProjectFilters();
 
-    // Initialize horizontal scroll for project gallery filters
-    horizontalFilterContainerScroll();
-    
+    // Initialize project filtration system
+    cardFiltrationSystem.horizontalFilterContainerScroll();
+    cardFiltrationSystem.initFilterButtons();
+    cardFiltrationSystem.initSearchBox();
+
 });
