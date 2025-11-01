@@ -1,5 +1,5 @@
 const cardFiltrationSystem = ( function () {
-    
+
     // --------------------------------VARIABLES/CONSTANTS--------------------------------
     
     // main filtration container
@@ -8,7 +8,7 @@ const cardFiltrationSystem = ( function () {
     const tagSearchBox = document.getElementById('filter-search-box');
 
     // clear all filters button
-    const allFilterButton = projectFiltering.querySelector('.filter-btn.all');
+    const clearFilterButton = projectFiltering.querySelector('.filter-btn.clear');
     // filter group container
     const filterContainer = projectFiltering.querySelector('.filter-container');
     // main filter buttons container
@@ -66,6 +66,25 @@ const cardFiltrationSystem = ( function () {
         return new Set([...A].filter(x => !B.has(x)));
     }
 
+    // clear search box
+    function clearSearch() {
+        
+        // removing search box text
+        tagSearchBox.value = "";
+
+        // removing all search box filtering effects
+        displayedProjectCards.forEach(card => {
+            card.style.display = "";
+        });
+        unappliedFilters.forEach(filter => {
+            filter.style.display = "";
+        });
+        appliedFilters.forEach(filter => {
+            filterFilterMap.get(filter).style.display = "";
+        });        
+
+    }
+
     // apply card filter
     function applyFilter(filter) {
         // the set of displayed cards constitutes the intersection of all applied filters
@@ -83,7 +102,7 @@ const cardFiltrationSystem = ( function () {
         appliedFilters.add(filter);
         unappliedFilters.delete(filter);
         
-        // now we hide the inactive version of this filter button and show the active version at the start of the filter group
+        // now we hide the inactive version of this filter button and insert the active version at the start of the filter group
         const activeBtn = filterFilterMap.get(filter);
         filterGroup.insertBefore(activeBtn, filterGroup.firstChild);
         filter.style.display = 'none';
@@ -167,33 +186,25 @@ const cardFiltrationSystem = ( function () {
                     removeFilter(filter);
                 });
 
-
             });
     
-            // 'all' filter button functionality
-            allFilterButton.addEventListener('click', () => {
+            // 'clear' filter button functionality
+            clearFilterButton.addEventListener('click', () => {
 
                 // button click feedback animation
-                allFilterButton.classList.add('button-flash');
+                clearFilterButton.classList.add('button-flash');
                 setTimeout(() => {
-                    allFilterButton.classList.remove('button-flash');
+                    clearFilterButton.classList.remove('button-flash');
                 }, 100);
             
                 // Remove all applied filters and display all project cards
+                console.log(`Number of filters currently applied: ${appliedFilters.size}`);
                 while(appliedFilters.size > 0) {
                     removeFilter(appliedFilters.values().next().value);
                 }
 
-                // Ensures all displayed project cards and unapplied filters are visible
-                displayedProjectCards.forEach(card => {
-                    card.style.display = "";
-                });
-                unappliedFilters.forEach(filter => {
-                    filter.style.display = "";
-                });
-
-                // Remove search box text
-                tagSearchBox.value = "";
+                // Clearing search box and ensuring all displayed project cards and unapplied filters are visible
+                clearSearch();
 
                 // Reset scroll position to start
                 filterContainer.scrollLeft = 0;
@@ -202,6 +213,13 @@ const cardFiltrationSystem = ( function () {
         },
 
         initSearchBox: function () {
+
+            // clear search box whenever click is registered outside search box
+            document.addEventListener('click', function(event) {
+                clearSearch();
+            });
+
+            // adding text input event listener to search box to immediately return matching tags and project cards
             tagSearchBox.addEventListener('input', function(event) {
                 
                 // Retrieving current search box string
@@ -212,11 +230,19 @@ const cardFiltrationSystem = ( function () {
                     unappliedFilters.forEach(filter => {
                         filter.style.display = "";
                     });
+                    appliedFilters.forEach(filter => {
+                        filterFilterMap.get(filter).style.display = "";
+                    });
                     // show all displayed project cards
                     displayedProjectCards.forEach(card => {
                         card.style.display = "";
                     });
                 } else {
+                    // hide applied filters while search box has input text
+                    appliedFilters.forEach(filter => {
+                        filterFilterMap.get(filter).style.display = "none";
+                    });
+
                     // filtering unapplied filters based on search box string
                     unappliedFilters.forEach(filter => {
                         if (filter.textContent.toLowerCase().includes(currentValue)) {
@@ -238,5 +264,14 @@ const cardFiltrationSystem = ( function () {
             });
         }
     }
+
+})();
+
+// proejct tab view
+const projectTabSystem = ( function () {
+
+    // --------------------------------VARIABLES/CONSTANTS--------------------------------
+
+    // project view container
 
 })();

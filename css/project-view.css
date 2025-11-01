@@ -1,14 +1,20 @@
+/* main project view including tabs, project gallery and individual project views */
+#project-view {
+    padding: 0;
+    overflow: hidden;
+}
+
 /* 
  * project-gallery.css - Styling for the projects section
  * Includes project cards, filters and related components
  */
 
 /* ------------------------------ PROJECT GALLERY ------------------------------ */
-#project-gallery {
-    box-sizing: border-box;
+.project-gallery {
 
-    padding: 0;
-    
+    display: flex;
+    flex-direction: column;
+
     -webkit-mask-image: linear-gradient(
         to bottom,
         black 95%,
@@ -23,14 +29,15 @@
 
     overflow-y: auto;
     scroll-behavior: smooth;
+
 }
 
-#project-gallery header {
+.project-gallery header {
     padding: 0 var(--spacing-xxxl);
     margin-bottom: 0;
 }
 
-#project-gallery header p{
+.project-gallery header p{
     margin-bottom: 0;
 }
 
@@ -89,8 +96,8 @@
     box-shadow: var(--shadow-inner);
 }
 
-/* "All" filter button */
-.project-filtering .filter-btn.all {
+/* "clear" filter button */
+.project-filtering .filter-btn.clear {
     flex: 0 0 auto;
     height: var(--spacing-xxl);
     padding: var(--spacing-xs) var(--spacing-md);
@@ -99,7 +106,7 @@
     font-weight: bolder;
 }
 
-.project-filtering .filter-btn.all:hover {
+.project-filtering .filter-btn.clear:hover {
     background-color: var(--color-tertiary);
     border-color: var(--color-tertiary);
 }
@@ -121,16 +128,16 @@
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
-        black 3%,
-        black 97%,
+        black var(--spacing-md),
+        black calc(100% - var(--spacing-md)),
         transparent 100%
     );
     
     mask-image: linear-gradient(
         to right,
         transparent 0%,
-        black 3%,
-        black 97%,
+        black var(--spacing-md),
+        black calc(100% - var(--spacing-md)),
         transparent 100%
     );
     

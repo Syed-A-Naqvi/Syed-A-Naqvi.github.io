@@ -9,11 +9,11 @@ function initNavigation() {
     const contentViews = document.querySelectorAll('.content-view');
     
     // Set initial view (first one is active by default)
-    let currentView = 'project-gallery';
+    let currentView = 'project-view';
     
     // Update URL with hash if it doesn't exist
     if (!window.location.hash) {
-        window.location.hash = '#project-gallery';
+        window.location.hash = '#project-view';
     } else {
         // Get view from hash (remove the # symbol)
         const hashView = window.location.hash.substring(1);
@@ -54,7 +54,8 @@ function initNavigation() {
     
     // Function to update the active view
     function updateActiveView(viewId) {
-        // Remove active class from all nav links
+
+        // Ensuring correct nav link is active and all others are inactive
         navLinks.forEach(link => {
             if (link.getAttribute('data-view') === viewId) {
                 link.classList.add('active');
@@ -83,37 +84,4 @@ function initNavigation() {
             }
         }
     }
-}
-
-// initializing project iframe view
-function initProjectView() {
-    
-    // project gallery reference
-    const projectGallery = document.getElementById('project-gallery');
-
-    // extracting all project cards
-    const projectGrid = projectGallery.querySelector('.project-grid');
-    const projectCards = Array.from(projectGrid.children);
-
-    // extracting project view pane
-    const projectView = document.getElementById('project-view');
-
-    // adding click event listeners to each project card
-    projectCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (card.dataset.url) {
-                const projectURL = card.dataset.url;
-                const projectIframe = projectView.querySelector('iframe');
-                projectIframe.src = projectURL;
-                // switching views
-                projectGallery.classList.remove('active');
-                projectView.classList.add('active');
-            }
-            else {
-                console.warn('Project card does not have a valid URL.');
-            }
-        });
-    });
-
 }

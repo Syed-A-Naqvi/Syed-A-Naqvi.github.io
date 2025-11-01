@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeToggle();
 
     // Initialize project view navigation
-    initProjectView();
+    // initProjectView();
 
     // Initialize project filtration system
     cardFiltrationSystem.horizontalFilterContainerScroll();

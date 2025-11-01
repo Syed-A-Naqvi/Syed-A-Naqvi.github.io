@@ -8,7 +8,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/project-gallery.css">
+    <link rel="stylesheet" href="css/project-view.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/about.css">
@@ -65,7 +65,7 @@
             <!-- Navigation Links -->
             <ul class="nav-links">
                 <li class="nav-item">
-                    <a href="#project-gallery" class="nav-link slider active" data-view="project-gallery">
+                    <a href="#project-view" class="nav-link slider active" data-view="project-view">
                         <div class="slider-spacer"></div>
                         <div class="slider-btn">
                             <i class="fas fa-chart-bar" aria-hidden="true"></i>
@@ -115,12 +115,16 @@
         <main class="main-content">
             
             <!-- Project View -->
-            <section id="project-view" class="content-view">
+            <!-- <section id="project-view" class="content-view">
                 <iframe src="" frameborder="0"></iframe>
-            </section>
+            </section> -->
                 
-            <!-- Project Gallery View-->
-            <section id="project-gallery" class="content-view active">
+            <!-- Project View-->
+            <section id="project-view" class="content-view active">
+
+                <!-- Add The tab and multi-project view pane functionality here -->
+
+                <div class="project-gallery">
 
                     <div class="main-content-filler"></div>
 
@@ -134,17 +138,18 @@
                             <input type="text" id="filter-search-box" placeholder="Tag search..." aria-label="Tag Search">
                             <i class="fas fa-search-plus" aria-hidden="true"></i>
                         </search>
-                        <button class="filter-btn all" data-filter="all">Clear</button>
+                        <button class="filter-btn clear" data-filter="clear">Clear</button>
                         <div class="filter-container-wrapper">
                             <div class="filter-container">
-                                <div class="filter-group"><button id="crime-mapping" class="filter-btn">Crime Mapping</button><button id="data-science" class="filter-btn">Data Science</button><button id="geospatial-analysis" class="filter-btn">Geospatial Analysis</button><button id="jupyter-book" class="filter-btn">Jupyter Book</button><button id="python" class="filter-btn">Python</button><button class="filter-btn" id="tag-1">Tag 1</button><button class="filter-btn" id="tag-2">Tag 2</button><button class="filter-btn" id="tag-3">Tag 3</button><button class="filter-btn" id="tag-4">Tag 4</button><button class="filter-btn" id="tag-5">Tag 5</button><button class="filter-btn" id="tag-6">Tag 6</button><button class="filter-btn" id="tag-7">Tag 7</button><button class="filter-btn" id="tag-8">Tag 8</button><button class="filter-btn" id="tag-9">Tag 9</button></div>
+                                <div class="filter-group"><button class="filter-btn" id="tag-1">Tag 1</button><button class="filter-btn" id="tag-2">Tag 2</button><button class="filter-btn" id="tag-3">Tag 3</button><button class="filter-btn" id="tag-4">Tag 4</button><button class="filter-btn" id="tag-5">Tag 5</button><button class="filter-btn" id="tag-6">Tag 6</button><button class="filter-btn" id="tag-7">Tag 7</button><button class="filter-btn" id="tag-8">Tag 8</button><button class="filter-btn" id="tag-9">Tag 9</button></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-top-fade"></div>
 
-                    <div class="project-grid"><article id="d396e02f1bf5d80d2c28bcc4cd25ac05" class="project-card" data-url="https://syed-a-naqvi.github.io/sample_jupyter_book/" data-tags="crime-mapping data-science geospatial-analysis jupyter-book python" data-updated="2025-10-23T00:00:00.000Z"><div class="project-image"><img src="https://syed-a-naqvi.github.io/sample_jupyter_book/_static/logo.png" alt="Crime Hotspot Mapping Analysis"></div><div class="project-info"><h3>Crime Hotspot Mapping Analysis</h3><p>Geospatial analysis of crime incidents for identifying high-risk areas and temporal patterns.</p><div class="project-tags"><span class="tag">Crime Mapping</span><span class="tag">Data Science</span><span class="tag">Geospatial Analysis</span><span class="tag">Jupyter Book</span><span class="tag">Python</span></div></div></article><article id="A" class="project-card" data-tags="tag-1 tag-2 tag-4" data-updated="2024-06-15">
+                    <div class="project-grid">
+                        <article id="A" class="project-card" data-tags="tag-1 tag-2 tag-4" data-updated="2024-06-15">
                             <div class="project-image">
                                 <img src="" alt="Predictive Policing Model">
                             </div>
@@ -270,7 +275,8 @@
                             </div>
                         </article></div>                        
                 
-                <div class="card-bot-fade"></div>
+                    <div class="card-bot-fade"></div>
+                </div>
 
             </section>
                 
