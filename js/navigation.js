@@ -4,12 +4,57 @@
  */
 
 // Initialize navigation
-function initNavigation() {
+( function () {
+
+    // --------------------------------VARIABLES/CONSTANTS--------------------------------
+
+    // navigation links
     const navLinks = document.querySelectorAll('.nav-link');
+
+    // content views
     const contentViews = document.querySelectorAll('.content-view');
     
     // Set initial view (first one is active by default)
     let currentView = 'project-view';
+
+
+    // --------------------------------FUNCTIONS--------------------------------
+
+    // Function to update the active view
+    function updateActiveView(viewId) {
+
+        // Ensuring correct nav link is active and all others are inactive
+        navLinks.forEach(link => {
+            if (link.getAttribute('data-view') === viewId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // Hide all content views
+        contentViews.forEach(view => {
+            view.classList.remove('active');
+        });
+        
+        // Show the target view
+        const targetView = document.getElementById(viewId);
+        if (targetView) {
+            targetView.classList.add('active');
+            
+            // Scroll to top of the view
+            const main = document.querySelector('.main-content');
+            if (main) {
+                main.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+
+    
+    // --------------------------------INITIALIZATION--------------------------------
     
     // Update URL with hash if it doesn't exist
     if (!window.location.hash) {
@@ -51,37 +96,5 @@ function initNavigation() {
             updateActiveView(hashView);
         }
     });
-    
-    // Function to update the active view
-    function updateActiveView(viewId) {
 
-        // Ensuring correct nav link is active and all others are inactive
-        navLinks.forEach(link => {
-            if (link.getAttribute('data-view') === viewId) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-        
-        // Hide all content views
-        contentViews.forEach(view => {
-            view.classList.remove('active');
-        });
-        
-        // Show the target view
-        const targetView = document.getElementById(viewId);
-        if (targetView) {
-            targetView.classList.add('active');
-            
-            // Scroll to top of the view
-            const main = document.querySelector('.main-content');
-            if (main) {
-                main.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    }
-}
+}) ();

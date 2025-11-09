@@ -57,6 +57,9 @@ function initThemeToggle() {
             themeIcon.classList.add('animate');
         }, timeout);
 
+        // emit theme change event
+        window.dispatchEvent(new CustomEvent('themeUpdated'))
+
     });
     
     // Function to enable dark mode

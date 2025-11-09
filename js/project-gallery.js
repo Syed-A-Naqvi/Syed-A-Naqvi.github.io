@@ -1,4 +1,4 @@
-const cardFiltrationSystem = ( function () {
+( function () {
 
     // --------------------------------VARIABLES/CONSTANTS--------------------------------
     
@@ -50,6 +50,7 @@ const cardFiltrationSystem = ( function () {
         });
     });
 
+
     // --------------------------------UTILITY SET OPERATIONS--------------------------------
 
     // Union of two sets (A u B)
@@ -65,6 +66,9 @@ const cardFiltrationSystem = ( function () {
     function difference(A, B) {
         return new Set([...A].filter(x => !B.has(x)));
     }
+
+
+    // --------------------------------FUNCTIONS--------------------------------
 
     // clear search box
     function clearSearch() {
@@ -150,128 +154,123 @@ const cardFiltrationSystem = ( function () {
         filter.style.display = "";
     }
 
-    return {
+    // Horizontal scroll for project gallery filters
+    function horizontalFilterContainerScroll() {            
+        filterContainer.addEventListener('wheel', (e) => {
 
-        // Horizontal scroll for project gallery filters
-        horizontalFilterContainerScroll: function () {            
-            filterContainer.addEventListener('wheel', (e) => {
+            // Prevent default vertical scroll signals
+            e.preventDefault();
 
-                // Prevent default vertical scroll signals
-                e.preventDefault();
-
-                filterContainer.scrollLeft += 1.2 * e.deltaY;
-            });
-        },
-
-        // Initialize filter button functionality
-        initFilterButtons: function () {
-
-            // Adding button event listeners
-            filterButtons.forEach(filter => {
-
-                filter.addEventListener('click', () => {
-
-                    // applying filter
-                    applyFilter(filter);
-
-                    // move scroll position to start to show newly added active filter
-                    filterContainer.scrollLeft = 0;
-                    
-                });
-                
-                const activeBtn = filterFilterMap.get(filter);
-                activeBtn.addEventListener('click', () => {
-
-                    // filter removal logic
-                    removeFilter(filter);
-                });
-
-            });
-    
-            // 'clear' filter button functionality
-            clearFilterButton.addEventListener('click', () => {
-
-                // button click feedback animation
-                clearFilterButton.classList.add('button-flash');
-                setTimeout(() => {
-                    clearFilterButton.classList.remove('button-flash');
-                }, 100);
-            
-                // Remove all applied filters and display all project cards
-                console.log(`Number of filters currently applied: ${appliedFilters.size}`);
-                while(appliedFilters.size > 0) {
-                    removeFilter(appliedFilters.values().next().value);
-                }
-
-                // Clearing search box and ensuring all displayed project cards and unapplied filters are visible
-                clearSearch();
-
-                // Reset scroll position to start
-                filterContainer.scrollLeft = 0;
-
-            });
-        },
-
-        initSearchBox: function () {
-
-            // clear search box whenever click is registered outside search box
-            document.addEventListener('click', function(event) {
-                clearSearch();
-            });
-
-            // adding text input event listener to search box to immediately return matching tags and project cards
-            tagSearchBox.addEventListener('input', function(event) {
-                
-                // Retrieving current search box string
-                const currentValue = event.target.value.toLowerCase();
-
-                if (currentValue === "") {
-                    // if search box is empty, show all filters
-                    unappliedFilters.forEach(filter => {
-                        filter.style.display = "";
-                    });
-                    appliedFilters.forEach(filter => {
-                        filterFilterMap.get(filter).style.display = "";
-                    });
-                    // show all displayed project cards
-                    displayedProjectCards.forEach(card => {
-                        card.style.display = "";
-                    });
-                } else {
-                    // hide applied filters while search box has input text
-                    appliedFilters.forEach(filter => {
-                        filterFilterMap.get(filter).style.display = "none";
-                    });
-
-                    // filtering unapplied filters based on search box string
-                    unappliedFilters.forEach(filter => {
-                        if (filter.textContent.toLowerCase().includes(currentValue)) {
-                            filter.style.display = "";
-                        } else {
-                            filter.style.display = "none";
-                        }
-                    });
-                    // filtering displayed project cards based on search box string
-                    displayedProjectCards.forEach(card => {
-                        if (card.dataset.tags.toLowerCase().replace(/-/g," ").includes(currentValue)) {
-                            card.style.display = "";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                } 
-
-            });
-        }
+            filterContainer.scrollLeft += 1.2 * e.deltaY;
+        });
     }
 
-})();
+    // Initialize filter button functionality
+    function initFilterButtons() {
 
-// proejct tab view
-const projectTabSystem = ( function () {
+        // Adding button event listeners
+        filterButtons.forEach(filter => {
 
-    // --------------------------------VARIABLES/CONSTANTS--------------------------------
+            filter.addEventListener('click', () => {
 
-    // project view container
+                // applying filter
+                applyFilter(filter);
+
+                // move scroll position to start to show newly added active filter
+                filterContainer.scrollLeft = 0;
+                    
+            });
+                
+            const activeBtn = filterFilterMap.get(filter);
+            activeBtn.addEventListener('click', () => {
+
+                // filter removal logic
+                removeFilter(filter);
+            });
+
+        });
+    
+        // 'clear' filter button functionality
+        clearFilterButton.addEventListener('click', () => {
+
+            // button click feedback animation
+            clearFilterButton.classList.add('button-flash');
+            setTimeout(() => {
+                clearFilterButton.classList.remove('button-flash');
+            }, 100);
+            
+            // Remove all applied filters and display all project cards
+            console.log(`Number of filters currently applied: ${appliedFilters.size}`);
+            while(appliedFilters.size > 0) {
+                removeFilter(appliedFilters.values().next().value);
+            }
+
+            // Clearing search box and ensuring all displayed project cards and unapplied filters are visible
+            clearSearch();
+
+            // Reset scroll position to start
+            filterContainer.scrollLeft = 0;
+
+        });
+    }
+
+    // Initialize search box functionality
+    function initSearchBox() {
+
+        // clear search box whenever click is registered outside search box
+        document.addEventListener('click', function(event) {
+            clearSearch();
+        });
+
+        // adding text input event listener to search box to immediately return matching tags and project cards
+        tagSearchBox.addEventListener('input', function(event) {
+                
+            // Retrieving current search box string
+            const currentValue = event.target.value.toLowerCase();
+
+            if (currentValue === "") {
+                // if search box is empty, show all filters
+                unappliedFilters.forEach(filter => {
+                    filter.style.display = "";
+                });
+                appliedFilters.forEach(filter => {
+                    filterFilterMap.get(filter).style.display = "";
+                });
+                // show all displayed project cards
+                displayedProjectCards.forEach(card => {
+                    card.style.display = "";
+                });
+            } else {
+                // hide applied filters while search box has input text
+                appliedFilters.forEach(filter => {
+                    filterFilterMap.get(filter).style.display = "none";
+                });
+
+                // filtering unapplied filters based on search box string
+                unappliedFilters.forEach(filter => {
+                    if (filter.textContent.toLowerCase().includes(currentValue)) {
+                        filter.style.display = "";
+                    } else {
+                        filter.style.display = "none";
+                    }
+                });
+                // filtering displayed project cards based on search box string
+                displayedProjectCards.forEach(card => {
+                    if (card.dataset.tags.toLowerCase().replace(/-/g," ").includes(currentValue)) {
+                        card.style.display = "";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            } 
+
+        });
+    }
+
+    
+    // --------------------------------INITIALIZATION--------------------------------
+    horizontalFilterContainerScroll();
+    initFilterButtons();
+    initSearchBox();
 
 })();

@@ -123,10 +123,15 @@
             <section id="project-view" class="content-view active">
 
                 <!-- Add The tab and multi-project view pane functionality here -->
+                 <nav class="project-tabs-container hidden">
+                    <ul class="project-tabs-list">
+                        <li class="tab-item" data-projectid="all">
+                            <span>All Projects</span>
+                        </li>
+                    </ul>
+                 </nav>
 
                 <div class="project-gallery">
-
-                    <div class="main-content-filler"></div>
 
                     <header>
                         <h1>Crime Analytics Projects</h1>
@@ -455,8 +460,9 @@
     <script src="js/navigation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/project-gallery.js"></script>
+    <script src="js/project-tabs.js"></script>
     <script src="js/main.js"></script>
-    
+    <!-- <script src="scripts/test.js"></script> -->
     
     <!-- EmailJS for form submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
