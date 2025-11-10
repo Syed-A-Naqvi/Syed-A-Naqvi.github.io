@@ -27,6 +27,8 @@
     /* Deep Burgundy Red - CTA buttons */
     --color-tertiary: #8B1C31;
     --color-tertiary-rgb: 139, 28, 49;
+    --color-tertiary-lighter: #8B1C31;
+    --color-tertiary-lighter-rgb: 139, 28, 49;
 
     /* Warm Beige - Dividers, subtle backgrounds */
     --color-quaternary: #E8DDD0;
@@ -179,8 +181,10 @@
     --color-secondary-rgb: 139, 117, 98;
 
     /* Rich Warm Blood Red - CTA buttons (deep, dramatic) */
-    --color-tertiary: #C94857;
+    --color-tertiary: #7c1d1d;
     --color-tertiary-rgb: 90, 22, 32;
+    --color-tertiary-lighter: #C94857;
+    --color-tertiary-lighter-rgb: 201, 72, 87;
 
     /* Charcoal Brown - Dividers, subtle backgrounds */
     --color-quaternary: #28221D;

@@ -152,7 +152,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--color-tertiary);
+    border-color: var(--color-tertiary-lighter);
     box-shadow: var(--shadow-inner);
 } 
 
@@ -218,13 +218,13 @@
 :root {
     /* Define MailtoUI specific variables based on our color scheme */
     --mailtoui-text-color: var(--color-text);
-    --mailtoui-btn-bg: var(--color-tertiary);
+    --mailtoui-btn-bg: var(--color-tertiary-lighter);
     --mailtoui-btn-bg-hover: var(--color-secondary);
     --mailtoui-btn-text-color: var(--color-background);
 }
 
 .dark-theme {
-    --mailtoui-btn-bg: var(--color-tertiary);
+    --mailtoui-btn-bg: var(--color-tertiary-lighter);
     --mailtoui-btn-bg-hover: var(--color-secondary);
 }
 
@@ -279,7 +279,7 @@
 }
 
 .mailtoui-modal-close:hover {
-    color: var(--color-tertiary);
+    color: var(--color-tertiary-lighter);
 }
 
 /* Modal body - container for the content */

@@ -107,8 +107,8 @@
     /* Realistic glow effect: multiple layers, soft and colored */
     box-shadow:
         0 0 8px 2px var(--color-tertiary),
-        0 0 16px 4px rgba(139,38,53,0.5),
-        0 0 32px 8px rgba(139,38,53,0.25);
+        0 0 16px 4px rgba(var(--color-tertiary-rgb),0.5),
+        0 0 32px 8px rgba(var(--color-tertiary-rgb),0.25);
 }
 
 .nav-separator {
