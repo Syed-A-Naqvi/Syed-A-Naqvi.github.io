@@ -5,16 +5,16 @@
     
     // project view section
     const projectViewSection = document.getElementById( 'project-view' );
-    
+
     // project tabs container
-    const projectTabsContainer = projectViewSection.querySelector( '.project-tabs-container' );
-
+    const projectTabsListContainer = projectViewSection.querySelector( '.project-tabs-container' );
+    
     // project tabs list wrapper
-    const projectTabsListWrapper = projectTabsContainer.querySelector( '.project-tabs-list' );
-
+    const projectTabsList = projectTabsListContainer.querySelector( '.project-tabs-list' );
+    
     // project gallery
     const projectGallery = projectViewSection.querySelector( '.project-gallery' );
-
+    
     // project cards
     const projectCards = projectGallery.querySelectorAll( '.project-card' );
 
@@ -32,12 +32,12 @@
 
     // Horizontal scroll for project gallery tabs
     function horizontalTabsContainerScroll() {
-        projectTabsContainer.addEventListener('wheel', (e) => {
+        projectTabsListContainer.addEventListener('wheel', (e) => {
 
             // Prevent default vertical scroll signals
             e.preventDefault();
 
-            projectTabsContainer.scrollLeft += 1.2 * e.deltaY;
+            projectTabsListContainer.scrollLeft += 1.2 * e.deltaY;
         });
     }
 
@@ -53,12 +53,12 @@
             openedTabs.add(tab);
 
             // append tab element to the DOM
-            projectTabsListWrapper.appendChild(tab);
+            projectTabsList.appendChild(tab);
 
             // show project tabs container
             if (openedTabs.size > 1) {
-                projectTabsContainer.classList.remove('hidden');
-                projectGallery.querySelector('h1').style.marginTop = 'calc(1.1 * var(--spacing-xl))';
+                projectTabsListContainer.classList.remove('hidden');
+                projectGallery.querySelector('header h1').style.marginTop = 'calc(1.1 * var(--spacing-xl))';
             }
 
         }
@@ -89,15 +89,16 @@
         openedTabs.delete(tab);
         
         // remove tab element from the DOM
-        projectTabsListWrapper.removeChild(tab);
+        projectTabsList.removeChild(tab);
 
         // display last opened tab
-        displayProject(projectTabsListWrapper.lastElementChild);
+        displayProject(projectTabsList.lastElementChild);
 
         // hide project tabs list if only project gallery tab remains
         if (openedTabs.size < 2) {
-            projectTabsContainer.classList.add('hidden');
-            projectGallery.querySelector('h1').style.marginTop = '';
+            projectTabsListContainer.classList.add('hidden');
+            projectGallery.querySelector('header h1').style.marginTop = '';
+
         }
 
     }
@@ -153,7 +154,7 @@
     // --------------------------------INITIALIZATION--------------------------------
 
     // manually add project gallery tab to tab -> iframe map
-    const galleryTab = projectTabsListWrapper.querySelector('[data-projectid="all"]');
+    const galleryTab = projectTabsList.querySelector('[data-projectid="all"]');
     tabIframeMap.set(galleryTab, projectGallery);
 
     // insert gallery tab into opened tabs set
