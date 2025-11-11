@@ -10,7 +10,8 @@
 .project-tabs-container {
     flex: 0 0 max-content;
     min-width: 0;
-    padding: 0 var(--spacing-xxxl) var(--spacing-md) var(--spacing-xxxl);
+    padding: 0 var(--spacing-xxxl);
+    padding-bottom: var(--spacing-sm);
     z-index: var(--z-index-navigation);
     margin: 0;
     overflow-x: scroll;
@@ -73,6 +74,7 @@
 .project-iframe {
     border: none;
     border-top: var(--border-quaternary-medium);
+    margin-top: var(--spacing-lg);
     width: 100%;
     height: 100%;
 }
@@ -80,28 +82,12 @@
 
 /* ------------------------------ PROJECT GALLERY ------------------------------ */
 .project-gallery {
-
     display: flex;
     flex-direction: column;
-
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        black 95%,
-        transparent 100%
-    );
-    
-    mask-image: linear-gradient(
-        to bottom,
-        black 95%,
-        transparent 100%
-    );
-
     overflow-y: auto;
     scroll-behavior: smooth;
     scrollbar-color: var(--color-secondary) transparent;
-
 }
-
 
 .project-gallery header {
     padding: 0 var(--spacing-xxxl);
@@ -115,27 +101,23 @@
     margin-bottom: 0;
 }
 
-#project-view .main-content-filler {
-    position: sticky;
-    top: 0;
-    flex: 0 0 var(--spacing-xl);
-    background-color: var(--color-surface);
-    z-index: var(--z-index-navigation);
-}
-
 /* ------------------------------ Project Card Filtering ------------------------------ */
 
 /* main filtering container */
 .project-filtering {
     position: sticky;
-    top: var(--spacing-md);
+    top: 0;
     display: flex;
     align-items: center;
     background-color: var(--color-surface);
-    padding: 0 var(--spacing-xxxl);
+    padding: var(--spacing-lg) var(--spacing-xxxl) var(--spacing-lg) var(--spacing-xxxl);
+    margin-bottom: var(--spacing-lg);
     gap: var(--spacing-md);
     flex: 0 0 fit-content;
     z-index: var(--z-index-navigation);
+}
+.project-filtering.is-stuck {
+    box-shadow: var(--shadow-md);
 }
 
 /* filter search box */
@@ -156,7 +138,7 @@
 .filter-search input {
     flex: 1 1 auto;
     padding: 0;
-    background-color: var(--color-quaternary);
+    background-color: transparent;
     border: none;
     color: var(--color-text);
     height: 100%;
@@ -265,7 +247,7 @@
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    transition: all var(--transition-speed-fast) var(--transition-ease);
+    transition: all var(--transition-speed-fast) var(--transition-ease-out);
 }
 
 .filter-btn.active,
@@ -282,32 +264,6 @@
 
 
 /* ------------------------------ Project Cards ------------------------------ */
-.card-top-fade {
-    position: sticky;
-    display: flex;
-    align-items: center;
-    top: calc(1.1*var(--spacing-xxxl) + var(--spacing-md));
-    flex: 0 0 var(--spacing-xxl);
-    background-color: var(--color-surface);
-    width: 100%;
-
-    -webkit-mask-image: linear-gradient(
-        to top,
-        transparent 0%,
-        black 10%,
-        black 100%
-    );
-    
-    mask-image: linear-gradient(
-        to top,
-        transparent 0%,
-        black 30%,
-        black 100%
-    );
-
-    pointer-events: none;
-    z-index: var(--z-index-above);
-}
 
 .project-grid {
     display: grid;
@@ -333,7 +289,7 @@
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-lg);
     z-index: calc(var(--z-index-base) + 1);
 }
 
@@ -426,7 +382,6 @@
     .project-filtering {
         gap: var(--spacing-md);
         flex-wrap: wrap;
-        top: var(--spacing-xl);
     }
 
     .project-filtering .filter-search {
@@ -444,11 +399,6 @@
 
     .project-filtering .filter-btn {
         height: calc(1.1*var(--spacing-xl));
-    }
-
-    .card-top-fade {
-        flex: 0 0 var(--spacing-xxxl);
-        top: calc(var(--spacing-xl) + var(--spacing-xxl) + var(--spacing-md) + calc(1.5*var(--spacing-xxl)));
     }
 }
 
@@ -485,11 +435,6 @@
 
     .project-filtering .filter-btn {
         height: calc(0.95*var(--spacing-xxl));
-    }
-
-    .card-top-fade {
-        flex: 0 0 calc(1.5*var(--spacing-xxxl));
-        top: calc(var(--spacing-xl) + var(--spacing-md) + calc(1.6*var(--spacing-xxxl)) + 0.95*var(--spacing-xxl));
     }
 
 }

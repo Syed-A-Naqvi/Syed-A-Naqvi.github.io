@@ -58,7 +58,7 @@
             // show project tabs container
             if (openedTabs.size > 1) {
                 projectTabsListContainer.classList.remove('hidden');
-                projectGallery.querySelector('header h1').style.marginTop = 'calc(1.1 * var(--spacing-xl))';
+                projectGallery.querySelector('header h1').style.marginTop = 'calc(1.5 * var(--spacing-xl))';
             }
 
         }
