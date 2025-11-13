@@ -289,7 +289,7 @@
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl);
     z-index: calc(var(--z-index-base) + 1);
 }
 
