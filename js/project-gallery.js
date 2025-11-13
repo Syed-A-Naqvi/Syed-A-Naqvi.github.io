@@ -249,19 +249,18 @@
                 unappliedFilters.forEach(filter => {
                     filter.style.display = "";
                 });
-                appliedFilters.forEach(filter => {
-                    filterFilterMap.get(filter).style.display = "";
-                });
+                // appliedFilters.forEach(filter => {
+                //     filterFilterMap.get(filter).style.display = "";
+                // });
                 // show all displayed project cards
                 displayedProjectCards.forEach(card => {
                     card.style.display = "";
                 });
             } else {
                 // hide applied filters while search box has input text
-                appliedFilters.forEach(filter => {
-                    filterFilterMap.get(filter).style.display = "none";
-                });
-
+                // appliedFilters.forEach(filter => {
+                //     filterFilterMap.get(filter).style.display = "none";
+                // });
                 // filtering unapplied filters based on search box string
                 unappliedFilters.forEach(filter => {
                     if (filter.textContent.toLowerCase().includes(currentValue)) {

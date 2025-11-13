@@ -81,7 +81,7 @@ filterButtons.forEach(btn => {
 });
 
 /**
- * Builds a project card element based on the provided metadata.
+ * Generates a unique hash for a project based on its URL.
  * @param {string} url - The project URL.
  * @returns {string} The URL hash to be used as a unique identifier.
 */
@@ -160,7 +160,9 @@ function buildProjectCard(projectMetadata) {
     return card;
 }
 
+// Building a filter button based on the provided tag
 /**
+ * Builds a filter button element for the given tag.
  * @param {string} tagId - The ID of the new tag button
  * @returns {HTMLElement} The constructed filter button element.
 */

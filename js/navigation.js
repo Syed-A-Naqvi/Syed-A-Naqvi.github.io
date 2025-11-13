@@ -58,7 +58,7 @@
     
     // Update URL with hash if it doesn't exist
     if (!window.location.hash) {
-        window.location.hash = '#project-view';
+        window.location.hash = '#about';
     } else {
         // Get view from hash (remove the # symbol)
         const hashView = window.location.hash.substring(1);

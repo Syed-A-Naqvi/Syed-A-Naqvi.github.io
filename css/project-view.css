@@ -64,7 +64,7 @@
     transition: all var(--transition-speed-fast) var(--transition-ease);
 }
 .tab-item i:hover {
-    color: var(--color-tertiary-lighter);
+    color: var(--color-tertiary);
     transform: translateY(-1px) scale(1.15);
     text-shadow: 0 0 1px currentColor;
 }
@@ -73,7 +73,7 @@
 /* ------------------------------ Project Iframes ------------------------------ */
 .project-iframe {
     border: none;
-    border-top: var(--border-quaternary-medium);
+    border-top: var(--border-quaternary-dark-thin);
     margin-top: var(--spacing-lg);
     width: 100%;
     height: 100%;
@@ -178,9 +178,9 @@
 /* Filter button Container */
 .filter-container-wrapper {
     flex: 0 1 100%;
-    height: calc(1.1*var(--spacing-xxxl));
+    height: calc(1 * var(--spacing-xxxl));
     min-width: 0;
-    border: var(--border-quaternary-thick);
+    border: var(--border-quaternary-dark-medium);
     border-radius: var(--border-radius-sm);
 }
 

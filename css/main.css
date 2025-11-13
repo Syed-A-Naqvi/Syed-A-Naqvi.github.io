@@ -34,6 +34,9 @@
     --color-quaternary: #E8DDD0;
     --color-quaternary-rgb: 232, 221, 208;
 
+    --color-quaternary-dark: #BFA892;
+    --color-quaternary-dark-rgb: 191, 168, 146;
+
     /* Warm Cream - Main background */
     --color-background: #FAF7F2;
     --color-background-rgb: 250, 247, 242;
@@ -60,14 +63,17 @@
     --color-text-subtle-rgb: 107, 93, 79;
 
     /* Common border styles */
-        --main-content-border: 1px solid var(--color-quaternary);
-        /* Secondary and Quaternary border variations */
-        --border-secondary-thin: 1px solid var(--color-secondary);
-        --border-secondary-medium: 2px solid var(--color-secondary);
-        --border-secondary-thick: 3px solid var(--color-secondary);
-        --border-quaternary-thin: 1px solid var(--color-quaternary);
-        --border-quaternary-medium: 2px solid var(--color-quaternary);
-        --border-quaternary-thick: 3px solid var(--color-quaternary);
+    --main-content-border: 1px solid var(--color-quaternary);
+    /* Secondary and Quaternary border variations */
+    --border-secondary-thin: 1px solid var(--color-secondary);
+    --border-secondary-medium: 2px solid var(--color-secondary);
+    --border-secondary-thick: 3px solid var(--color-secondary);
+    --border-quaternary-thin: 1px solid var(--color-quaternary);
+    --border-quaternary-medium: 2px solid var(--color-quaternary);
+    --border-quaternary-thick: 3px solid var(--color-quaternary);
+    --border-quaternary-dark-thin: 1px solid var(--color-quaternary-dark);
+    --border-quaternary-dark-medium: 2px solid var(--color-quaternary-dark);
+    --border-quaternary-dark-thick: 3px solid var(--color-quaternary-dark);
 
     /* Typography */
     --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -175,21 +181,24 @@
     /* Muted Warm Gold - Headings */
     --color-primary: #C4A878;
     --color-primary-rgb: 196, 168, 120;
-
+    
     /* Muted Warm Brown - Links, icons */
     --color-secondary: #8B7562;
     --color-secondary-rgb: 139, 117, 98;
-
+    
     /* Rich Warm Blood Red - CTA buttons (deep, dramatic) */
     --color-tertiary: #7c1d1d;
     --color-tertiary-rgb: 90, 22, 32;
     --color-tertiary-lighter: #C94857;
     --color-tertiary-lighter-rgb: 201, 72, 87;
-
+    
     /* Charcoal Brown - Dividers, subtle backgrounds */
     --color-quaternary: #28221D;
     --color-quaternary-rgb: 40, 34, 29;
 
+    --color-quaternary-dark: #3A2F25;
+    --color-quaternary-dark-rgb: 58, 47, 37;
+    
     /* Deep Charcoal Brown - Main background */
     --color-background: #181410;
     --color-background-rgb: 24, 20, 16;
@@ -223,6 +232,9 @@
     --border-quaternary-thin: 1px solid var(--color-quaternary);
     --border-quaternary-medium: 2px solid var(--color-quaternary);
     --border-quaternary-thick: 3px solid var(--color-quaternary);
+    --border-quaternary-dark-thin: 1px solid var(--color-quaternary-dark);
+    --border-quaternary-dark-medium: 2px solid var(--color-quaternary-dark);
+    --border-quaternary-dark-thick: 3px solid var(--color-quaternary-dark);
 
 }
 

@@ -11,5 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the theme toggle
     initThemeToggle();
+    // Send initial theme broadcast
+    window.dispatchEvent(new CustomEvent('themeUpdated'));
 
 });
