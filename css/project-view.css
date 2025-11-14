@@ -375,10 +375,6 @@
         gap: var(--spacing-lg);
     }
 
-    /* .project-image {
-        height: 180px;
-    } */
-
 /* Project Filtering Section */
     .project-filtering {
         gap: var(--spacing-md);
@@ -416,9 +412,10 @@
     }
 
 /* Project Filtering Section */
+
     .project-filtering {
-        gap: var(--spacing-md);
-        flex-wrap: wrap;
+        position: static;
+        top: auto;
     }
 
     .project-filtering .filter-search {

@@ -31,14 +31,16 @@
     // adding shadow effect when cards scroll out of top view
     const galleryHeader = document.querySelector('.project-gallery header');
     const observer = new IntersectionObserver(
-        ([entry]) => {
-            // any part of the entry is visible
-            if (entry.isIntersecting) {
-                // so long as some of the header is visible the card top fade cannot be stuck to top
-                projectFiltering.classList.remove('is-stuck');
-            } else {
-                // card top fade must be stuck to top
-                projectFiltering.classList.add('is-stuck');
+        ([entry]) => {    
+            if (window.innerWidth > 1000) {
+                // any part of the entry is visible
+                if (entry.isIntersecting) {
+                    // so long as some of the header is visible the card top fade cannot be stuck to top
+                    projectFiltering.classList.remove('is-stuck');
+                } else {
+                    // card top fade must be stuck to top
+                    projectFiltering.classList.add('is-stuck');
+                }
             }
         },
         // fires when element goes from >0% to 0%, or 0% to >0%
