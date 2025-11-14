@@ -294,9 +294,10 @@
 }
 
 .project-image {
-    height: 200px;
+    height: 150px;
     overflow: hidden;
     border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
 .project-image img {
@@ -374,9 +375,9 @@
         gap: var(--spacing-lg);
     }
 
-    .project-image {
+    /* .project-image {
         height: 180px;
-    }
+    } */
 
 /* Project Filtering Section */
     .project-filtering {
@@ -411,7 +412,7 @@
     }
 
     .project-image {
-        height: 180px;
+        height: 120px;
     }
 
 /* Project Filtering Section */
