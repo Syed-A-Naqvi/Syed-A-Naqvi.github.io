@@ -379,7 +379,16 @@
     }
 
     #contact header {
-        margin-bottom: var(--spacing-sm);
+        padding-bottom: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+
+    #contact h4 {
+        font-size: var(--font-size-md);
+    }
+
+    .floating-btn {
+        font-size: x-small;
     }
     
     .info-item {
@@ -423,6 +432,7 @@
     .submit-container {
         align-items: center;
     }
+
     
     /* Mobile form notification styles */
     .form-notification {

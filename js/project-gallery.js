@@ -2,8 +2,10 @@
 
     // --------------------------------VARIABLES/CONSTANTS--------------------------------
     
+    // project gallery container
+    const projectGallery = document.querySelector('.project-gallery');
     // main filtration container
-    const projectFiltering = document.querySelector('.project-filtering');
+    const projectFiltering = projectGallery.querySelector('.project-filtering');
     // tag search box
     const tagSearchBox = document.getElementById('filter-search-box');
     // clear all filters button
@@ -14,60 +16,25 @@
     const filterGroup = filterContainer.querySelector('.filter-group');
     // individual filter buttons
     const filterButtons = filterGroup.querySelectorAll('.filter-btn');
-    // unapplied filter set
-    const unappliedFilters = new Set(filterButtons);
-    // applied filters set
-    const appliedFilters = new Set();
-    // building inactive <-> active filter button mapping
-    const filterFilterMap = new Map();
-    filterButtons.forEach(btn => {
-        // creating active button clone
-        const activeBtn = btn.cloneNode(true);
-        activeBtn.removeAttribute('id');
-        activeBtn.classList.add('active');
-        filterFilterMap.set(btn, activeBtn);
-        filterFilterMap.set(activeBtn, btn);
-    });
-    // adding shadow effect when cards scroll out of top view
-    const galleryHeader = document.querySelector('.project-gallery header');
-    const observer = new IntersectionObserver(
-        ([entry]) => {    
-            if (window.innerWidth > 1000) {
-                // any part of the entry is visible
-                if (entry.isIntersecting) {
-                    // so long as some of the header is visible the card top fade cannot be stuck to top
-                    projectFiltering.classList.remove('is-stuck');
-                } else {
-                    // card top fade must be stuck to top
-                    projectFiltering.classList.add('is-stuck');
-                }
-            }
-        },
-        // fires when element goes from >0% to 0%, or 0% to >0%
-        { threshold: [0] }
-    );
-    observer.observe(galleryHeader);
-
     // project card container
-    const projectGrid = document.querySelector('.project-grid');
+    const projectGrid = projectGallery.querySelector('.project-grid');
     // individual project cards
     const allProjectCards = projectGrid.querySelectorAll('.project-card');
-    // displayed and hidden project card sets
-    const displayedProjectCards = new Set(allProjectCards);
-    const hiddenProjectCards = new Set();
-    // building [filter button] -> [card] mapping
-    const filterCardMap = new Map();
-    allProjectCards.forEach(card => {
-        const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
-        tags.forEach(tag => {
-            const filterBtn = document.getElementById(tag);
-            if (!filterCardMap.has(filterBtn)) {
-                filterCardMap.set(filterBtn, new Set());
-            }
-            filterCardMap.get(filterBtn).add(card);
-        });
-    });
 
+    // unapplied filter set (initially all filters unapplied)
+    const unappliedFilters = new Set(filterButtons);
+    // applied filters set (initially no filters applied)
+    const appliedFilters = new Set();
+
+    // displayed project cards (initially all cards displayed)
+    const displayedProjectCards = new Set(allProjectCards);
+    // hidden project cards (initially no cards hidden)
+    const hiddenProjectCards = new Set();
+
+    // inactive <-> active filter button mapping
+    const filterFilterMap = new Map();
+    // [filter button] -> [card] mapping
+    const filterCardMap = new Map();
 
     // --------------------------------UTILITY SET OPERATIONS--------------------------------
 
@@ -218,7 +185,6 @@
             }, 100);
             
             // Remove all applied filters and display all project cards
-            console.log(`Number of filters currently applied: ${appliedFilters.size}`);
             while(appliedFilters.size > 0) {
                 removeFilter(appliedFilters.values().next().value);
             }
@@ -284,10 +250,191 @@
         });
     }
 
+    // project gallery scroll effects
+    function initProjectGalleryScrollEffects() {
+
+        // back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        // project gallery header
+        const galleryHeader = projectGallery.querySelector('header');
+        // project tabs container (for mobile view effects)
+        const projectTabsListContainer = document.querySelector('.project-tabs-container');
+
+        // observed element visibility states
+        let galleryVisible = false;
+        let galleryHeaderVisible = false;
+        let galleryHeaderCutoff = false;
+        
+        // effect states
+        let projectFilteringShadow = false;
+        let tabsContainerShadow = false;
+        let backToTopButtonVisible = false;
+
+        /**
+         * setup desktop view filter container shadow effects
+        */
+        function projectFilteringShadowEffect() {
+            if (window.innerWidth > 800 && galleryVisible && !galleryHeaderVisible) {
+                projectFilteringShadow ? null : projectFiltering.classList.add("is-stuck");
+                projectFilteringShadow = true;
+            }
+            else {
+                projectFiltering.classList.remove("is-stuck");
+                projectFilteringShadow = false;
+            }
+        }
+        
+        /**
+         * setup mobile view tabs container shadow effects
+        */
+        function tabsContainerShadowEffect() {
+            if (window.innerWidth <= 800 && galleryVisible && galleryHeaderCutoff) {
+                tabsContainerShadow ? null : projectTabsListContainer.classList.add("is-stuck");
+                tabsContainerShadow = true;
+            }
+            else {
+                projectTabsListContainer.classList.remove("is-stuck");
+                tabsContainerShadow = false;
+            }
+        }
+        
+        /**
+         * setup mobile view back to top button functionality
+        */
+        function backToTopButtonFunctionality() {
+
+            // initially hide back to top button
+            backToTopButton.classList.add('hidden');
+                        
+            // back to top button click event
+            backToTopButton.addEventListener('click', () => {
+                projectGallery.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // scroll event handling
+            let previousScrollTop = projectGallery.scrollTop;
+            // button appears when scrolling up (unless at top), disappears when scrolling down
+            projectGallery.addEventListener('scroll', (e) => {
+                
+                if (!galleryVisible) { return; }
+
+                if (projectGallery.scrollTop >= previousScrollTop) {
+                    // scrolling down
+                    backToTopButton.classList.add('hidden');
+                    backToTopButtonVisible = false;
+                } else {
+                    // scrolling up
+                    backToTopButton.classList.remove('hidden');
+                    backToTopButtonVisible = true;
+                    if (projectGallery.scrollTop === 0) {
+                        backToTopButton.classList.add('hidden');
+                        backToTopButtonVisible = false;
+                    }
+                }
+                
+                previousScrollTop = projectGallery.scrollTop;
+
+            });
+
+        }
+
+        
+        // setting up main project gallery observer
+        const galleryObserver = new IntersectionObserver( (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.target === projectGallery) {
+                        
+                        if (entry.isIntersecting) {
+                            galleryVisible = true;
+                        }
+                        else {
+                            galleryVisible = false;
+                            galleryHeaderCutoff = true;
+                            galleryHeaderVisible = false;
+                        }
+
+                    }
+
+                    if (entry.target === galleryHeader && galleryVisible) {
+                        
+                        if (entry.isIntersecting) {
+
+                            galleryHeaderVisible = true;
+
+                            if (entry.intersectionRatio < 1) {
+                                galleryHeaderCutoff = true;
+                            } else {
+                                galleryHeaderCutoff = false;
+                            }
+
+                        }
+                        else {
+                            galleryHeaderVisible = false;
+                            galleryHeaderCutoff = true;
+                        }
+
+                    }
+
+                });
+
+                // applying shadow effects based on visibility states
+                projectFilteringShadowEffect();
+                tabsContainerShadowEffect();
+                
+                if (!galleryVisible){
+                    backToTopButton.classList.add('hidden');
+                }
+                else if (backToTopButtonVisible) {
+                    backToTopButton.classList.remove('hidden');
+                }
+
+                console.log(`Gallery visible: ${galleryVisible}, Header visible: ${galleryHeaderVisible}, Header cutoff: ${galleryHeaderCutoff}`)
+
+            },
+            // fires when element goes from >0% to 0%, or 0% to >0%
+            {   
+                root: null,
+                threshold: [0, 1]
+            }
+        );
+
+        galleryObserver.observe(projectGallery);
+        galleryObserver.observe(galleryHeader);
+        backToTopButtonFunctionality();
+
+    }
     
     // --------------------------------INITIALIZATION--------------------------------
+    
+    filterButtons.forEach(btn => {
+        // creating active button clone
+        const activeBtn = btn.cloneNode(true);
+        activeBtn.removeAttribute('id');
+        activeBtn.classList.add('active');
+        filterFilterMap.set(btn, activeBtn);
+        filterFilterMap.set(activeBtn, btn);
+    });
+
+    // building [filter button] -> [card] mapping
+    allProjectCards.forEach(card => {
+        const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
+        tags.forEach(tag => {
+            const filterBtn = document.getElementById(tag);
+            if (!filterCardMap.has(filterBtn)) {
+                filterCardMap.set(filterBtn, new Set());
+            }
+            filterCardMap.get(filterBtn).add(card);
+        });
+    });
+
     horizontalFilterContainerScroll();
     initFilterButtons();
     initSearchBox();
+    initProjectGalleryScrollEffects();
 
 })();

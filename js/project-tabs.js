@@ -27,7 +27,6 @@
     // tab to iframe map
     const tabIframeMap = new Map();
 
-
     // --------------------------------FUNCTIONS--------------------------------
 
     // Horizontal scroll for project gallery tabs
@@ -214,6 +213,16 @@
     window.addEventListener('themeUpdated', () => {
         sendThemeChangeMessage();
     });
+
+    // initialize tabs container shadow effect for mobile view on window resize and dom load
+    let shadowResizeTimeout = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(shadowResizeTimeout);
+        shadowResizeTimeout = setTimeout(() => {
+            setupTabsShadowEffects();
+        }, 500);
+    });
+    setupTabsShadowEffects();
 
 
 })();

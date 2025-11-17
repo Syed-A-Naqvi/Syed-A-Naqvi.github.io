@@ -2,6 +2,11 @@
 #project-view {
     padding: 0;
     overflow: hidden;
+    position: relative;
+}
+
+.is-stuck {
+    box-shadow: var(--shadow-md);
 }
 
 
@@ -115,9 +120,6 @@
     gap: var(--spacing-md);
     flex: 0 0 fit-content;
     z-index: var(--z-index-navigation);
-}
-.project-filtering.is-stuck {
-    box-shadow: var(--shadow-md);
 }
 
 /* filter search box */
@@ -367,7 +369,36 @@
     z-index: var(--z-index-above);
 }
 
-/* Responsive design for projects section */
+/* Back to Top Button - matching jupyter book's version*/
+.back-to-top {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-pill);
+    z-index: var(--z-index-navigation);
+    font-weight: var(--font-weight-regular);
+    transition: all var(--transition-speed-fast) var(--transition-ease);
+}
+.back-to-top:hover {
+    background-color: #6432BD;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.dark-theme .back-to-top {
+    background-color: #C94857;
+    color: var(--color-text);
+}
+.dark-theme .back-to-top:hover {
+    background-color: #6432BD;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ------------------------------ Responsive Design ------------------------------ */
 @media screen and (max-width: 1000px) {
 
     .project-grid {
@@ -402,6 +433,18 @@
 /* Responsive design for projects section */
 @media screen and (max-width: 800px) {
 
+/* Project Tabs */
+
+    .project-tabs-container {
+        padding-bottom: var(--spacing-lg);
+    }
+    .project-tabs-container .tab-item {
+        padding: 0 var(--spacing-md) var(--spacing-xs) var(--spacing-md);
+        font-size: var(--font-size-md);
+    }
+
+/* Project Grid */
+
     .project-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
@@ -416,6 +459,7 @@
     .project-filtering {
         position: static;
         top: auto;
+        z-index: var(--z-index-base);
     }
 
     .project-filtering .filter-search {
@@ -433,6 +477,13 @@
 
     .project-filtering .filter-btn {
         height: calc(0.95*var(--spacing-xxl));
+    }
+
+/* Back to Top Button */
+    .back-to-top {
+        bottom: 40px;
+        padding: calc(1.2*var(--spacing-sm)) calc(1.2*var(--spacing-md));
+        font-size: var(--font-size-sm);
     }
 
 }
