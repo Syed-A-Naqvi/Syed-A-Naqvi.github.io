@@ -189,6 +189,9 @@
             // display project
             displayProject(tab);
 
+            // move tab scrollbar to right end to show newly added tab
+            projectTabsListContainer.scrollLeft = projectTabsList.scrollWidth;
+
         });
 
         // enable tab switching on tab click
