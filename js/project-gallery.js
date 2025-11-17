@@ -268,7 +268,6 @@
         // effect states
         let projectFilteringShadow = false;
         let tabsContainerShadow = false;
-        let backToTopButtonVisible = false;
 
         /**
          * setup desktop view filter container shadow effects
@@ -324,14 +323,11 @@
                 if (projectGallery.scrollTop >= previousScrollTop) {
                     // scrolling down
                     backToTopButton.classList.add('hidden');
-                    backToTopButtonVisible = false;
                 } else {
                     // scrolling up
                     backToTopButton.classList.remove('hidden');
-                    backToTopButtonVisible = true;
                     if (projectGallery.scrollTop === 0) {
                         backToTopButton.classList.add('hidden');
-                        backToTopButtonVisible = false;
                     }
                 }
                 
@@ -388,9 +384,6 @@
                 
                 if (!galleryVisible){
                     backToTopButton.classList.add('hidden');
-                }
-                else if (backToTopButtonVisible) {
-                    backToTopButton.classList.remove('hidden');
                 }
 
                 console.log(`Gallery visible: ${galleryVisible}, Header visible: ${galleryHeaderVisible}, Header cutoff: ${galleryHeaderCutoff}`)
