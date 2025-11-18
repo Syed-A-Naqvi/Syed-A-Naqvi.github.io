@@ -239,7 +239,7 @@
                 });
                 // filtering displayed project cards based on search box string
                 displayedProjectCards.forEach(card => {
-                    if (card.dataset.tags.toLowerCase().replace(/-/g," ").includes(currentValue)) {
+                    if (card.dataset.tags.toLowerCase().replace(/,/g," ").includes(currentValue)) {
                         card.style.display = "";
                     } else {
                         card.style.display = "none";
@@ -415,7 +415,7 @@
 
     // building [filter button] -> [card] mapping
     allProjectCards.forEach(card => {
-        const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
+        const tags = card.dataset.tags ? card.dataset.tags.split(",") : [];
         tags.forEach(tag => {
             const filterBtn = document.getElementById(tag);
             if (!filterCardMap.has(filterBtn)) {

@@ -42,7 +42,7 @@ for (const field of requiredFields) {
             // sorting tags alphabetically
             // ensuring space-separated words with first letter capitalized
             projectMetadata.tags = Array.from(new Set(projectMetadata.tags)).sort().map(tag => {
-                return tag.trim().replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+                return tag.trim();
             });
         }
         
@@ -113,7 +113,7 @@ function buildProjectCard(projectMetadata) {
     card.id = hashUrl(projectMetadata.url);
     card.className = "project-card";
     card.dataset.url = projectMetadata.url;
-    card.dataset.tags = projectMetadata.tags.map(tag => tag.replace(/ +/g,"-").toLowerCase()).join(" ");
+    card.dataset.tags = projectMetadata.tags.join(",");
     card.dataset.updated = new Date(projectMetadata.updated).toISOString();
 
     // CREATING LOGO CONTAINER
@@ -170,7 +170,7 @@ function buildFilterButton(tag) {
     const filterButton = document.createElement("button");
     filterButton.id = tag;
     filterButton.className = 'filter-btn';
-    filterButton.textContent = tag.replace(/-+/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    filterButton.textContent = tag;
     console.log(`Created filter button for tag: ${tag}`);
     console.log(`Filter button text: ${filterButton.textContent}`);
     return filterButton;
@@ -198,7 +198,7 @@ projectCards.sort((a, b) => {
 // incrementing filter button tally and adding new buttons if necessary
 console.log(`Current Filter Button Tallies: ${JSON.stringify(filterButtonTally)}`);
 projectCards.forEach(card => {
-    const tags = card.dataset.tags ? card.dataset.tags.split(" ") : [];
+    const tags = card.dataset.tags ? card.dataset.tags.split(",") : [];
     console.log(`Tags for project card ${card.id}: ${tags.join(", ")}`);
     tags.forEach(tag => {
         if (filterButtonTally.hasOwnProperty(tag)) {
