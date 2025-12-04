@@ -1,5 +1,6 @@
 #about {
     width: 100%;
+    overflow: auto;
 }
 
 .about-filler {
@@ -14,6 +15,6 @@
 }
 
 .affiliation-links img {
-    height: 150px;
-    margin-right: calc(2*var(--spacing-xxxl));
+    height: 80px;
+    margin-right: calc(1*var(--spacing-xxxl));
 }
