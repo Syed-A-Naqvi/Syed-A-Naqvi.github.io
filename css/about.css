@@ -6,3 +6,14 @@
     flex: 0 0 var(--spacing-xxl);
     width: 100%;
 }
+
+.affiliation-links {
+    display: flex;
+    width: 100%;
+    margin-top: var(--spacing-xxxl);
+}
+
+.affiliation-links img {
+    height: 150px;
+    margin-right: calc(2*var(--spacing-xxxl));
+}
