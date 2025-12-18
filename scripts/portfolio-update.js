@@ -13,7 +13,6 @@ let rawProjectMetadata = null;
 if (process.argv.length === 3) {
     // extracting project metadata from command line argument
     rawProjectMetadata = process.argv[2];
-    console.log(rawProjectMetadata);
 }
 // Command line argument processing --------------------------------
 
@@ -147,6 +146,7 @@ function buildFilterButton(tag) {
 
 // ------------------------------JSON payload processing ------------------------------
 if (rawProjectMetadata) {
+    console.log(`${rawProjectMetadata} is not evaluating to false for some reason`);
     let projectMetadata;
     try {
         projectMetadata = JSON.parse(rawProjectMetadata);
