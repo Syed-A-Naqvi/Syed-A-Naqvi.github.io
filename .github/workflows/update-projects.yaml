@@ -7,6 +7,10 @@ on:
   repository_dispatch:
     types: [project-updated]
 
+  push:
+    branches:
+      -main # portfolio project gallery will update on every push allowing for smoother manual project card insertion
+
 jobs:
 
   update-gallery:

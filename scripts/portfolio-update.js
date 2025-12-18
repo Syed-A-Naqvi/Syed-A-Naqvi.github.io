@@ -2,59 +2,22 @@ import {JSDOM} from 'jsdom';
 import { readFile, writeFile } from 'node:fs/promises';
 import crypto from 'node:crypto';
 
-
 // Command line argument processing --------------------------------
 // Ensure correct number of arguments
-if (process.argv.length !== 3) {
+if (process.argv.length !== 2 && process.argv.length !== 3) {
     console.log("Error: Invalid number of arguments.");
-    console.log("Usage: node portfolio-update.js '<project-metadata-json>'");
+    console.log("Usage: node portfolio-update.js '<project-metadata-json>' or node portfolio-update.js");
     process.exit(1);
 }
-// extracting project metadata from command line argument
-const rawProjectMetadata = process.argv[2];
-
-
-// Input validation ------------------------------------------------
-// parsing JSON payload
-let projectMetadata;
-try {
-    projectMetadata = JSON.parse(rawProjectMetadata);
-} catch (error) {
-    console.error("Invalid JSON payload:", error);
-    process.exit(1);
+let rawProjectMetadata = null;
+if (process.argv.length === 3) {
+    // extracting project metadata from command line argument
+    rawProjectMetadata = process.argv[2];
 }
-// Ensuring all fields present and valid
-const requiredFields = ['title', 'description','author', 'tags', 'url', 'logo_path', 'updated'];
-for (const field of requiredFields) {
-    
-    if (!projectMetadata[field]) {
-        console.error(`Missing required field: ${field}`);
-        process.exit(1);
-    }
-    else if (field === 'tags') {
-
-        if (!Array.isArray(projectMetadata[field])) {
-            console.error(`Field 'tags' must be an array.`);
-            process.exit(1);
-        }
-        else {
-            // removing duplicate tags
-            // sorting tags alphabetically
-            // ensuring space-separated words with first letter capitalized
-            projectMetadata.tags = Array.from(new Set(projectMetadata.tags)).sort().map(tag => {
-                return tag.trim();
-            });
-        }
-        
-    }
-    else if (field === 'updated' && isNaN(Date.parse(projectMetadata[field]))) {
-        console.error(`Field 'updated' must be a valid date string.`);
-        process.exit(1);
-    }
-}
+// Command line argument processing --------------------------------
 
 
-// Extracting main index.html file content ---------------------------------
+// ----------------- Extracting main index.html file content ----------------
 let htmlContent;
 try {
     htmlContent = await readFile('index.html', 'utf8');
@@ -79,7 +42,10 @@ const filterButtonTally = {};
 filterButtons.forEach(btn => {
     filterButtonTally[btn.id] = 0;
 });
+// ----------------- Extracting main index.html file content ----------------
 
+
+// -------------------------------- Functions -----------------------------
 /**
  * Generates a unique hash for a project based on its URL.
  * @param {string} url - The project URL.
@@ -175,17 +141,64 @@ function buildFilterButton(tag) {
     console.log(`Filter button text: ${filterButton.textContent}`);
     return filterButton;
 }
+// -------------------------------- Functions -----------------------------
 
-// creating new project card
-const newProjectCard = buildProjectCard(projectMetadata);
 
-// appending or replacing project card in the grid
-const existingCard = document.getElementById(newProjectCard.id);
-if (existingCard) {
-    projectGrid.replaceChild(newProjectCard, existingCard);
-} else {
-    projectGrid.appendChild(newProjectCard);
+// ------------------------------JSON payload processing ------------------------------
+if (rawProjectMetadata) {
+    let projectMetadata;
+    try {
+        projectMetadata = JSON.parse(rawProjectMetadata);
+    } catch (error) {
+        console.error("Invalid JSON payload:", error);
+        process.exit(1);
+    }
+    // Ensuring all fields present and valid
+    const requiredFields = ['title', 'description','author', 'tags', 'url', 'logo_path', 'updated'];
+    for (const field of requiredFields) {
+        
+        if (!projectMetadata[field]) {
+            console.error(`Missing required field: ${field}`);
+            process.exit(1);
+        }
+        
+        if (field === 'tags') {
+    
+            if (!Array.isArray(projectMetadata[field])) {
+                console.error(`Field 'tags' must be an array.`);
+                process.exit(1);
+            }
+            
+            // removing duplicate tags
+            // sorting tags alphabetically
+            // ensuring space-separated words with first letter capitalized
+            projectMetadata.tags = Array.from(new Set(projectMetadata.tags)).sort().map(tag => {
+                return tag.trim();
+            });
+            
+        }
+        if (field === 'updated' && isNaN(Date.parse(projectMetadata[field]))) {
+            console.error(`Field 'updated' must be a valid date string.`);
+            process.exit(1);
+        }
+    }
+
+    // creating new project card
+    const newProjectCard = buildProjectCard(projectMetadata);
+    
+    // appending or replacing project card in the grid
+    const existingCard = document.getElementById(newProjectCard.id);
+    if (existingCard) {
+        projectGrid.replaceChild(newProjectCard, existingCard);
+    } else {
+        projectGrid.appendChild(newProjectCard);
+    }
+
 }
+// ------------------------------JSON payload processing ------------------------------
+
+
+// ------------------------------ Building Gallery ------------------------------
 
 // extracting cards list and sorting cards by update time
 let projectCards = Array.from(projectGrid.children);
@@ -254,3 +267,5 @@ try {
     console.error("Error writing to index.html:", error);
     process.exit(1);
 }
+
+// ------------------------------ Building Gallery ------------------------------
