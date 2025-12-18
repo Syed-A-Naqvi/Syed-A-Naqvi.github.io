@@ -9,7 +9,7 @@ on:
 
   push:
     branches:
-      -main # portfolio project gallery will update on every push allowing for smoother manual project card insertion
+      - main # portfolio project gallery will update on every push allowing for smoother manual project card insertion
 
 jobs:
 
