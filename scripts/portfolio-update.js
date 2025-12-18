@@ -145,8 +145,8 @@ function buildFilterButton(tag) {
 
 
 // ------------------------------JSON payload processing ------------------------------
-if (rawProjectMetadata) {
-    console.log(`${rawProjectMetadata} is not evaluating to false for some reason`);
+if (rawProjectMetadata !== 'null') {
+
     let projectMetadata;
     try {
         projectMetadata = JSON.parse(rawProjectMetadata);
