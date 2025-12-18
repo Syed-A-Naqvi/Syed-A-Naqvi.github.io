@@ -13,6 +13,7 @@ let rawProjectMetadata = null;
 if (process.argv.length === 3) {
     // extracting project metadata from command line argument
     rawProjectMetadata = process.argv[2];
+    console.log(rawProjectMetadata);
 }
 // Command line argument processing --------------------------------
 
@@ -168,7 +169,7 @@ if (rawProjectMetadata) {
                 console.error(`Field 'tags' must be an array.`);
                 process.exit(1);
             }
-            
+
             // removing duplicate tags
             // sorting tags alphabetically
             // ensuring space-separated words with first letter capitalized
