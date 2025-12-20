@@ -116,7 +116,7 @@
     align-items: center;
     background-color: var(--color-surface);
     padding: var(--spacing-lg) var(--spacing-xxxl) var(--spacing-lg) var(--spacing-xxxl);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
     gap: var(--spacing-md);
     flex: 0 0 fit-content;
     z-index: var(--z-index-navigation);
