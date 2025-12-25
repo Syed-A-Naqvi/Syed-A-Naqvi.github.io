@@ -65,11 +65,11 @@
             <!-- Navigation Links -->
             <ul class="nav-links">
                 <li class="nav-item">
-                    <a href="#about" class="nav-link slider active" data-view="about">
+                    <a href="#project-view" class="nav-link slider active" data-view="project-view">
                         <div class="slider-spacer"></div>
                         <div class="slider-btn">
-                            <i class="fas fa-id-card" aria-hidden="true"></i>
-                            About
+                            <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                            Projects
                         </div>
                         <div class="slider-track"></div>
                     </a>
@@ -77,11 +77,11 @@
                 </li>
                 <span class="nav-separator"></span>
                 <li class="nav-item">
-                    <a href="#project-view" class="nav-link slider" data-view="project-view">
+                    <a href="#about" class="nav-link slider" data-view="about">
                         <div class="slider-spacer"></div>
                         <div class="slider-btn">
-                            <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                            Projects
+                            <i class="fas fa-id-card" aria-hidden="true"></i>
+                            About
                         </div>
                         <div class="slider-track"></div>
                     </a>
@@ -113,40 +113,9 @@
 
         <!-- Main Content Area -->
         <main class="main-content">
-
-                        <!-- About View -->
-            <section id="about" class="content-view active">
-                    
-                    <header>
-                        <h1>About Me</h1>
-                        <p class="subtitle">Professional background and expertise in public safety, traffic collisions and crime analytics</p>
-                    </header>
-                    
-                    <div class="about-content">
-                        <div class="bio-section">
-                            <h2>Executive Summary</h2>
-                            <p>I am a data analyst and machine learning engineer specialized in developing solutions for public safety applications, with particular expertise in geospatial analysis, real-time ML inference, and ETL pipeline architecture. My background spans collision data analysis, statistical modeling, and full-stack web development—enabling me to bridge the gap between raw operational datasets and polished, interactive dashboards that inform police resource allocation and urban planning decisions. I am proficient in Python, PostgreSQL, Power BI, and ArcGIS, and I approach each project with an emphasis on rigor, reproducibility, and practical business impact. Whether building YOLO-based computer vision systems or designing predictive traffic forecasting models, I focus on creating solutions that are technically sophisticated, ethically considerate and operationally useful.</p>
-                        </div>
-                    </div>
-
-                    <div class="affiliation-links">
-                        <a href="https://ontariotechu.ca/">
-                            <img src="assets/images/uoit_logo.jpg" alt="otu_logo">
-                        </a>
-                        <a href="https://accsupport.com/">
-                            <img src="assets/images/accident_support_services_logo.jpg" alt="accident_support_services_logo">
-                        </a>
-                        <a href="https://affectivedatascience.com/people/naqvi_sn">
-                            <img src="assets/images/AFD.jpg" alt="affective_data_science_lab_logo">
-                        </a>
-                    </div>
-
-                    <div class="main-content-filler"></div>
-
-            </section>
             
             <!-- Project View-->
-            <section id="project-view" class="content-view">
+            <section id="project-view" class="content-view active">
 
                 <!-- Add The tab and multi-project view pane functionality here -->
                 <nav class="project-tabs-container hidden">
@@ -188,7 +157,38 @@
                 </button>
 
             </section>
-                
+
+            <!-- About View -->
+            <section id="about" class="content-view">
+                    
+                    <header>
+                        <h1>About Me</h1>
+                        <p class="subtitle">Professional background and expertise in public safety, traffic collisions and crime analytics</p>
+                    </header>
+                    
+                    <div class="about-content">
+                        <div class="bio-section">
+                            <h2>Executive Summary</h2>
+                            <p>I am a data analyst and machine learning engineer specialized in developing solutions for public safety applications, with particular expertise in geospatial analysis, real-time ML inference, and ETL pipeline architecture. My background spans collision data analysis, statistical modeling, and full-stack web development—enabling me to bridge the gap between raw operational datasets and polished, interactive dashboards that inform police resource allocation and urban planning decisions. I am proficient in Python, PostgreSQL, Power BI, and ArcGIS, and I approach each project with an emphasis on rigor, reproducibility, and practical business impact. Whether building YOLO-based computer vision systems or designing predictive traffic forecasting models, I focus on creating solutions that are technically sophisticated, ethically considerate and operationally useful.</p>
+                        </div>
+                    </div>
+
+                    <div class="affiliation-links">
+                        <a href="https://ontariotechu.ca/">
+                            <img src="assets/images/uoit_logo.jpg" alt="otu_logo">
+                        </a>
+                        <a href="https://accsupport.com/">
+                            <img src="assets/images/accident_support_services_logo.jpg" alt="accident_support_services_logo">
+                        </a>
+                        <a href="https://affectivedatascience.com/people/naqvi_sn">
+                            <img src="assets/images/AFD.jpg" alt="affective_data_science_lab_logo">
+                        </a>
+                    </div>
+
+                    <div class="main-content-filler"></div>
+
+            </section>
+            
             <!-- Contact View -->
             <section id="contact" class="content-view">
 
