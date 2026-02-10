@@ -24,8 +24,14 @@
     // active tabs
     const openedTabs = new Set();
 
-    // tab to iframe map
+    // tab -> iframe map
     const tabIframeMap = new Map();
+
+    // repo -> tab map
+    const repoTabMap = new Map();
+
+    // tab -> repo map
+    const tabRepoMap = new Map();
 
     // --------------------------------FUNCTIONS--------------------------------
 
@@ -43,8 +49,9 @@
     /**
      * Creates a project iframe element
      * @param {HTMLElement} tab - The project tab element
+     * @param {Boolean} e - Function invocation originated from window hashchange event
      */
-    function displayProject(tab) {
+    function displayProject(tab, fromHashchange = false) {
 
         if (!openedTabs.has(tab)) {
             
@@ -75,7 +82,18 @@
         activeTab = tab;
         activeTab.classList.add('active');
         tabIframeMap.get(activeTab).style.display = '';
-        
+
+        // updating URL with newly activated tab project name unless tab being displayed through back/forward browser navigation
+        if (!fromHashchange){
+            const currentRoute = window.location.hash.split('/');
+            if (currentRoute.length > 1){
+                currentRoute[1] = tabRepoMap.get(activeTab);
+                window.location.hash = currentRoute.join('/');
+            }
+            else {
+                window.location.hash = `${window.location.hash}/${tabRepoMap.get(activeTab)}`;
+            }
+        }
     }
 
     /**
@@ -150,11 +168,30 @@
         });
     }
 
+    /**
+     * Loads a project tab based on the current url
+     */
+    function urlTabDisplay() {
+        
+        // split the current hash section using forward slashes as delimiters
+        const hashParts = window.location.hash.split('/');
+
+        // if there is a valid project tab specified, load the project
+        if (hashParts.length > 1 && repoTabMap.has(hashParts[1])){
+            displayProject(repoTabMap.get(hashParts[1]), true);
+        }
+
+    }
+
     // --------------------------------INITIALIZATION--------------------------------
 
     // manually add project gallery tab to tab -> iframe map
     const galleryTab = projectTabsList.querySelector('[data-projectid="all"]');
     tabIframeMap.set(galleryTab, projectGallery);
+
+    // manually assign gallery tab <-> 'all' string
+    repoTabMap.set('all', galleryTab);
+    tabRepoMap.set(galleryTab, 'all');
 
     // insert gallery tab into opened tabs set
     openedTabs.add(galleryTab);
@@ -171,19 +208,27 @@
     // Create tabs and iframes for each project card
     projectCards.forEach( card => {
 
-        // creating tab
+        // creating project tab
         const tab = createProjectTab(card);
 
-        // creating iframe
+        // creating project iframe
         const iframe = createProjectIframe(card);
 
-        // link tab to iframe
+        // getting project repo name
+        const urlSections = card.dataset.url.split('/')
+        const repoName = urlSections[urlSections.length - 2]
+
+        // project repo name <-> project tab maps
+        repoTabMap.set(repoName, tab)
+        tabRepoMap.set(tab, repoName)
+
+        // project tab -> project iframe
         tabIframeMap.set(tab, iframe);
         
         // append iframe to project view
         projectViewSection.appendChild(iframe);
 
-        // enable tab creation and activation on card click
+        // enable tab activation on card click
         card.addEventListener( 'click', () => {
 
             // display project
@@ -225,7 +270,16 @@
             setupTabsShadowEffects();
         }, 500);
     });
-    setupTabsShadowEffects();
+
+    // add window event listener that displays a project tab based on url changes
+    window.addEventListener('hashchange', () => {
+        urlTabDisplay();   
+    });
+    
+    // automatically opening the correct tab if navigating to website via direct project url link
+    document.addEventListener("DOMContentLoaded", () => {
+        urlTabDisplay();   
+    });
 
 
 })();

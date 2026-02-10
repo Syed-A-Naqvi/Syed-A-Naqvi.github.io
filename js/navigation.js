@@ -61,7 +61,7 @@
         window.location.hash = '#project-view';
     } else {
         // Get view from hash (remove the # symbol)
-        const hashView = window.location.hash.substring(1);
+        const hashView = window.location.hash.substring(1).split('/')[0];
         
         // Check if this is a valid view
         if (document.getElementById(hashView)) {
@@ -78,23 +78,33 @@
             // Get the data-view attribute value
             const targetView = link.getAttribute('data-view');
             
-            // Update the hash in the URL
-            window.location.hash = `#${targetView}`;
+            // getting currently active content view
+            currentView = window.location.hash.split('/')[0];
+
+            // do not update active view if current link already active
+            if (!(currentView === `#${targetView}`)) {
+                
+                // Update the hash in the URL
+                window.location.hash = `#${targetView}`;
+
+                // Update active view
+                updateActiveView(targetView);
+            }
             
-            // Update active view
-            updateActiveView(targetView);
         });
     });
     
     // Listen for hash changes (browser back/forward navigation)
     window.addEventListener('hashchange', () => {
+
         // Get view from hash (remove the # symbol)
-        const hashView = window.location.hash.substring(1);
-        
+        const hashView = window.location.hash.substring(1).split('/')[0];
+
         // Check if this is a valid view
         if (document.getElementById(hashView)) {
             updateActiveView(hashView);
         }
+        
     });
 
 }) ();
