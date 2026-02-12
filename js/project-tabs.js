@@ -176,9 +176,20 @@
         // split the current hash section using forward slashes as delimiters
         const hashParts = window.location.hash.split('/');
 
-        // if there is a valid project tab specified, load the project
-        if (hashParts.length > 1 && repoTabMap.has(hashParts[1])){
-            displayProject(repoTabMap.get(hashParts[1]), true);
+        if (hashParts.length > 1) {
+            
+            // if there is a valid project tab specified, load the project
+            if (repoTabMap.has(hashParts[1])){
+                displayProject(repoTabMap.get(hashParts[1]), true);
+            }
+
+        } else {
+
+            // if there is no project specified in the URL, but projects are opened and the #project-view page is specified, display the 'all' tab
+            if ( hashParts[0] === '#project-view' && openedTabs.size > 1) {
+                displayProject(repoTabMap.get('all'), true)
+            }
+
         }
 
     }
