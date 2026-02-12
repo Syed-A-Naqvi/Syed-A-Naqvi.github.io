@@ -86,13 +86,13 @@ const EmailService = ( function() {
             }
             const form = currentForm;
             currentForm = null;
-
+            
             // changing submit button text to indicate pending submission
-            const submitButton = form.querySelector('.submit-btn');
+            const submitButton = form.querySelector('.floating-btn');
             const originalButtonText = submitButton.textContent;
             submitButton.textContent = "Sending...";
             submitButton.disabled = true;
-            
+
             // preparing email template parameters using form data
             const templateParams = {
                 form_name: form.querySelector('#name').value,
@@ -102,7 +102,7 @@ const EmailService = ( function() {
                 form_time: new Date().toLocaleString(),
                 'g-recaptcha-response': token   
             }
-
+            
             // // sending email using EmailJS
             emailjs.send('service_ye7wo3e', 'template_ucv1r5w', templateParams, "stUVVv-xHXQzteGtb")
                 .then(function(response) {
@@ -140,11 +140,11 @@ const EmailService = ( function() {
 window.onCaptchaSuccess = function(token) {
 
     // removing captcha making body interactible again
-    EmailService.removeCaptcha();
-
+    EmailService.removeCaptcha();    
+    
     // processing submissiong request using captcha token
     EmailService.processFormSubmission(token);
-
+    
 };
 
 window.onCaptchaError = function() {
